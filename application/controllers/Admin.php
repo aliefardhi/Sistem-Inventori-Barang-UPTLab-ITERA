@@ -6,6 +6,7 @@ class Admin extends CI_Controller
 
     public function index()
     {
-        $this->load->view('admin/index');
+        $data['title'] = 'Dashboard';
+        $this->load->view('admin/index', $data);
     }
 }

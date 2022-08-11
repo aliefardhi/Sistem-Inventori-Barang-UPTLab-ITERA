@@ -3,3 +3,9 @@
 body {
 	font-family: "Poppins", sans-serif !important;
 }
+
+.cobacss {
+	background-color: aqua;
+	height: 400px;
+	width: 400px;
+}
