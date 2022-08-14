@@ -10,7 +10,7 @@
                 <li class="menu-title">Main</li>
 
                 <li>
-                    <a href="index.html" class="waves-effect">
+                    <a href="<?= base_url() ?>index.php/admin" class="waves-effect">
                         <i class="mdi mdi-view-dashboard"></i>
                         <span class="badge rounded-pill bg-primary float-end">2</span>
                         <span>Dashboard</span>
@@ -23,6 +23,7 @@
                         <span>Barang Modal</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="<?= base_url() ?>index.php/barangmodal">Daftar Barang</a></li>
                         <li><a href="email-inbox.html">Barang Rusak</a></li>
                         <li><a href="email-read.html">Barang Hilang</a></li>
                         <li><a href="email-compose.html">Barang Pinjam</a></li>
@@ -35,6 +36,7 @@
                         <span>Barang Persediaan</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="email-inbox.html">Daftar Barang</a></li>
                         <li><a href="email-inbox.html">Barang Rusak</a></li>
                         <li><a href="email-read.html">Barang Hilang</a></li>
                         <li><a href="email-compose.html">Barang Pinjam</a></li>
@@ -47,6 +49,7 @@
                         <span>Barang Habis Pakai</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="email-inbox.html">Daftar Barang</a></li>
                         <li><a href="email-inbox.html">Barang Rusak</a></li>
                         <li><a href="email-read.html">Barang Hilang</a></li>
                         <li><a href="email-compose.html">Barang Pinjam</a></li>

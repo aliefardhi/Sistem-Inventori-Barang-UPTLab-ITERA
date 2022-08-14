@@ -31,8 +31,9 @@
             <div class="page-content">
                 <div class="container-fluid">
 
-                    <!-- @@include("partials/page-title.html", {"pagetitle": "Lexa", "subtitle":"Dashboard" ,"title": "Dashboard"}) -->
+                    <!-- Page title -->
                     <?php $this->load->view('partials/page-title') ?>
+                    <!-- End of page title -->
 
                     <div class="row">
                         <div class="col-xl-3 col-sm-6">
