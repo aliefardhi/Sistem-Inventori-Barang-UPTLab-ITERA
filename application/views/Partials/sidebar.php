@@ -7,7 +7,7 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title">Main</li>
+                <li class="menu-title">Menu</li>
 
                 <li>
                     <a href="<?= base_url() ?>index.php/admin" class="waves-effect">
@@ -31,12 +31,12 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="javascript: void(0)" class="has-arrow waves-effect">
                         <i class="fas fa-boxes"></i>
                         <span>Barang Persediaan</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="email-inbox.html">Daftar Barang</a></li>
+                        <li><a href="<?= base_url() ?>index.php/barangpersediaan">Daftar Barang</a></li>
                         <li><a href="email-inbox.html">Barang Rusak</a></li>
                         <li><a href="email-read.html">Barang Hilang</a></li>
                         <li><a href="email-compose.html">Barang Pinjam</a></li>
@@ -44,19 +44,19 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="javascript: void(0)" class="has-arrow waves-effect">
                         <i class="fas fa-bong"></i>
                         <span>Barang Habis Pakai</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="email-inbox.html">Daftar Barang</a></li>
+                        <li><a href="<?= base_url() ?>index.php/baranghp">Daftar Barang</a></li>
                         <li><a href="email-inbox.html">Barang Rusak</a></li>
                         <li><a href="email-read.html">Barang Hilang</a></li>
                         <li><a href="email-compose.html">Barang Pinjam</a></li>
                     </ul>
                 </li>
 
-                <li class="menu-title">Extras</li>
+                <li class="menu-title">Lainnya</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-account-box"></i>

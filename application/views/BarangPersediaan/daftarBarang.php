@@ -6,8 +6,13 @@
     <!-- load title -->
     <?php $this->load->view('partials/title-meta') ?>
 
-    <!-- Load css -->
-    <?php $this->load->view('partials/head-css') ?>
+    <!-- Bootstrap Css -->
+    <link href="<?= base_url() ?>assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="<?= base_url() ?>assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <!-- App Css-->
+    <link href="<?= base_url() ?>assets/css/app.css" id="app-style" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -23,119 +28,13 @@
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
+
             <div class="page-content">
                 <div class="container-fluid">
 
                     <!-- start page title -->
                     <?php $this->load->view('partials/page-title') ?>
                     <!-- end page title -->
-
-                    <div class="row">
-
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4">Monthly Earnings</h4>
-
-                                    <div class="row text-center mt-4">
-                                        <div class="col-6">
-                                            <h5 class="font-size-20">$56241</h5>
-                                            <p class="text-muted">Marketplace</p>
-                                        </div>
-                                        <div class="col-6">
-                                            <h5 class="font-size-20">$23651</h5>
-                                            <p class="text-muted">Total Income</p>
-                                        </div>
-                                    </div>
-
-                                    <div id="morris-donut-example" class="morris-charts morris-charts-height" dir="ltr"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4">Monthly Earnings</h4>
-
-                                    <div class="row text-center mt-4">
-                                        <div class="col-6">
-                                            <h5 class="font-size-20">$ 2548</h5>
-                                            <p class="text-muted">Marketplace</p>
-                                        </div>
-                                        <div class="col-6">
-                                            <h5 class="font-size-20">$ 6985</h5>
-                                            <p class="text-muted">Total Income</p>
-                                        </div>
-                                    </div>
-
-                                    <div id="morris-bar-stacked" class="morris-charts morris-charts-height" dir="ltr"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="card mini-stat bg-primary">
-                                        <div class="card-body mini-stat-img">
-                                            <div class="mini-stat-icon">
-                                                <i class="mdi mdi-cube-outline float-end"></i>
-                                            </div>
-                                            <div class="text-white">
-                                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Orders</h6>
-                                                <h2 class="mb-4 text-white">1,587</h2>
-                                                <span class="badge bg-info"> +11% </span> <span class="ms-2">From previous period</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="card mini-stat bg-primary">
-                                        <div class="card-body mini-stat-img">
-                                            <div class="mini-stat-icon">
-                                                <i class="mdi mdi-cube-outline float-end"></i>
-                                            </div>
-                                            <div class="text-white">
-                                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Orders</h6>
-                                                <h2 class="mb-4 text-white">1,587</h2>
-                                                <span class="badge bg-info"> +11% </span> <span class="ms-2">From previous period</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="card mini-stat bg-primary">
-                                        <div class="card-body mini-stat-img">
-                                            <div class="mini-stat-icon">
-                                                <i class="mdi mdi-cube-outline float-end"></i>
-                                            </div>
-                                            <div class="text-white">
-                                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Orders</h6>
-                                                <h2 class="mb-4 text-white">1,587</h2>
-                                                <span class="badge bg-info"> +11% </span> <span class="ms-2">From previous period</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="card mini-stat bg-primary">
-                                        <div class="card-body mini-stat-img">
-                                            <div class="mini-stat-icon">
-                                                <i class="mdi mdi-cube-outline float-end"></i>
-                                            </div>
-                                            <div class="text-white">
-                                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Orders</h6>
-                                                <h2 class="mb-4 text-white">1,587</h2>
-                                                <span class="badge bg-info"> +11% </span> <span class="ms-2">From previous period</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
 
                     <div class="row">
                         <div class="col-12">
@@ -1147,10 +1046,6 @@
     <!-- Datatable init js -->
     <script src="<?= base_url() ?>assets/js/pages/datatables.init.js"></script>
     <!-- End of Datatables js -->
-
-    <!--Morris Chart-->
-    <script type="text/javascript" src="<?= base_url() ?>assets/libs/morris.js/morris.min.js"></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/libs/raphael/raphael.min.js"></script>
 
     <script type="text/javascript" src="<?= base_url() ?>assets/js/pages/dashboard.init.js"></script>
 
