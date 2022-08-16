@@ -6,13 +6,8 @@
     <!-- load title -->
     <?php $this->load->view('partials/title-meta') ?>
 
-    <!-- Bootstrap Css -->
-    <link href="<?= base_url() ?>assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="<?= base_url() ?>assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-    <!-- App Css-->
-    <link href="<?= base_url() ?>assets/css/app.css" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- load css -->
+    <?php $this->load->view('partiasl/head-css') ?>
 
 </head>
 
