@@ -7,7 +7,7 @@
     <?php $this->load->view('partials/title-meta') ?>
 
     <!-- load css -->
-    <?php $this->load->view('partiasl/head-css') ?>
+    <?php $this->load->view('partials/head-css') ?>
 
 </head>
 
@@ -29,6 +29,21 @@
                     <!-- Page title -->
                     <?php $this->load->view('partials/page-title') ?>
                     <!-- End of page title -->
+
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card mini-stat bg-primary">
+                            <div class="card-body mini-stat-img">
+                                <div class="mini-stat-icon">
+                                    <i class="mdi mdi-cube-outline float-end"></i>
+                                </div>
+                                <div class="text-white">
+                                    <h6 class="text-uppercase mb-3 font-size-16 text-white">Orders</h6>
+                                    <h2 class="mb-4 text-white">1,587</h2>
+                                    <span class="badge bg-info"> +11% </span> <span class="ms-2">From previous period</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-xl-3 col-sm-6">
