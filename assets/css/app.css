@@ -105,7 +105,7 @@
 }
 
 .page-content {
-  padding: calc(70px + 24px) calc(24px / 2) 60px calc(24px / 2);
+  padding: 20px 12px 60px 12px;
 }
 
 .header-item {
@@ -219,7 +219,7 @@ body[data-topbar="dark"] .app-search input.form-control::-webkit-input-placehold
 }
 
 body[data-sidebar="dark"] .navbar-brand-box {
-  background: #14cf1d;
+  background: #1176BF;
 }
 
 body[data-sidebar="dark"] .logo-dark {
@@ -461,7 +461,7 @@ body[data-layout="horizontal"] .footer {
 .vertical-menu {
   width: 240px;
   z-index: 1001;
-  background: #bfae11;
+  background: #1176BF;
   bottom: 0;
   margin-top: 0;
   position: fixed;
@@ -681,7 +681,7 @@ body[data-layout="horizontal"] .footer {
   position: relative;
   width: calc(190px + 70px);
   color: #1176BF;
-  background-color: #ac9d0f;
+  background-color: #0f6aac;
   -webkit-transition: none;
   transition: none;
 }
@@ -727,7 +727,7 @@ body[data-layout="horizontal"] .footer {
   padding: 5px 0;
   z-index: 9999;
   display: none;
-  background-color: #bfae11;
+  background-color: #1176BF;
 }
 
 .vertical-collpsed .vertical-menu #sidebar-menu > ul ul li:hover > ul {
@@ -752,7 +752,7 @@ body[data-layout="horizontal"] .footer {
 }
 
 body[data-sidebar="dark"] .vertical-menu {
-  background: #14cf1d;
+  background: #1176BF;
 }
 
 body[data-sidebar="dark"] #sidebar-menu ul li a {
@@ -791,7 +791,7 @@ body[data-sidebar="dark"].vertical-collpsed {
 }
 
 body[data-sidebar="dark"].vertical-collpsed .vertical-menu #sidebar-menu > ul > li:hover > a {
-  background: #15d81e;
+  background: #127cc8;
   color: #ffffff;
 }
 
@@ -808,7 +808,7 @@ body[data-sidebar="dark"].vertical-collpsed .vertical-menu #sidebar-menu > ul > 
 }
 
 body[data-sidebar="dark"].vertical-collpsed .vertical-menu #sidebar-menu > ul ul {
-  background-color: #14cf1d;
+  background-color: #1176BF;
 }
 
 body[data-sidebar="dark"].vertical-collpsed .vertical-menu #sidebar-menu ul li.mm-active .active {
@@ -876,7 +876,7 @@ body[data-sidebar-size="small"] .footer {
 }
 
 body[data-sidebar-size="small"] #sidebar-menu ul li.menu-title {
-  background-color: #15d81e;
+  background-color: #127cc8;
 }
 
 body[data-sidebar-size="small"] #sidebar-menu ul li a i {

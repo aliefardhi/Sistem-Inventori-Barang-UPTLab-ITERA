@@ -2232,6 +2232,20 @@ progress {
   border-color: var(--bs-table-border-color);
 }
 
+.table-iteraBlue {
+  --bs-table-color: #fff;
+  --bs-table-bg: #1176BF;
+  --bs-table-border-color: #2984c5;
+  --bs-table-striped-bg: #1d7dc2;
+  --bs-table-striped-color: #fff;
+  --bs-table-active-bg: #2984c5;
+  --bs-table-active-color: #fff;
+  --bs-table-hover-bg: #2380c4;
+  --bs-table-hover-color: #fff;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+}
+
 .table-responsive {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -13681,7 +13695,7 @@ button, a {
 
 .card-title-desc {
   color: #6c757d;
-  margin-bottom: 24px;
+  margin-bottom: 5px;
 }
 
 .dropdown-menu {

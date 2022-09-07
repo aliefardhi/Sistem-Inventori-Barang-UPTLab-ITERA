@@ -7,6 +7,19 @@
 @import "variables";
 @import "../../node_modules/bootstrap/scss/mixins";
 
+//Custom Variables
+$custom-table-color: (
+    "iterablue": #1176BF,
+);
+
+$table-variants: map-merge($custom-table-color, $table-variants);
+
+$custom-theme-colors: (
+    "altprimary": #f2786f,
+);
+
+$theme-colors: map-merge($custom-theme-colors , $theme-colors );
+
 // Structure
 @import "custom/structure/general";
 @import "custom/structure/topbar";
@@ -62,3 +75,7 @@
 @import "custom/pages/timeline";
 @import "custom/pages/directory";
 
+//Custom css
+.page-content {
+    padding: 20px 12px 60px 12px;
+}

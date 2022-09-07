@@ -28,34 +28,63 @@
                     <?php $this->load->view('partials/page-title') ?>
                     <!-- end page title -->
 
+                    <!-- start room dashboard -->
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-xl-6">
-                                            <h3 class="card-title">Laboratorium Multimedia</h3>
-                                            <p class="card-title-desc">Laboratorium Teknik 2 | Lantai 2</p>
+                                            <h3 class="">Laboratorium Multimedia</h3>
+                                            <p class="card-title-desc"> <i class="far fa-building"></i> Laboratorium Teknik 2 | Lantai 2</p>
+                                            <p class="card-title-desc"> <i class="mdi mdi-email-outline"></i> lab.mm@itera.ac.id</p>
+                                            <p class="card-title-desc"> <i class="fas fa-user" style="margin-right: 5px;"></i>Michael Owen | michael@laboran.itera.ac.id</p>
                                         </div>
-                                        <div class="col-xl-6"></div>
+                                        <div class="col-xl-6">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="card mini-stat">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title mb-4">Monthly Earnings</h4>
+
+                                                            <!-- <div id="morris-donut-example" class="morris-charts morris-charts-height" dir="ltr"></div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="card mini-stat bg-primary">
+                                                        <div class="card-body mini-stat-img">
+                                                            <div class="mini-stat-icon">
+                                                                <i class="mdi mdi-cube-outline float-end"></i>
+                                                            </div>
+                                                            <div class="text-white">
+                                                                <h6 class="text-uppercase mb-3 font-size-16 text-white">Orders</h6>
+                                                                <h2 class="mb-4 text-white">1,587</h2>
+                                                                <span class="badge bg-info"> +11% </span> <span class="ms-2">From previous period</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- end row -->
+                    <!-- end room dashboard -->
 
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
 
-                                    <h4 class="card-title">Default Datatable</h4>
-                                    <p class="card-title-desc">DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>.
+                                    <h4 class="card-title">Daftar Barang</h4>
+                                    <p class="card-title-desc">Daftar barang-barang yang terdapat pada ruangan -.
                                     </p>
 
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead>
+                                        <thead class="table-iteraBlue">
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Position</th>
@@ -281,6 +310,10 @@
     <!-- Datatable init js -->
     <script src="<?= base_url() ?>assets/js/pages/datatables.init.js"></script>
     <!-- End of Datatables js -->
+
+    <!--Morris Chart-->
+    <script type="text/javascript" src="<?= base_url() ?>assets/libs/morris.js/morris.min.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>assets/libs/raphael/raphael.min.js"></script>
 
     <script type="text/javascript" src="<?= base_url() ?>assets/js/pages/dashboard.init.js"></script>
 
