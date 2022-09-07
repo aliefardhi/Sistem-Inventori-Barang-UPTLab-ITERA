@@ -2,20 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/mystyle.css">
-    <title>Sistem Inventori Barang UPTLab ITERA</title>
+    <!-- load title -->
+    <?php $this->load->view('partials/title-meta') ?>
+
+    <!-- load css -->
+    <?php $this->load->view('partials/head-css') ?>
 </head>
 
 <body class="bg-light">
     <header>
-        <nav class="navbar mx-5 mt-3">
+        <nav class="navbar-header mx-5">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <img width="40px" src="<?= base_url() ?>assets/images/itera_logo.png">
@@ -35,7 +31,7 @@
                     <div class="col-md-8">
                         <div class="card ms-auto p-3" style="width: 23rem; height: 30rem">
                             <div class="card-body form">
-                                <h2 class="card-title">Login</h2>
+                                <h1 class="mb-3">Login</h1>
                                 <h6 class="card-subtitle mb-2 text-muted">Masukkan email dan password yang telah didaftarkan sebelumnya</h6>
                                 <form>
                                     <div class="mb-3">

@@ -6,6 +6,7 @@ class Login extends CI_Controller
 
     public function index()
     {
-        $this->load->view('login/index');
+        $data['title'] = 'Sistem Inventori UPT Lab ITERA';
+        $this->load->view('login/index', $data);
     }
 }
