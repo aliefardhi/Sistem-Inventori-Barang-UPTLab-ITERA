@@ -79,12 +79,25 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    <h4 class="card-title">Daftar Barang</h4>
-                                    <p class="card-title-desc">Daftar barang-barang yang terdapat pada ruangan -.
-                                    </p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h4 class="card-title">Daftar Barang</h4>
+                                            <p class="card-title-desc">Daftar barang-barang yang terdapat pada ruangan -.
+                                            </p>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <a class="btn btn-primary btn-sm edit float-end" title="Pilih">
+                                                <i class="mdi mdi-plus me-1"></i>Tambah Data Barang
+                                            </a>
+                                            <a class="btn excel-button btn-sm edit float-end mx-1" title="Pilih">
+                                                <i class="mdi mdi-microsoft-excel me-1"></i>Export Data Barang
+                                            </a>
+                                        </div>
+                                    </div>
 
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead class="table-iteraBlue">
+                                        <thead class="table-dark">
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Position</th>

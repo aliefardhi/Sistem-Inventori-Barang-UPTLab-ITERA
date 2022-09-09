@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Quicksand:wght@400;700&display=swap");
+
+body {
+	font-family: "Poppins", sans-serif !important;
+}
+
+.table {
+	font-size: 13px;
+}
+
+.page-link {
+	font-size: 13px;
+}
+
+.excel-button {
+	background-color: #1d6f42;
+	color: #fff;
+}
+.excel-button:hover {
+	background-color: #195333;
+	color: #fff;
+	border-color: #195333;
+}
+
+.table {
+	text-align: center;
+}
