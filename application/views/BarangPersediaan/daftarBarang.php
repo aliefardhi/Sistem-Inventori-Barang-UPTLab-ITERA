@@ -87,7 +87,7 @@
                                         </div>
 
                                         <div class="col-6">
-                                            <a class="btn btn-primary btn-sm edit float-end">
+                                            <a class="btn btn-primary btn-sm edit float-end" href="<?= base_url() ?>index.php/laboran/tambahdatabp">
                                                 <i class="mdi mdi-plus me-1"></i>Tambah Data Barang
                                             </a>
                                             <a class="btn excel-button btn-sm edit float-end mx-1">

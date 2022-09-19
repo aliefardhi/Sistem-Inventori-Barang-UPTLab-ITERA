@@ -87,10 +87,10 @@
                                         </div>
 
                                         <div class="col-6">
-                                            <a class="btn btn-primary btn-sm edit float-end" title="Pilih">
+                                            <a class="btn btn-primary btn-sm edit float-end" href="<?= base_url() ?>index.php/laboran/tambahdatahp">
                                                 <i class="mdi mdi-plus me-1"></i>Tambah Data Barang
                                             </a>
-                                            <a class="btn excel-button btn-sm edit float-end mx-1" title="Pilih">
+                                            <a class="btn excel-button btn-sm edit float-end mx-1">
                                                 <i class="mdi mdi-microsoft-excel me-1"></i>Export Data Barang
                                             </a>
                                         </div>
