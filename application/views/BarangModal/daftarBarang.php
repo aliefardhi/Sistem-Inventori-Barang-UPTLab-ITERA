@@ -301,7 +301,7 @@
                                                                         <td>101.987</td>
                                                                         <td>Lenovo IdeaCentre 5</td>
                                                                         <td class="d-flex justify-content-center">
-                                                                            <select class="btn btn-info form-select" aria-label="Default select example" style="width: 75%; text-align:start;">
+                                                                            <select class="form-select" aria-label="Default select example" style="width: 75%; text-align:start;">
                                                                                 <option value="1">Aktif</option>
                                                                                 <option value="2">Rusak</option>
                                                                                 <option value="3">Hilang</option>

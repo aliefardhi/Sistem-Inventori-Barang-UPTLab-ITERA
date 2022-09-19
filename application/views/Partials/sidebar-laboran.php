@@ -26,6 +26,7 @@
                         <li><a href="email-inbox.html">Barang Rusak</a></li>
                         <li><a href="email-read.html">Barang Hilang</a></li>
                         <li><a href="email-compose.html">Barang Pinjam</a></li>
+                        <li><a href="email-compose.html">Barang Pindah</a></li>
                     </ul>
                 </li>
 
@@ -39,6 +40,7 @@
                         <li><a href="email-inbox.html">Barang Rusak</a></li>
                         <li><a href="email-read.html">Barang Hilang</a></li>
                         <li><a href="email-compose.html">Barang Pinjam</a></li>
+                        <li><a href="email-compose.html">Barang Pindah</a></li>
                     </ul>
                 </li>
 

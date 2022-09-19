@@ -87,10 +87,10 @@
                                         </div>
 
                                         <div class="col-6">
-                                            <a class="btn btn-primary btn-sm edit float-end" title="Pilih">
+                                            <a class="btn btn-primary btn-sm edit float-end">
                                                 <i class="mdi mdi-plus me-1"></i>Tambah Data Barang
                                             </a>
-                                            <a class="btn excel-button btn-sm edit float-end mx-1" title="Pilih">
+                                            <a class="btn excel-button btn-sm edit float-end mx-1">
                                                 <i class="mdi mdi-microsoft-excel me-1"></i>Export Data Barang
                                             </a>
                                         </div>
@@ -230,26 +230,116 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>
-                                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet rem incidunt asperiores similique, facilis pariatur natus quis aliquam soluta mollitia quod eos ad quasi ducimus? Ducimus earum nobis rem non?
-                                                    </p>
+                                                    <div class="row container">
+                                                        <!-- Table Start -->
+                                                        <table id="datatable" class="table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Kode Barang</th>
+                                                                    <th>ID Barang</th>
+                                                                    <th>Nama Barang</th>
+                                                                    <th>Status Barang</th>
+                                                                    <th>Status Peminjaman</th>
+                                                                    <th>Tanggal Masuk</th>
+                                                                    <th>Aksi</th>
+                                                                </tr>
+                                                            </thead>
 
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem nesciunt, natus nihil culpa id repellat optio aliquam dolore recusandae sed tempore voluptatum quisquam minus tenetur nostrum sapiente vitae, incidunt impedit.
-                                                    </p>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>101</td>
+                                                                    <td>101.987</td>
+                                                                    <td>Lenovo IdeaCentre 5</td>
+                                                                    <td class="d-flex justify-content-center">
+                                                                        <select class="form-select" aria-label="Default select example" style="width: 75%; text-align:start;">
+                                                                            <option value="1">Aktif</option>
+                                                                            <option value="2">Rusak</option>
+                                                                            <option value="3">Hilang</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>150</td>
+                                                                    <td>25/07/2022</td>
+                                                                    <td><a class="btn btn-primary btn-sm edit" title="Edit">
+                                                                            Pilih
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>101</td>
+                                                                    <td>101.987</td>
+                                                                    <td>Lenovo IdeaCentre 5</td>
+                                                                    <td>150</td>
+                                                                    <td>150</td>
+                                                                    <td>25/07/2022</td>
+                                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih">
+                                                                            Pilih
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>101</td>
+                                                                    <td>101.987</td>
+                                                                    <td>Lenovo IdeaCentre 5</td>
+                                                                    <td>150</td>
+                                                                    <td>150</td>
+                                                                    <td>25/07/2022</td>
+                                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih">
+                                                                            Pilih
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>101</td>
+                                                                    <td>101.987</td>
+                                                                    <td>Lenovo IdeaCentre 5</td>
+                                                                    <td>150</td>
+                                                                    <td>150</td>
+                                                                    <td>25/07/2022</td>
+                                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih">
+                                                                            Pilih
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>101</td>
+                                                                    <td>101.987</td>
+                                                                    <td>Lenovo IdeaCentre 5</td>
+                                                                    <td>150</td>
+                                                                    <td>150</td>
+                                                                    <td>25/07/2022</td>
+                                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih">
+                                                                            Pilih
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>101</td>
+                                                                    <td>101.987</td>
+                                                                    <td>Lenovo IdeaCentre 5</td>
+                                                                    <td>150</td>
+                                                                    <td>150</td>
+                                                                    <td>25/07/2022</td>
+                                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih">
+                                                                            Pilih
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>101</td>
+                                                                    <td>101.987</td>
+                                                                    <td>Lenovo IdeaCentre 5</td>
+                                                                    <td>150</td>
+                                                                    <td>150</td>
+                                                                    <td>25/07/2022</td>
+                                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih">
+                                                                            Pilih
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <!-- End of table -->
+                                                    </div>
 
                                                 </div>
                                                 <div class="modal-footer">

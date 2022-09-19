@@ -88,7 +88,7 @@
                                                 <td>Airi Satou</td>
                                                 <td>Accountant</td>
                                                 <td>
-                                                    <a href="<?= base_url() ?>index.php/barangpersediaan/daftarbarang" class="btn btn-primary btn-sm edit" title="Pilih">
+                                                    <a href="<?= base_url() ?>index.php/barangpersediaan/daftarbarang" class="btn btn-primary btn-sm edit" aria-expanded="false" title="Pilih">
                                                         Pilih
                                                     </a>
                                                 </td>
