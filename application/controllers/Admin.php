@@ -12,4 +12,13 @@ class Admin extends CI_Controller
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/index', $data);
     }
+
+    public function profile()
+    {
+        $data['title'] = 'Halaman Profile';
+        $data['pagetitle'] = 'Profile';
+        $data['subtitle'] = 'Pengaturan profile';
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('admin/profile', $data);
+    }
 }

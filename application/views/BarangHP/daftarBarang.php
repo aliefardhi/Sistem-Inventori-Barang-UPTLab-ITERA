@@ -122,7 +122,7 @@
                                                 <td>150</td>
                                                 <td>150</td>
                                                 <td>25/07/2022</td>
-                                                <td><a class="btn btn-primary btn-sm edit" data-bs-toggle="modal" data-bs-target="#barangHP-modal" title="Pilih">
+                                                <td><a class="btn btn-primary btn-sm edit" title="Pilih" href="<?= base_url() ?>index.php/baranghp/detailbaranghp">
                                                         Pilih
                                                     </a>
                                                 </td>

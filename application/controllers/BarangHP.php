@@ -21,4 +21,13 @@ class BarangHP extends CI_Controller
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/daftarbarang', $data);
     }
+
+    public function detailBarangHP()
+    {
+        $data['title'] = 'Barang Habis Pakai';
+        $data['pagetitle'] = 'Daftar barang habis pakai';
+        $data['subtitle'] = 'Detail barang habis pakai';
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('baranghp/detailbaranghp', $data);
+    }
 }

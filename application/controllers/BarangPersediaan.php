@@ -21,4 +21,13 @@ class BarangPersediaan extends CI_Controller
         $this->load->view('partials/page-title', $data);
         $this->load->view('barangpersediaan/daftarbarang', $data);
     }
+
+    public function detailBarangPersediaan()
+    {
+        $data['title'] = 'Barang Persediaan';
+        $data['pagetitle'] = 'Daftar barang persediaan';
+        $data['subtitle'] = 'Detail barang persediaan';
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('barangpersediaan/detailbarangbp', $data);
+    }
 }
