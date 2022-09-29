@@ -32,7 +32,7 @@
                         <div class="card ms-auto p-3" style="width: 23rem; height: 30rem">
                             <div class="card-body form">
                                 <h1 class="mb-3">Login</h1>
-                                <h6 class="card-subtitle mb-2 text-muted">Masukkan email dan password yang telah didaftarkan sebelumnya</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">Masukkan email dan password yang terdaftar</h6>
                                 <form>
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -45,7 +45,6 @@
                                     </div>
                                     <div class="d-grid gap-2">
                                         <button type="submit" class="btn btn-primary">Login</button>
-                                        <button type="submit" class="btn" style="background-color: #BF8411; color: #fff;">Daftar Menggunakan SSO</button>
                                     </div>
                                 </form>
                             </div>

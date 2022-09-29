@@ -154,9 +154,9 @@
                                                     <th>ID Barang</th>
                                                     <th>Gambar</th>
                                                     <th>Nama Barang</th>
-                                                    <th>Jumlah Saat Ini</th>
-                                                    <th>Jumlah Keseluruhan</th>
-                                                    <th>Tanggal Masuk</th>
+                                                    <th>Ruangan</th>
+                                                    <th>Kondisi</th>
+                                                    <th>Status</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -169,104 +169,19 @@
                                                         <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
                                                     </td>
                                                     <td>Lenovo IdeaCentre 5</td>
-                                                    <td>150</td>
-                                                    <td>150</td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih">
-                                                            Pilih
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>101</td>
-                                                    <td>101.987</td>
+                                                    <td>Labtek 3</td>
                                                     <td>
-                                                        <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
+                                                        <span class="badge text-bg-success rounded-pill">Baik</span>
                                                     </td>
-                                                    <td>Lenovo IdeaCentre 5</td>
-                                                    <td>150</td>
-                                                    <td>150</td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih">
-                                                            Pilih
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>101</td>
-                                                    <td>101.987</td>
                                                     <td>
-                                                        <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
+                                                        <span class="badge text-bg-info rounded-pill">Publik</span>
                                                     </td>
-                                                    <td>Lenovo IdeaCentre 5</td>
-                                                    <td>150</td>
-                                                    <td>150</td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih">
+                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih" href="<?= base_url() ?>index.php/barangmodal/detailbarangmodal">
                                                             Pilih
                                                         </a>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>101</td>
-                                                    <td>101.987</td>
-                                                    <td>
-                                                        <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
-                                                    </td>
-                                                    <td>Lenovo IdeaCentre 5</td>
-                                                    <td>150</td>
-                                                    <td>150</td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih">
-                                                            Pilih
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>101</td>
-                                                    <td>101.987</td>
-                                                    <td>
-                                                        <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
-                                                    </td>
-                                                    <td>Lenovo IdeaCentre 5</td>
-                                                    <td>150</td>
-                                                    <td>150</td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih">
-                                                            Pilih
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>101</td>
-                                                    <td>101.987</td>
-                                                    <td>
-                                                        <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
-                                                    </td>
-                                                    <td>Lenovo IdeaCentre 5</td>
-                                                    <td>150</td>
-                                                    <td>150</td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih">
-                                                            Pilih
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>101</td>
-                                                    <td>101.987</td>
-                                                    <td>
-                                                        <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
-                                                    </td>
-                                                    <td>Lenovo IdeaCentre 5</td>
-                                                    <td>150</td>
-                                                    <td>150</td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" title="Pilih">
-                                                            Pilih
-                                                        </a>
-                                                    </td>
-                                                </tr>
+
                                             </tbody>
                                         </table>
                                         <!-- End of table -->

@@ -12,4 +12,13 @@ class BarangModal extends CI_Controller
         $this->load->view('partials/page-title', $data);
         $this->load->view('barangmodal/daftarbarang', $data);
     }
+
+    public function detailBarangModal()
+    {
+        $data['title'] = 'Barang Modal';
+        $data['pagetitle'] = 'Daftar barang modal';
+        $data['subtitle'] = 'Detail barang modal';
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('barangmodal/detailbarangmodal', $data);
+    }
 }

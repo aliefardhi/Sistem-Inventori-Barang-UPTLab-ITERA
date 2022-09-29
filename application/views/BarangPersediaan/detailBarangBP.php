@@ -5,7 +5,6 @@
 
     <!-- load title -->
     <?php $this->load->view('partials/title-meta') ?>
-
     <!-- Load css -->
     <?php $this->load->view('partials/head-css') ?>
 
@@ -34,249 +33,217 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h3 class="mb-3">Lenovo IdeaCentre 5 <span class="badge text-bg-success">Kode Barang : 101</span></h3>
+                                    <div class="d-flex justify-content-between">
+
+                                        <!-- Start details data -->
+                                        <h3 class="">Lenovo IdeaCentre 5</h3>
+
+                                        <div class="d-inline-flex">
+                                            <div class="text-muted ms-3 mt-1">
+                                                Created At
+                                                29/09/2022
+                                            </div>
+                                            <div class="text-muted ms-3 mt-1">
+                                                |
+                                            </div>
+                                            <div class="text-muted ms-3 mt-1">
+                                                Updated At
+                                                29/09/2022
+                                            </div>
+                                            <div class="ms-3">
+                                                <a class="btn btn-primary btn-sm edit" data-bs-toggle="modal" data-bs-target="#barangHP-modal" title="Edit">
+                                                    <i class="mdi mdi-square-edit-outline"></i>Edit
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="row">
-                                        <div class="col-xl-3 col-sm-6">
-                                            <div class="card mini-stat bg-primary">
-                                                <div class="card-body mini-stat-img">
-                                                    <div class="mini-stat-icon">
-                                                        <i class="mdi mdi-cube-outline float-end"></i>
+                                        <div class="col-sm-6">
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                    <div class="ms-2 me-auto">
+                                                        <div class="fw-bold">ID Barang</div>
+                                                        101
                                                     </div>
-                                                    <div class="text-white">
-                                                        <h6 class="text-uppercase mb-3 font-size-16 text-white">Jumlah Keseluruhan</h6>
-                                                        <h2 class="mb-4 text-white">200</h2>
-                                                        <p style="font-size: 10px;">Total jumlah keseleruhan barang</p>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                    <div class="ms-2 me-auto">
+                                                        <div class="fw-bold">Jenis Barang</div>
+                                                        Elektronik
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                    <div class="ms-2">
+                                                        <div class="fw-bold">Jumlah Barang</div>
+                                                        250
+                                                    </div>
+                                                    <div class="ms-2">
+                                                        |
+                                                    </div>
+                                                    <div class="ms-2">
+                                                        <div class="fw-bold">Sisa Barang</div>
+                                                        200
+                                                    </div>
+                                                    <div class="ms-2">
+                                                        |
+                                                    </div>
+                                                    <div class="ms-2">
+                                                        <div class="fw-bold">Satuan</div>
+                                                        pcs
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                    <div class="ms-2 me-auto">
+                                                        <div class="fw-bold">Tahun Anggaran</div>
+                                                        2021/2022
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                    <div class="ms-2 me-auto">
+                                                        <div class="fw-bold">Tanggal Terima</div>
+                                                        29/09/2022
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <div class="col-xl-3 col-sm-6">
-                                            <div class="card mini-stat bg-primary">
-                                                <div class="card-body mini-stat-img">
-                                                    <div class="mini-stat-icon">
-                                                        <i class="mdi mdi-buffer float-end"></i>
+                                        <div class="col-sm-6">
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                    <div class="ms-2 me-auto">
+                                                        <div class="fw-bold">Vendor</div>
+                                                        Maju Jaya Komputer
                                                     </div>
-                                                    <div class="text-white">
-                                                        <h6 class="text-uppercase mb-3 font-size-16 text-white">Jumlah Barang Saat Ini</h6>
-                                                        <h2 class="mb-4 text-white">196</h2>
-                                                        <p style="font-size: 10px;">Total jumlah barang saat ini</p>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                    <div class="ms-2 me-auto">
+                                                        <div class="fw-bold">Kondisi</div>
+                                                        <span class="badge rounded-pill text-bg-success">Baik</span>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                    <div class="ms-2 me-auto">
+                                                        <div class="fw-bold">Spesifikasi</div>
+                                                        Intel Core i7-12700k, AMD Radeon 6700xt 12GB, RAM8GB, 512SSD
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                    <div class="ms-2 me-auto" style="text-align: justify;">
+                                                        <div class="fw-bold">Keterangan</div>
+                                                        Hanya digunakan untuk kegiatan pembelajaran/praktikum.
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                    <div class="ms-2 me-auto">
+                                                        <div class="fw-bold">Harga Satuan</div>
+                                                        Rp15.000.000
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <div class="col-xl-3 col-sm-6">
-                                            <div class="card mini-stat bg-primary">
-                                                <div class="card-body mini-stat-img">
-                                                    <div class="mini-stat-icon">
-                                                        <i class="mdi mdi-image-broken-variant float-end"></i>
-                                                    </div>
-                                                    <div class="text-white">
-                                                        <h6 class="text-uppercase mb-3 font-size-16 text-white">Jumlah Kerusakan</h6>
-                                                        <h2 class="mb-4 text-white">2</h2>
-                                                        <p style="font-size: 10px;">Total jumlah barang rusak</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-sm-6">
-                                            <div class="card mini-stat bg-primary">
-                                                <div class="card-body mini-stat-img">
-                                                    <div class="mini-stat-icon">
-                                                        <i class="mdi mdi-beaker-question-outline float-end"></i>
-                                                    </div>
-                                                    <div class="text-white">
-                                                        <h6 class="text-uppercase mb-3 font-size-16 text-white">Jumlah Kehilangan</h6>
-                                                        <h2 class="mb-4 text-white">2</h2>
-                                                        <p style="font-size: 10px;">Total jumlah barang hilang</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
+                                    <!-- end of details data -->
 
-                                    <!-- Start of datatable -->
-                                    <div class="table-wrapper">
-                                        <table id="datatable" class="table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead class="table-dark">
-                                                <tr>
-                                                    <th>Kode Barang</th>
-                                                    <th>ID Barang</th>
-                                                    <th>Gambar</th>
-                                                    <th>Status Barang</th>
-                                                    <th>Status Peminjaman</th>
-                                                    <th>Tanggal Masuk</th>
-                                                    <th>Aksi</th>
-                                                </tr>
-                                            </thead>
+                                    <!-- Modal start -->
+                                    <div class="modal modal-lg fade" id="barangHP-modal" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Edit Barang</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Start form input -->
+                                                    <form class="row g-3">
+                                                        <div class="col-md-4">
+                                                            <label for="editIdPersediaan" class="form-label">ID Barang</label>
+                                                            <input type="text" class="form-control" id="editIdPersediaan" value="101">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="editIdPersediaan" class="form-label">Nama Barang</label>
+                                                            <input type="text" class="form-control" id="editNamaPersediaan" placeholder="" value="Lenovo IdeaCentre 5">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="editStatusBarang" class="form-label">Jenis Barang</label>
+                                                            <select id="editStatusBarang" class="form-select">
+                                                                <option selected>Elektronik</option>
+                                                                <option>Bahan Kimia</option>
+                                                                <option>Konsumsi</option>
+                                                                <option>Lainnya</option>
+                                                                <option>...</option>
+                                                            </select>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="col-md-4">
+                                                            <label for="editJumlahPersediaan" class="form-label">Jumlah Barang</label>
+                                                            <input type="number" class="form-control" id="editJumlahPersediaan" value="250">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="editSisaPersediaan" class="form-label">Sisa Barang</label>
+                                                            <input type="text" class="form-control" id="editSisaPersediaan" placeholder="" value="200">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="editSatuanPersediaan" class="form-label">Satuan</label>
+                                                            <select id="editSatuanPersediaan" class="form-select">
+                                                                <option>- Pilih -</option>
+                                                                <option selected>pcs</option>
+                                                                <option>dus</option>
+                                                                <option>bal</option>
+                                                                <option>pak</option>
+                                                                <option>liter</option>
+                                                                <option>meter</option>
+                                                                <option>...</option>
+                                                            </select>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="col-md-6">
+                                                            <label for="editTahunAnggaranPersediaan" class="form-label">Tahun Anggaran</label>
+                                                            <input type="text" class="form-control" id="editTahunAnggaranPersediaan" value="2021/2022">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="editTanggalTerimaPersediaan" class="form-label">Tanggal Terima</label>
+                                                            <input type="date" class="form-control" id="editTanggalTerimaPersediaan">
+                                                        </div>
+                                                        <hr>
+                                                        <div class="col-md-4">
+                                                            <label for="editVendorPersediaan" class="form-label">Vendor</label>
+                                                            <input type="text" class="form-control" id="editVendorPersediaan" placeholder="" value="200">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="editKondisiPersediaan" class="form-label">Kondisi</label>
+                                                            <select id="editKondisiPersediaan" class="form-select">
+                                                                <option>- Pilih -</option>
+                                                                <option selected>Baik</option>
+                                                                <option>Rusak</option>
+                                                                <option>Hilang</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="editHargaSatuanPersediaan" class="form-label">Harga Satuan</label>
+                                                            <input type="text" class="form-control" id="editHargaSatuanPersediaan" value="Rp15000000">
+                                                        </div>
+                                                        <hr>
+                                                        <div class="col-md-6">
+                                                            <label for="editSpesifikasiPersediaan" class="form-label">Spesifikasi</label>
+                                                            <textarea class="form-control" id="editSpesifikasiPersediaan" rows="3"></textarea>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="editKeteranganPersediaan" class="form-label">Keterangan</label>
+                                                            <textarea class="form-control" id="editKeteranganPersediaan" rows="3"></textarea>
+                                                        </div>
+                                                    </form>
+                                                    <!-- end form input -->
 
-                                            <tbody>
-                                                <tr>
-                                                    <td>101</td>
-                                                    <td>101.987</td>
-                                                    <td>
-                                                        <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
-                                                    </td>
-                                                    <td><span class="badge text-bg-success rounded-pill">Aktif</span></td>
-                                                    <td><span class="badge text-bg-success rounded-pill">Dapat Dipinjam</span></td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" data-bs-toggle="modal" data-bs-target="#barangPersediaan-modal" title="Edit">
-                                                            Edit
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>101</td>
-                                                    <td>101.987</td>
-                                                    <td>
-                                                        <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
-                                                    </td>
-                                                    <td><span class="badge text-bg-success rounded-pill">Aktif</span></td>
-                                                    <td><span class="badge text-bg-success rounded-pill">Dapat Dipinjam</span></td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" title="Edit">
-                                                            Edit
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>101</td>
-                                                    <td>101.987</td>
-                                                    <td>
-                                                        <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
-                                                    </td>
-                                                    <td><span class="badge text-bg-success rounded-pill">Aktif</span></td>
-                                                    <td><span class="badge text-bg-success rounded-pill">Dapat Dipinjam</span></td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" title="Edit">
-                                                            Edit
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>101</td>
-                                                    <td>101.987</td>
-                                                    <td>
-                                                        <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
-                                                    </td>
-                                                    <td><span class="badge text-bg-warning rounded-pill">Rusak</span></td>
-                                                    <td><span class="badge text-bg-danger rounded-pill">Non-pinjam</span></td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" title="Edit">
-                                                            Edit
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>101</td>
-                                                    <td>101.987</td>
-                                                    <td>
-                                                        <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
-                                                    </td>
-                                                    <td><span class="badge text-bg-danger rounded-pill">Hilang</span></td>
-                                                    <td><span class="badge text-bg-danger rounded-pill">Non-pinjam</span></td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" title="Edit">
-                                                            Edit
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>101</td>
-                                                    <td>101.987</td>
-                                                    <td>
-                                                        <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
-                                                    </td>
-                                                    <td><span class="badge text-bg-success rounded-pill">Aktif</span></td>
-                                                    <td><span class="badge text-bg-info rounded-pill">Sedang Dipinjam</span></td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" title="Edit">
-                                                            Edit
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>101</td>
-                                                    <td>101.987</td>
-                                                    <td>
-                                                        <img src="<?= base_url() ?>assets/images/ex-img-data1.png" alt="">
-                                                    </td>
-                                                    <td><span class="badge text-bg-warning rounded-pill">Rusak</span></td>
-                                                    <td><span class="badge text-bg-danger rounded-pill">Non-pinjam</span></td>
-                                                    <td>25/07/2022</td>
-                                                    <td><a class="btn btn-primary btn-sm edit" title="Edit">
-                                                            Edit
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <!-- End of table -->
-
-                                        <!-- Modal start -->
-                                        <div class="modal modal-lg fade" id="barangPersediaan-modal" tabindex="-1" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Edit Barang</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <!-- Start form input -->
-                                                        <form class="row g-3">
-                                                            <div class="col-md-6">
-                                                                <label for="inputEmail4" class="form-label">Kode Barang</label>
-                                                                <input type="text" class="form-control" id="inputEmail4" value="101">
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label for="inputPassword4" class="form-label">ID Barang</label>
-                                                                <input type="text" class="form-control" id="inputPassword4" value="987">
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <label for="inputAddress2" class="form-label">Nama Barang</label>
-                                                                <input type="text" class="form-control" id="inputAddress2" placeholder="" value="Lenovo IdeaCentre 5">
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <label for="fileUpload" class="form-label">Upload Gambar Barang</label>
-                                                                <div class="input-group">
-                                                                    <input type="file" class="form-control" id="inputGroupFile02">
-                                                                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <label for="inputStatusBarang" class="form-label">Status Barang</label>
-                                                                <select id="inputStatusBarang" class="form-select">
-                                                                    <option selected>Aktif</option>
-                                                                    <option>Rusak</option>
-                                                                    <option>Hilang</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <label for="inputStatusPeminjaman" class="form-label">Status Peminjaman</label>
-                                                                <select id="inputStatusPeminjaman" class="form-select">
-                                                                    <option selected>Tersedia</option>
-                                                                    <option>Sedang Dipinjam</option>
-                                                                    <option>Tidak Dapat Dipinjam</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <label for="tanggalMasuk" class="form-label">Tanggal Masuk</label>
-                                                                <input type="date" class="form-control" id="tanggalMasuk">
-                                                            </div>
-                                                        </form>
-                                                        <!-- end form input -->
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Simpan</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End of Modal -->
                                     </div>
-                                    <!-- end of datatable -->
+                                    <!-- End of Modal -->
+
                                 </div>
                             </div>
 

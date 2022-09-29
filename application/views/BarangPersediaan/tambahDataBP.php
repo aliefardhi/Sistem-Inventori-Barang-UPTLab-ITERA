@@ -37,7 +37,7 @@
                                     <div class="row">
                                         <div class="col-8">
                                             <h4 class="card-title">Masukan data barang</h4>
-                                            <p class="card-title-desc">Masukan data barang persediaan melalui form dibawah ini atau dapat melakukan import data excel barang.
+                                            <p class="card-title-desc">Masukan data barang habis pakai melalui form dibawah ini atau dapat melakukan import data excel barang.
                                             </p>
                                         </div>
 
@@ -50,46 +50,81 @@
 
                                     <!-- Start form input -->
                                     <form class="row g-3 mt-1">
-                                        <div class="col-md-6">
-                                            <label for="inputEmail4" class="form-label">Kode Barang</label>
-                                            <input type="email" class="form-control" id="inputEmail4">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="inputPassword4" class="form-label">ID Barang</label>
-                                            <input type="password" class="form-control" id="inputPassword4">
-                                        </div>
-                                        <div class="col-7">
-                                            <label for="inputAddress2" class="form-label">Nama Barang</label>
-                                            <input type="text" class="form-control" id="inputAddress2" placeholder="">
-                                        </div>
-                                        <div class="col-5">
-                                            <label for="fileUpload" class="form-label">Upload Gambar Barang</label>
-                                            <div class="input-group">
-                                                <input type="file" class="form-control" id="inputGroupFile02">
-                                                <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                                            </div>
+                                        <div class="col-md-4">
+                                            <label for="inputIdPersediaan" class="form-label">ID Barang</label>
+                                            <input type="text" class="form-control" id="inputIdPersediaan" value="">
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputStatusBarang" class="form-label">Status Barang</label>
-                                            <select id="inputStatusBarang" class="form-select">
-                                                <option selected>Aktif</option>
+                                            <label for="inputIdPersediaan" class="form-label">Nama Barang</label>
+                                            <input type="text" class="form-control" id="inputNamaPersediaan" placeholder="" value="">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputStatusPersediaan" class="form-label">Jenis Barang</label>
+                                            <select id="inputStatusPersediaan" class="form-select">
+                                                <option selected>- Pilih -</option>
+                                                <option>Elektronik</option>
+                                                <option>Bahan Kimia</option>
+                                                <option>Konsumsi</option>
+                                                <option>Lainnya</option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputJumlahPersediaan" class="form-label">Jumlah Barang</label>
+                                            <input type="number" class="form-control" id="inputJumlahPersediaan" value="">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputSisaPersediaan" class="form-label">Sisa Barang</label>
+                                            <input type="text" class="form-control" id="inputSisaPersediaan" placeholder="" value="">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputSatuanPersediaan" class="form-label">Satuan</label>
+                                            <select id="inputSatuanPersediaan" class="form-select">
+                                                <option selected>- Pilih -</option>
+                                                <option>pcs</option>
+                                                <option>dus</option>
+                                                <option>bal</option>
+                                                <option>pak</option>
+                                                <option>liter</option>
+                                                <option>meter</option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputTahunAnggaranPersediaan" class="form-label">Tahun Anggaran</label>
+                                            <input type="text" class="form-control" id="inputTahunAnggaranPersediaan" value="">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputTanggalTerimaPersediaan" class="form-label">Tanggal Terima</label>
+                                            <input type="date" class="form-control" id="inputTanggalTerimaPersediaan">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputVendorPersediaan" class="form-label">Vendor</label>
+                                            <input type="text" class="form-control" id="inputVendorPersediaan" placeholder="Contoh: 2021/2022" value="">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputKondisiPersediaan" class="form-label">Kondisi</label>
+                                            <select id="inputKondisiPersediaan" class="form-select">
+                                                <option selected>- Pilih -</option>
+                                                <option>Baik</option>
                                                 <option>Rusak</option>
                                                 <option>Hilang</option>
                                             </select>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputStatusPeminjaman" class="form-label">Status Peminjaman</label>
-                                            <select id="inputStatusPeminjaman" class="form-select">
-                                                <option selected>Tersedia</option>
-                                                <option>Sedang Dipinjam</option>
-                                                <option>Tidak Dapat Dipinjam</option>
-                                            </select>
+                                            <label for="inputHargaSatuanPersediaan" class="form-label">Harga Satuan</label>
+                                            <input type="text" class="form-control" id="inputHargaSatuanPersediaan" value="Rp">
                                         </div>
-                                        <div class="col-md-4">
-                                            <label for="tanggalMasuk" class="form-label">Tanggal Masuk</label>
-                                            <input type="date" class="form-control" id="tanggalMasuk">
+                                        <div class="col-md-6">
+                                            <label for="inputSpesifikasiPersediaan" class="form-label">Spesifikasi</label>
+                                            <textarea class="form-control" id="inputSpesifikasiPersediaan" rows="3"></textarea>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputKeteranganPersediaan" class="form-label">Keterangan</label>
+                                            <textarea class="form-control" id="inputKeteranganPersediaan" rows="3"></textarea>
                                         </div>
                                         <div class="col-12">
+                                            <a href="javascript:window.history.go(-1);" type="button" class="btn btn-secondary">Kembali</a>
                                             <button type="submit" class="btn btn-primary">Simpan</button>
                                         </div>
                                     </form>

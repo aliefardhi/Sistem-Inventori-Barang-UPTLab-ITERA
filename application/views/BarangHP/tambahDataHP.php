@@ -50,46 +50,81 @@
 
                                     <!-- Start form input -->
                                     <form class="row g-3 mt-1">
-                                        <div class="col-md-6">
-                                            <label for="inputEmail4" class="form-label">Kode Barang</label>
-                                            <input type="email" class="form-control" id="inputEmail4">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="inputPassword4" class="form-label">ID Barang</label>
-                                            <input type="password" class="form-control" id="inputPassword4">
-                                        </div>
-                                        <div class="col-7">
-                                            <label for="inputAddress2" class="form-label">Nama Barang</label>
-                                            <input type="text" class="form-control" id="inputAddress2" placeholder="">
-                                        </div>
-                                        <div class="col-5">
-                                            <label for="fileUpload" class="form-label">Upload Gambar Barang</label>
-                                            <div class="input-group">
-                                                <input type="file" class="form-control" id="inputGroupFile02">
-                                                <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                                            </div>
+                                        <div class="col-md-4">
+                                            <label for="inputIdBHP" class="form-label">ID Barang</label>
+                                            <input type="text" class="form-control" id="inputIdBHP" value="">
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputStatusBarang" class="form-label">Status Barang</label>
-                                            <select id="inputStatusBarang" class="form-select">
-                                                <option selected>Aktif</option>
+                                            <label for="inputIdBHP" class="form-label">Nama Barang</label>
+                                            <input type="text" class="form-control" id="inputNamaBHP" placeholder="" value="">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputStatusBHP" class="form-label">Jenis Barang</label>
+                                            <select id="inputStatusBHP" class="form-select">
+                                                <option selected>- Pilih -</option>
+                                                <option>Elektronik</option>
+                                                <option>Bahan Kimia</option>
+                                                <option>Konsumsi</option>
+                                                <option>Lainnya</option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputJumlahBHP" class="form-label">Jumlah Barang</label>
+                                            <input type="number" class="form-control" id="inputJumlahBHP" value="">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputSisaBHP" class="form-label">Sisa Barang</label>
+                                            <input type="text" class="form-control" id="inputSisaBHP" placeholder="" value="">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputSatuanBHP" class="form-label">Satuan</label>
+                                            <select id="inputSatuanBHP" class="form-select">
+                                                <option selected>- Pilih -</option>
+                                                <option>pcs</option>
+                                                <option>dus</option>
+                                                <option>bal</option>
+                                                <option>pak</option>
+                                                <option>liter</option>
+                                                <option>meter</option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputTahunAnggaranBHP" class="form-label">Tahun Anggaran</label>
+                                            <input type="text" class="form-control" id="inputTahunAnggaranBHP" value="">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputTanggalTerimaBHP" class="form-label">Tanggal Terima</label>
+                                            <input type="date" class="form-control" id="inputTanggalTerimaBHP">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputVendorBHP" class="form-label">Vendor</label>
+                                            <input type="text" class="form-control" id="inputVendorBHP" placeholder="Contoh: 2021/2022" value="">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputKondisiBHP" class="form-label">Kondisi</label>
+                                            <select id="inputKondisiBHP" class="form-select">
+                                                <option selected>- Pilih -</option>
+                                                <option>Baik</option>
                                                 <option>Rusak</option>
                                                 <option>Hilang</option>
                                             </select>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputStatusPeminjaman" class="form-label">Status Peminjaman</label>
-                                            <select id="inputStatusPeminjaman" class="form-select">
-                                                <option selected>Tersedia</option>
-                                                <option>Sedang Dipinjam</option>
-                                                <option>Tidak Dapat Dipinjam</option>
-                                            </select>
+                                            <label for="inputHargaSatuanBHP" class="form-label">Harga Satuan</label>
+                                            <input type="text" class="form-control" id="inputHargaSatuanBHP" value="Rp">
                                         </div>
-                                        <div class="col-md-4">
-                                            <label for="tanggalMasuk" class="form-label">Tanggal Masuk</label>
-                                            <input type="date" class="form-control" id="tanggalMasuk">
+                                        <div class="col-md-6">
+                                            <label for="inputSpesifikasiBHP" class="form-label">Spesifikasi</label>
+                                            <textarea class="form-control" id="inputSpesifikasiBHP" rows="3"></textarea>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputKeteranganBHP" class="form-label">Keterangan</label>
+                                            <textarea class="form-control" id="inputKeteranganBHP" rows="3"></textarea>
                                         </div>
                                         <div class="col-12">
+                                            <a href="javascript:window.history.go(-1);" type="button" class="btn btn-secondary">Kembali</a>
                                             <button type="submit" class="btn btn-primary">Simpan</button>
                                         </div>
                                     </form>
