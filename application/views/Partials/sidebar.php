@@ -18,6 +18,16 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fas fa-users"></i>
+                        <span>Kepegawaian</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="<?= base_url() ?>index.php/admin/daftarpegawai">Daftar Pegawai</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-archive"></i>
                         <span>Barang Modal</span>
                     </a>
@@ -62,13 +72,10 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-account-box"></i>
-                        <span> Authentication </span>
+                        <span> Autentikasi </span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="pages-login.html">Login</a></li>
-                        <li><a href="pages-register.html">Register</a></li>
-                        <li><a href="pages-recoverpw.html">Recover Password</a></li>
-                        <li><a href="pages-lock-screen.html">Lock Screen</a></li>
+                        <li><a href="<?= base_url() ?>index.php/admin/usermanagement">Kelola Pengguna</a></li>
                     </ul>
                 </li>
 
