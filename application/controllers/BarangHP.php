@@ -30,4 +30,22 @@ class BarangHP extends CI_Controller
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/detailbaranghp', $data);
     }
+
+    public function bhpHilang()
+    {
+        $data['title'] = 'Halaman Barang Habis Pakai Hilang';
+        $data['pagetitle'] = 'Barang habis pakai';
+        $data['subtitle'] = 'Daftar hilang barang habis pakai';
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('baranghp/daftarhilangbhp', $data);
+    }
+
+    public function bhpRusak()
+    {
+        $data['title'] = 'Halaman Barang Habis Pakai Rusak';
+        $data['pagetitle'] = 'Barang habis pakai';
+        $data['subtitle'] = 'Daftar rusak barang habis pakai';
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('baranghp/daftarrusakbhp', $data);
+    }
 }

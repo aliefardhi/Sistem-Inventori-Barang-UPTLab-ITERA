@@ -47,8 +47,8 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a class="" href="<?= base_url() ?>index.php/barangpersediaan">Daftar Barang</a></li>
-                        <li><a href="email-inbox.html">Barang Rusak</a></li>
-                        <li><a href="email-read.html">Barang Hilang</a></li>
+                        <li><a href="<?= base_url() ?>index.php/barangpersediaan/persediaanrusak">Barang Rusak</a></li>
+                        <li><a href="<?= base_url() ?>index.php/barangpersediaan/persediaanhilang">Barang Hilang</a></li>
                         <li><a href="email-compose.html">Barang Pinjam</a></li>
                         <li><a href="email-compose.html">Barang Pindah</a></li>
                     </ul>
@@ -61,8 +61,8 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="<?= base_url() ?>index.php/baranghp">Daftar Barang</a></li>
-                        <li><a href="email-inbox.html">Barang Rusak</a></li>
-                        <li><a href="email-read.html">Barang Hilang</a></li>
+                        <li><a href="<?= base_url() ?>index.php/baranghp/bhprusak">Barang Rusak</a></li>
+                        <li><a href="<?= base_url() ?>index.php/baranghp/bhphilang">Barang Hilang</a></li>
                         <li><a href="email-compose.html">Barang Pinjam</a></li>
                         <li><a href="email-compose.html">Barang Pindah</a></li>
                     </ul>
