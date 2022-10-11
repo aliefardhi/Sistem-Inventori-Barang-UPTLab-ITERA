@@ -87,7 +87,7 @@
     "select2": "^4.0.10",
     "simplebar": "^4.2.3",
     "spectrum-colorpicker2": "^2.0.5",
-    "sweetalert2": "^9.17.0",
+    "sweetalert2": "^9.17.2",
     "table-edits": "^0.0.3",
     "tinymce": "^5.6.2"
   },

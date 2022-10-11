@@ -17,13 +17,17 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fas fa-users"></i>
-                        <span>Kepegawaian</span>
+                    <a href="<?= base_url() ?>index.php/admin/daftarlaboratorium" class="waves-effect">
+                        <i class="fas fa-building"></i>
+                        <span>Data Laboratorium</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="<?= base_url() ?>index.php/admin/daftarpegawai">Daftar Pegawai</a></li>
-                    </ul>
+                </li>
+
+                <li>
+                    <a href="<?= base_url() ?>index.php/admin/daftarpegawai" class="waves-effect">
+                        <i class="fas fa-users"></i>
+                        <span>Daftar Pegawai UPT Lab.</span>
+                    </a>
                 </li>
 
                 <li>
