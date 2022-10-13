@@ -10,4 +10,10 @@ class M_simukPegawai extends CI_Model
         $query = $this->db->get($this->_table);
         return $query->result();
     }
+
+    public function getIdPegawai($namaPegawai)
+    {
+        $query = $this->db->get_where('v_simuk_pegawai', array('id_pegawai' => $namaPegawai));
+        return $query->result();
+    }
 }

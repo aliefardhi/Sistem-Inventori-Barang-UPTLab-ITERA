@@ -9,6 +9,7 @@ class Admin extends CI_Controller
         parent::__construct();
         $this->load->model('M_simukPegawai');
         $this->load->model('M_laboratorium');
+        $this->load->model('M_pegawaiUpt');
     }
 
     public function index()
@@ -60,21 +61,66 @@ class Admin extends CI_Controller
     // Pegawai
     public function daftarPegawai()
     {
-        $data['title'] = 'Halaman Daftar Pegawai';
+        $data['title'] = 'Halaman Daftar Pegawai UPT Lab. ITERA';
         $data['pagetitle'] = 'Admin';
         $data['subtitle'] = 'Daftar Pegawai';
-        $data['all_pegawai'] = $this->M_simukPegawai->getAllPegawai();
+        $data['all_pegawai_simuk'] = $this->M_simukPegawai->getAllPegawai();
+        $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
+        $data['all_pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/daftarpegawai', $data);
     }
 
-    public function detailPegawai()
+    public function detailPegawai($id)
     {
         $data['title'] = 'Halaman Detail Pegawai';
         $data['pagetitle'] = 'Admin';
         $data['subtitle'] = 'Detail Pegawai';
+        $data['detail_pegawai_upt'] = $this->M_pegawaiUpt->getDetailPegawaiUpt($id);
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/detailpegawai', $data);
+    }
+
+    public function addPegawai()
+    {
+        $data = [
+            'id_pegawai' => $this->input->post('id_pegawai'),
+            'status' => $this->input->post('status_kepegawaian'),
+            'jabatan' => $this->input->post('jabatan'),
+            'id_lab' => $this->input->post('nama_lab'),
+            'role_id' => $this->input->post('role'),
+            'kontak' => $this->input->post('kontak'),
+        ];
+
+        if ($this->M_pegawaiUpt->addPegawai($data)) {
+            // $this->session->set_flashdata('success', 'Data Laboratorium <strong>Berhasil</strong> Ditambahkan!');
+            redirect('admin/daftarpegawai');
+        } else {
+            // $this->session->set_flashdata('error', 'Data Laboratorium <strong>Gagal</strong> Ditambahkan!');
+            redirect('admin/daftarpegawai');
+        }
+    }
+
+    public function deletePegawai($idPegawai)
+    {
+        if ($this->M_pegawaiUpt->deletePegawai($idPegawai)) {
+            redirect('admin/daftarpegawai');
+        } else {
+            redirect('admin/daftarpegawai');
+        }
+    }
+
+    public function getAllPegawai()
+    {
+        $data = $this->M_simukPegawai->getAllPegawai($_POST['pilihPegawaiSimuk']);
+        echo json_encode($data);
+    }
+
+    public function getIdPegawai()
+    {
+        $namaPegawai = $this->input->post('pilihPegawaiSimuk', true);
+        $data = $this->M_simukPegawai->getIdPegawai($namaPegawai);
+        echo json_encode($data);
     }
 
     // Laboratorium

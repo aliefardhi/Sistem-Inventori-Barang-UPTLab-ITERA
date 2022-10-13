@@ -22,7 +22,7 @@
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="main-content">
+        <div class="main-content" id="main-content" data-url='<?= base_url() ?>index.php/admin'>
             <div class="page-content">
                 <div class="container-fluid">
 
@@ -61,21 +61,27 @@
                                         </thead>
 
                                         <tbody>
-                                            <tr>
-                                                <td>Alex Ferguson</td>
-                                                <td>PNS</td>
-                                                <td>Kepala UPT</td>
-                                                <td>UPT Laboratorium ITERA</td>
-                                                <td>alex.upt@staff.itera.ac.id</td>
-                                                <td>
-                                                    <span class="badge rounded-pill text-bg-success">Aktif</span>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url() ?>index.php/admin/detailpegawai">
-                                                        Detail
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            <?php foreach ($all_pegawai_upt as $upt) : ?>
+                                                <tr>
+                                                    <td><?= $upt->nama_pegawai ?></td>
+                                                    <td><?= $upt->status ?></td>
+                                                    <td><?= $upt->jabatan ?></td>
+                                                    <td><?= $upt->nama_lab ?></td>
+                                                    <td><?= $upt->email ?></td>
+                                                    <td>
+                                                        <span class="badge rounded-pill text-bg-success">Aktif</span>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url('index.php/admin/detailpegawai/' . $upt->id_pegawai) ?>">
+                                                            Detail
+                                                        </a>
+
+                                                        <a class="btn btn-danger btn-sm edit tombol-delete" title="Hapus" href="<?= base_url('index.php/admin/deletePegawai/' . $upt->id_pegawai) ?>">
+                                                            <i class="mdi mdi-trash-can-outline"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
 
@@ -89,76 +95,70 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <!-- Start form input -->
-                                                    <form class="row g-3">
+                                                    <form class="row g-3" method="POST" action="<?= base_url('index.php/admin/addpegawai') ?>">
                                                         <div class="col-md-6">
-                                                            <label for="inputEmail4" class="form-label">Nama Pegawai</label>
-                                                            <input type="text" class="form-control" id="inputEmail4" value="">
+                                                            <label for="pilihPegawaiSimuk" class="form-label">Pilih Pegawai</label>
+                                                            <select name="id_pegawai" id="pilihPegawaiSimuk" class="form-select">
+                                                                <option selected>- Pilih -</option>
+                                                                <?php foreach ($all_pegawai_simuk as $pegawai) : ?>
+                                                                    <option value="<?= $pegawai->id_pegawai ?>"><?= $pegawai->nama_pegawai ?></option>
+                                                                <?php endforeach; ?>
+                                                            </select>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <label for="inputPassword4" class="form-label">ID Barang</label>
-                                                            <input type="text" class="form-control" id="inputPassword4" value="">
+                                                        <!-- <div class="col-md-6">
+                                                            <label for="idPegawaiSimuk" class="form-label">ID Pegawai</label>
+                                                            <select name="idPegawaiSimuk" id="idPegawaiSimuk" class="form-select">
+
+                                                            </select>
+                                                        </div> -->
+                                                        <div class="col-6">
+                                                            <label for="jabatan" class="form-label">Jabatan</label>
+                                                            <select id="jabatan" class="form-select" name="jabatan">
+                                                                <option selected>- Pilih -</option>
+                                                                <option value="kepalaupt">Kepala UPT</option>
+                                                                <option value="admin">Admin</option>
+                                                                <option value="koorlab">Koordinator Laboratorium</option>
+                                                                <option value="laboran">Laboran</option>
+                                                            </select>
                                                         </div>
                                                         <div class="col-6">
-                                                            <label for="inputAddress2" class="form-label">Nama Barang</label>
-                                                            <input type="text" class="form-control" id="inputAddress2" placeholder="" value="">
+                                                            <label for="status_kepegawaian" class="form-label">Status Kepegawaian</label>
+                                                            <select id="status_kepegawaian" class="form-select" name="status_kepegawaian">
+                                                                <option selected>- Pilih -</option>
+                                                                <option value="pns">PNS</option>
+                                                                <option value="p3k">P3K</option>
+                                                                <option value="ppnpm">ppnpm</option>
+                                                            </select>
                                                         </div>
                                                         <div class="col-6">
-                                                            <label for="fileUpload" class="form-label">Upload Gambar Barang</label>
-                                                            <div class="input-group">
-                                                                <input type="file" class="form-control" id="inputGroupFile02">
-                                                                <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="inputNamaLab" class="form-label">Nama Lab.</label>
-                                                            <select id="inputNamaLab" class="form-select">
+                                                            <label for="role" class="form-label">Role</label>
+                                                            <select id="role" class="form-select" name="role">
                                                                 <option selected>- Pilih -</option>
-                                                                <option>Lab. Multimedia</option>
-                                                                <option>Lab. Teknik Sipil</option>
-                                                                <option>Lab. Kimia</option>
-                                                                <option>Lab. Biologi</option>
-                                                                <option>Lab. Fisika</option>
+                                                                <option value="admin">Admin</option>
+                                                                <option value="laboran">Laboran</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <label for="inputRuangan" class="form-label">Ruangan</label>
-                                                            <select id="inputRuangan" class="form-select">
+                                                            <label for="nama_lab" class="form-label">Nama Lab.</label>
+                                                            <select id="nama_lab" class="form-select" name="nama_lab">
                                                                 <option selected>- Pilih -</option>
-                                                                <option>Labkom 1</option>
-                                                                <option>Labkom 2</option>
-                                                                <option>Labkom 3</option>
-                                                                <option>GK101</option>
-                                                                <option>GK102</option>
-                                                                <option>GK103</option>
+                                                                <?php foreach ($all_laboratorium as $lab) : ?>
+                                                                    <option value="<?= $lab->id_lab ?>"><?= $lab->nama_lab ?></option>
+                                                                <?php endforeach; ?>
                                                             </select>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <label for="inputStatusBarang" class="form-label">Status Barang</label>
-                                                            <select id="inputStatusBarang" class="form-select">
-                                                                <option selected>Publik</option>
-                                                                <option>Private</option>
-                                                            </select>
+                                                        <div class="col-md-6">
+                                                            <label for="kontak" class="form-label">Kontak</label>
+                                                            <input class="form-control" type="tel" value="" id="kontak" name="kontak">
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <label for="inputKondisi" class="form-label">Kondisi</label>
-                                                            <select id="inputKondisi" class="form-select">
-                                                                <option selected>Baik</option>
-                                                                <option>Rusak</option>
-                                                                <option>Hilang</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label for="tanggalMasuk" class="form-label">Tanggal Input</label>
-                                                            <input type="date" class="form-control" id="tanggalMasuk">
-                                                        </div>
-                                                    </form>
-                                                    <!-- end form input -->
 
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
                                                 </div>
+                                                </form>
+                                                <!-- end form input -->
                                             </div>
                                         </div>
                                     </div>
@@ -210,8 +210,13 @@
     <script type="text/javascript" src="<?= base_url() ?>assets/libs/morris.js/morris.min.js"></script>
     <script type="text/javascript" src="<?= base_url() ?>assets/libs/raphael/raphael.min.js"></script>
 
+    <!-- Sweetalert2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="<?= base_url() ?>assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
+
     <!-- App js -->
     <script type="text/javascript" src="<?= base_url() ?>assets/js/app.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>assets/js/custom.js"></script>
 
 </body>
 

@@ -37,21 +37,21 @@
                                     <!-- Start details data -->
                                     <div class="row">
                                         <div class="col-6">
-                                            <h3 class="">Alex Ferguson</h3>
+                                            <h3 class=""><?= $detail_pegawai_upt->nama_pegawai ?></h3>
                                         </div>
 
                                         <div class="col-6">
                                             <div class="d-flex justify-content-end">
                                                 <div class="text-muted ms-3 mt-1">
                                                     Created At
-                                                    29/09/2022
+                                                    <?= $detail_pegawai_upt->created_at ?>
                                                 </div>
                                                 <div class="text-muted ms-3 mt-1">
                                                     |
                                                 </div>
                                                 <div class="text-muted ms-3 mt-1">
                                                     Updated At
-                                                    29/09/2022
+                                                    <?= $detail_pegawai_upt->updated_at ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -63,31 +63,31 @@
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">ID Pegawai</div>
-                                                        100111
+                                                        <?= $detail_pegawai_upt->id_pegawai ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">NRK</div>
-                                                        1199288374912
+                                                        <?= $detail_pegawai_upt->nrk ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">NIP</div>
-                                                        8884387291223
+                                                        <?= $detail_pegawai_upt->nip ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Jabatan</div>
-                                                        Kepala UPT Laboratorium ITERA
+                                                        <?= $detail_pegawai_upt->jabatan ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Unit Kerja</div>
-                                                        UPT Laboratorium ITERA
+                                                        <?= $detail_pegawai_upt->nama_lab ?>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -97,25 +97,25 @@
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Tanggal Lahir</div>
-                                                        31/12/1941
+                                                        <?= $detail_pegawai_upt->tgl_lahir ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold"><i class="mdi mdi-email-outline me-1"></i>Email</div>
-                                                        alex.upt@staff.itera.ac.id
+                                                        <?= $detail_pegawai_upt->email ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold"><i class="mdi mdi-cellphone-android me-1"></i>No. HP</div>
-                                                        08899953535
+                                                        <?= $detail_pegawai_upt->kontak ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Status</div>
-                                                        PNS
+                                                        <?= $detail_pegawai_upt->status ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
