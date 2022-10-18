@@ -46,7 +46,6 @@
                                         </div>
                                     </div>
 
-
                                     <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
@@ -64,16 +63,29 @@
                                             <?php foreach ($all_pegawai_upt as $upt) : ?>
                                                 <tr>
                                                     <td><?= $upt->nama_pegawai ?></td>
-                                                    <td><?= $upt->status ?></td>
-                                                    <td><?= $upt->jabatan ?></td>
+                                                    <td class="text-uppercase"><?= $upt->status ?></td>
+                                                    <td class="text-capitalize"><?= $upt->jabatan ?></td>
                                                     <td><?= $upt->nama_lab ?></td>
                                                     <td><?= $upt->email ?></td>
-                                                    <td>
-                                                        <span class="badge rounded-pill text-bg-success">Aktif</span>
-                                                    </td>
+                                                    <?php if ($upt->is_active == 'Aktif') : ?>
+                                                        <td>
+                                                            <span class="badge rounded-pill text-bg-success">Aktif</span>
+
+                                                        </td>
+                                                    <?php endif ?>
+                                                    <?php if ($upt->is_active == 'Tidak Aktif') : ?>
+                                                        <td>
+                                                            <span class="badge rounded-pill text-bg-danger">Tidak Aktif</span>
+
+                                                        </td>
+                                                    <?php endif ?>
                                                     <td>
                                                         <a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url('index.php/admin/detailpegawai/' . $upt->id_pegawai) ?>">
-                                                            Detail
+                                                            <i class="mdi mdi-information-outline"></i>
+                                                        </a>
+
+                                                        <a class="btn btn-info btn-sm edit" title="Edit" href="<?= base_url('index.php/admin/editpegawai/' . $upt->id_pegawai) ?>">
+                                                            <i class="mdi mdi-account-edit-outline"></i>
                                                         </a>
 
                                                         <a class="btn btn-danger btn-sm edit tombol-delete" title="Hapus" href="<?= base_url('index.php/admin/deletePegawai/' . $upt->id_pegawai) ?>">
@@ -85,7 +97,7 @@
                                         </tbody>
                                     </table>
 
-                                    <!-- Modal start -->
+                                    <!-- Modal Tambah Data start -->
                                     <div class="modal modal-lg fade" id="tambahPegawai-modal" tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                             <div class="modal-content">
@@ -105,12 +117,6 @@
                                                                 <?php endforeach; ?>
                                                             </select>
                                                         </div>
-                                                        <!-- <div class="col-md-6">
-                                                            <label for="idPegawaiSimuk" class="form-label">ID Pegawai</label>
-                                                            <select name="idPegawaiSimuk" id="idPegawaiSimuk" class="form-select">
-
-                                                            </select>
-                                                        </div> -->
                                                         <div class="col-6">
                                                             <label for="jabatan" class="form-label">Jabatan</label>
                                                             <select id="jabatan" class="form-select" name="jabatan">
@@ -131,11 +137,10 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-6">
-                                                            <label for="role" class="form-label">Role</label>
-                                                            <select id="role" class="form-select" name="role">
-                                                                <option selected>- Pilih -</option>
-                                                                <option value="admin">Admin</option>
-                                                                <option value="laboran">Laboran</option>
+                                                            <label for="isactive" class="form-label">Is Active?</label>
+                                                            <select id="isactive" class="form-select" name="isactive">
+                                                                <option value="Aktif" selected>Aktif</option>
+                                                                <option value="Tidak Aktif">Tidak Aktif</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -162,7 +167,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- End of Modal -->
+                                    <!-- End of Modal Tambah Data -->
                                 </div>
                             </div>
                         </div>
@@ -185,34 +190,20 @@
     <!-- Javascript libs -->
     <?php $this->load->view('partials/vendor-scripts') ?>
 
-    <!-- Datatables JS -->
-    <!-- Required datatable js -->
+    <!-- Datatable js -->
     <script src="<?= base_url() ?>assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="<?= base_url() ?>assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <!-- Buttons examples -->
-    <script src="<?= base_url() ?>assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="<?= base_url() ?>assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-    <script src="<?= base_url() ?>assets/libs/jszip/jszip.min.js"></script>
-    <script src="<?= base_url() ?>assets/libs/pdfmake/build/pdfmake.min.js"></script>
-    <script src="<?= base_url() ?>assets/libs/pdfmake/build/vfs_fonts.js"></script>
-    <script src="<?= base_url() ?>assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="<?= base_url() ?>assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="<?= base_url() ?>assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
-    <!-- Responsive examples -->
+
+    <!-- Responsive datatables js -->
     <script src="<?= base_url() ?>assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?= base_url() ?>assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
     <!-- Datatable init js -->
     <script src="<?= base_url() ?>assets/js/pages/datatables.init.js"></script>
-    <!-- End of Datatables js -->
 
     <!--Morris Chart-->
     <script type="text/javascript" src="<?= base_url() ?>assets/libs/morris.js/morris.min.js"></script>
     <script type="text/javascript" src="<?= base_url() ?>assets/libs/raphael/raphael.min.js"></script>
-
-    <!-- Sweetalert2 -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
 
     <!-- App js -->
     <script type="text/javascript" src="<?= base_url() ?>assets/js/app.js"></script>

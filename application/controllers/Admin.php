@@ -10,6 +10,7 @@ class Admin extends CI_Controller
         $this->load->model('M_simukPegawai');
         $this->load->model('M_laboratorium');
         $this->load->model('M_pegawaiUpt');
+        $this->load->model('M_pengguna');
     }
 
     public function index()
@@ -36,26 +37,61 @@ class Admin extends CI_Controller
         $data['title'] = 'Halaman Kelola Pengguna';
         $data['pagetitle'] = 'Admin';
         $data['subtitle'] = 'Kelola pengguna';
+        $data['all_pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+        $data['pengguna'] = $this->M_pengguna->getPengguna();
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/usermanagement', $data);
     }
 
-    public function userDetail()
-    {
-        $data['title'] = 'Halaman Kelola Pengguna';
-        $data['pagetitle'] = 'Admin';
-        $data['subtitle'] = 'Detail pengguna';
-        $this->load->view('partials/page-title', $data);
-        $this->load->view('admin/userdetail', $data);
-    }
-
     public function addUser()
     {
-        $data['title'] = 'Halaman Kelola Pengguna';
+        $password = $this->input->post('password');
+        $data = [
+            'id_pegawai' => $this->input->post('id_pegawai'),
+            'role_id' => $this->input->post('role_id'),
+            'username' => $this->input->post('username'),
+            'password' => md5($password),
+        ];
+
+        if ($this->M_pengguna->addUser($data)) {
+            redirect('admin/usermanagement');
+        } else {
+            redirect('admin/usermanagement');
+        }
+    }
+
+    public function userEdit($id)
+    {
+        $data['title'] = 'Halaman Edit Pengguna';
         $data['pagetitle'] = 'Admin';
-        $data['subtitle'] = 'Tambah Pengguna';
+        $data['subtitle'] = 'Edit pengguna';
+        $data['userdetail'] = $this->M_pengguna->getPenggunaDetail($id);
         $this->load->view('partials/page-title', $data);
-        $this->load->view('admin/adduser', $data);
+        $this->load->view('admin/useredit', $data);
+    }
+
+    public function userEditProcess($id)
+    {
+        $data = array(
+            'username' => $this->input->post('username'),
+            'password' => md5($this->input->post('password')),
+            'role_id' => $this->input->post('role_id'),
+        );
+
+        if ($this->M_pengguna->editPengguna($data, $id)) {
+            redirect('admin/usermanagement');
+        } else {
+            redirect('admin/usermanagement');
+        }
+    }
+
+    public function deleteUser($idUser)
+    {
+        if ($this->M_pengguna->deleteUser($idUser)) {
+            redirect('admin/usermanagement');
+        } else {
+            redirect('admin/usermanagement');
+        }
     }
 
     // Pegawai
@@ -81,6 +117,35 @@ class Admin extends CI_Controller
         $this->load->view('admin/detailpegawai', $data);
     }
 
+    public function editPegawai($id)
+    {
+        $data['title'] = 'Halaman Edit Pegawai';
+        $data['pagetitle'] = 'Admin';
+        $data['subtitle'] = 'Edit Pegawai';
+        $data['detail_pegawai_upt'] = $this->M_pegawaiUpt->getDetailPegawaiUpt($id);
+        $data['detail_pegawai_upt_obj'] = $this->M_pegawaiUpt->getDetailPegawaiUptObj($id);
+        $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('admin/editpegawai', $data);
+    }
+
+    public function editPegawaiProcess($id)
+    {
+        $data = [
+            'status' => $this->input->post('status'),
+            'jabatan' => $this->input->post('jabatan'),
+            'kontak' => $this->input->post('kontak'),
+            'id_lab' => $this->input->post('nama_lab'),
+            'is_active' => $this->input->post('isactive'),
+        ];
+
+        if ($this->M_pegawaiUpt->editPegawai($data, $id)) {
+            redirect('admin/daftarpegawai');
+        } else {
+            redirect('admin/daftarpegawai');
+        }
+    }
+
     public function addPegawai()
     {
         $data = [
@@ -88,7 +153,7 @@ class Admin extends CI_Controller
             'status' => $this->input->post('status_kepegawaian'),
             'jabatan' => $this->input->post('jabatan'),
             'id_lab' => $this->input->post('nama_lab'),
-            'role_id' => $this->input->post('role'),
+            'is_active' => $this->input->post('isactive'),
             'kontak' => $this->input->post('kontak'),
         ];
 

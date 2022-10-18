@@ -81,7 +81,9 @@
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Jabatan</div>
-                                                        <?= $detail_pegawai_upt->jabatan ?>
+                                                        <div class="text-capitalize">
+                                                            <?= $detail_pegawai_upt->jabatan ?>
+                                                        </div>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -114,16 +116,28 @@
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
-                                                        <div class="fw-bold">Status</div>
-                                                        <?= $detail_pegawai_upt->status ?>
+                                                        <div class="fw-bold">Status Kepegawaian</div>
+                                                        <div class="text-uppercase">
+                                                            <?= $detail_pegawai_upt->status ?>
+                                                        </div>
                                                     </div>
                                                 </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                    <div class="ms-2 me-auto">
-                                                        <div class="fw-bold">Is Active</div>
-                                                        <span class="badge rounded-pill text-bg-success">Aktif</span>
-                                                    </div>
-                                                </li>
+                                                <?php if ($detail_pegawai_upt->is_active == 'Aktif') : ?>
+                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                        <div class="ms-2 me-auto">
+                                                            <div class="fw-bold">Is Active</div>
+                                                            <span class="badge rounded-pill text-bg-success">Aktif</span>
+                                                        </div>
+                                                    </li>
+                                                <?php endif; ?>
+                                                <?php if ($detail_pegawai_upt->is_active == 'Tidak Aktif') : ?>
+                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                        <div class="ms-2 me-auto">
+                                                            <div class="fw-bold">Is Active</div>
+                                                            <span class="badge rounded-pill text-bg-danger">Tidak Aktif</span>
+                                                        </div>
+                                                    </li>
+                                                <?php endif; ?>
                                             </ul>
                                         </div>
                                     </div>

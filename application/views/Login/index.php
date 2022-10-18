@@ -33,15 +33,26 @@
                             <div class="card-body form">
                                 <h1 class="mb-3">Login</h1>
                                 <h6 class="card-subtitle mb-2 text-muted">Masukkan email dan password yang terdaftar</h6>
-                                <form>
+                                <form action="<?= base_url('index.php/login/userlogin') ?>" method="POST">
+                                    <!--=== Error msg ===-->
+                                    <?php
+                                    if ($this->session->flashdata('login_fail')) {
+                                        print '<div class= "error-msg">' . $this->session->flashdata('login_fail') . '</div>';
+                                    }
+
+                                    if ($this->session->flashdata('no_access')) {
+                                        print '<div class= "error-msg">' . $this->session->flashdata('no_access') . '</div>';
+                                    }
+                                    ?>
+
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        <label for="username" class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username">
                                     </div>
                                     <div class="mb-5">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1">
-                                        <a id="emailHelp" class="form-text float-end">Lupa password?</a>
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password">
+                                        <!-- <a id="emailHelp" class="form-text float-end">Lupa password?</a> -->
                                     </div>
                                     <div class="d-grid gap-2">
                                         <button type="submit" class="btn btn-primary">Login</button>
