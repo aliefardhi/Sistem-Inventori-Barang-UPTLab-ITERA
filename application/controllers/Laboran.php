@@ -9,6 +9,8 @@ class Laboran extends CI_Controller
         $data['title'] = 'Dashboard';
         $data['pagetitle'] = 'Dashboard';
         $data['subtitle'] = 'Dashboard';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('laboran/index', $data);
     }
@@ -18,6 +20,8 @@ class Laboran extends CI_Controller
         $data['title'] = 'Tambah Data Barang Persediaan';
         $data['pagetitle'] = 'Daftar Barang Persediaan';
         $data['subtitle'] = 'Tambah Data Barang';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('barangpersediaan/tambahdatabp', $data);
     }
@@ -27,6 +31,8 @@ class Laboran extends CI_Controller
         $data['title'] = 'Tambah Data Barang Persediaan';
         $data['pagetitle'] = 'Tambah Data Barang Persediaan';
         $data['subtitle'] = 'Import Data Barang';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('barangpersediaan/importdatabp', $data);
     }
@@ -36,6 +42,8 @@ class Laboran extends CI_Controller
         $data['title'] = 'Tambah Data Barang Habis Pakai';
         $data['pagetitle'] = 'Daftar Barang Habis Pakai';
         $data['subtitle'] = 'Tambah Data Barang';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/tambahdatahp', $data);
     }
@@ -45,6 +53,8 @@ class Laboran extends CI_Controller
         $data['title'] = 'Tambah Data Barang Habis Pakai';
         $data['pagetitle'] = 'Tambah Data Barang Habis Pakai';
         $data['subtitle'] = 'Import Data Barang';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/importdatahp', $data);
     }

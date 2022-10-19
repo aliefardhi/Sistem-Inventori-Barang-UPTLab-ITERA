@@ -7,17 +7,25 @@ class Admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        if (!$this->session->login['role_id'] == 'Admin') {
+            redirect('index.php/login');
+        }
         $this->load->model('M_simukPegawai');
         $this->load->model('M_laboratorium');
         $this->load->model('M_pegawaiUpt');
         $this->load->model('M_pengguna');
+        $this->data['aktif'] = 'admin';
+        $this->data['dashboard'] = 'dashboard';
     }
 
     public function index()
     {
+        // $username = $this->session->userdata('username');
         $data['title'] = 'Dashboard';
         $data['pagetitle'] = 'Dashboard';
         $data['subtitle'] = 'Dashboard';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/index', $data);
     }
@@ -28,6 +36,8 @@ class Admin extends CI_Controller
         $data['title'] = 'Halaman Profile';
         $data['pagetitle'] = 'Profile';
         $data['subtitle'] = 'Pengaturan profile';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/profile', $data);
     }
@@ -39,6 +49,9 @@ class Admin extends CI_Controller
         $data['subtitle'] = 'Kelola pengguna';
         $data['all_pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
         $data['pengguna'] = $this->M_pengguna->getPengguna();
+        $data['userdata'] = $this->session->userdata('login');
+        $data['aktif'] = 'usermanagement';
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/usermanagement', $data);
     }
@@ -51,6 +64,7 @@ class Admin extends CI_Controller
             'role_id' => $this->input->post('role_id'),
             'username' => $this->input->post('username'),
             'password' => md5($password),
+            'image' => 'default.jpg',
         ];
 
         if ($this->M_pengguna->addUser($data)) {
@@ -66,6 +80,8 @@ class Admin extends CI_Controller
         $data['pagetitle'] = 'Admin';
         $data['subtitle'] = 'Edit pengguna';
         $data['userdetail'] = $this->M_pengguna->getPenggunaDetail($id);
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/useredit', $data);
     }
@@ -103,6 +119,8 @@ class Admin extends CI_Controller
         $data['all_pegawai_simuk'] = $this->M_simukPegawai->getAllPegawai();
         $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
         $data['all_pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/daftarpegawai', $data);
     }
@@ -113,6 +131,8 @@ class Admin extends CI_Controller
         $data['pagetitle'] = 'Admin';
         $data['subtitle'] = 'Detail Pegawai';
         $data['detail_pegawai_upt'] = $this->M_pegawaiUpt->getDetailPegawaiUpt($id);
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/detailpegawai', $data);
     }
@@ -125,6 +145,8 @@ class Admin extends CI_Controller
         $data['detail_pegawai_upt'] = $this->M_pegawaiUpt->getDetailPegawaiUpt($id);
         $data['detail_pegawai_upt_obj'] = $this->M_pegawaiUpt->getDetailPegawaiUptObj($id);
         $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/editpegawai', $data);
     }
@@ -137,12 +159,13 @@ class Admin extends CI_Controller
             'kontak' => $this->input->post('kontak'),
             'id_lab' => $this->input->post('nama_lab'),
             'is_active' => $this->input->post('isactive'),
+            'updated_at' => time(),
         ];
 
         if ($this->M_pegawaiUpt->editPegawai($data, $id)) {
-            redirect('admin/daftarpegawai');
+            redirect('index.php/admin/daftarpegawai');
         } else {
-            redirect('admin/daftarpegawai');
+            redirect('index.php/admin/daftarpegawai');
         }
     }
 
@@ -196,6 +219,8 @@ class Admin extends CI_Controller
         $data['subtitle'] = 'Daftar Laboratorium';
         $data['all_lab'] = $this->M_laboratorium->getAllLab();
         $data['no'] = 1;
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/daftarlab', $data);
     }

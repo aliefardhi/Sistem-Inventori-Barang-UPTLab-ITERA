@@ -9,6 +9,8 @@ class BarangHP extends CI_Controller
         $data['title'] = 'Barang Habis Pakai';
         $data['pagetitle'] = 'Pilih ruangan';
         $data['subtitle'] = '';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/pilihruangan', $data);
     }
@@ -18,6 +20,8 @@ class BarangHP extends CI_Controller
         $data['title'] = 'Barang Habis Pakai';
         $data['pagetitle'] = 'Daftar barang habis pakai';
         $data['subtitle'] = 'Daftar barang habis pakai';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/daftarbarang', $data);
     }
@@ -27,6 +31,8 @@ class BarangHP extends CI_Controller
         $data['title'] = 'Barang Habis Pakai';
         $data['pagetitle'] = 'Daftar barang habis pakai';
         $data['subtitle'] = 'Detail barang habis pakai';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/detailbaranghp', $data);
     }
@@ -36,6 +42,8 @@ class BarangHP extends CI_Controller
         $data['title'] = 'Halaman Barang Habis Pakai Hilang';
         $data['pagetitle'] = 'Barang habis pakai';
         $data['subtitle'] = 'Daftar hilang barang habis pakai';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/daftarhilangbhp', $data);
     }
@@ -45,6 +53,8 @@ class BarangHP extends CI_Controller
         $data['title'] = 'Halaman Barang Habis Pakai Rusak';
         $data['pagetitle'] = 'Barang habis pakai';
         $data['subtitle'] = 'Daftar rusak barang habis pakai';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/daftarrusakbhp', $data);
     }

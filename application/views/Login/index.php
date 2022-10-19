@@ -31,9 +31,12 @@
                     <div class="col-md-8">
                         <div class="card ms-auto p-3" style="width: 23rem; height: 30rem">
                             <div class="card-body form">
+                                <?php if ($this->session->flashdata('message')) : ?>
+                                    <?= $this->session->flashdata('message'); ?>
+                                <?php endif; ?>
                                 <h1 class="mb-3">Login</h1>
                                 <h6 class="card-subtitle mb-2 text-muted">Masukkan email dan password yang terdaftar</h6>
-                                <form action="<?= base_url('index.php/login/userlogin') ?>" method="POST">
+                                <form action="<?= base_url('index.php/login') ?>" method="POST">
                                     <!--=== Error msg ===-->
                                     <?php
                                     if ($this->session->flashdata('login_fail')) {
@@ -47,11 +50,13 @@
 
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
-                                        <input type="text" class="form-control" id="username" name="username">
+                                        <input type="text" class="form-control" id="username" name="username" value="<?= set_value('username'); ?>">
+                                        <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="mb-5">
                                         <label for="password" class="form-label">Password</label>
                                         <input type="password" class="form-control" id="password" name="password">
+                                        <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                                         <!-- <a id="emailHelp" class="form-text float-end">Lupa password?</a> -->
                                     </div>
                                     <div class="d-grid gap-2">

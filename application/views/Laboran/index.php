@@ -16,8 +16,7 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-        <?php $this->load->view('partials/topbar') ?>
-        <?php $this->load->view('partials/sidebar-laboran') ?>
+        <?php $this->load->view('partials/menu') ?>
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->

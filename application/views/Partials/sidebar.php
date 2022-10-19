@@ -7,26 +7,13 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
+
                 <li class="menu-title">Menu</li>
 
                 <li>
                     <a href="<?= base_url() ?>index.php/admin" class="waves-effect">
                         <i class="mdi mdi-view-dashboard"></i>
                         <span>Dashboard</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= base_url() ?>index.php/admin/daftarlaboratorium" class="waves-effect">
-                        <i class="fas fa-building"></i>
-                        <span>Data Laboratorium</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?= base_url() ?>index.php/admin/daftarpegawai" class="waves-effect">
-                        <i class="fas fa-users"></i>
-                        <span>Daftar Pegawai UPT Lab.</span>
                     </a>
                 </li>
 
@@ -72,16 +59,34 @@
                     </ul>
                 </li>
 
-                <li class="menu-title">Lainnya</li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-account-box"></i>
-                        <span> Autentikasi </span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="<?= base_url() ?>index.php/admin/usermanagement">Kelola Pengguna</a></li>
-                    </ul>
-                </li>
+                <?php if ($this->session->login['role_id'] == 'admin') : ?>
+                    <li class="menu-title">Administrator</li>
+
+                    <li>
+                        <a href="<?= base_url() ?>index.php/admin/daftarlaboratorium" class="waves-effect">
+                            <i class="fas fa-building"></i>
+                            <span>Data Laboratorium</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?= base_url() ?>index.php/admin/daftarpegawai" class="waves-effect">
+                            <i class="fas fa-users"></i>
+                            <span>Daftar Pegawai UPT Lab.</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-title">Lainnya</li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect ">
+                            <i class="mdi mdi-account-box"></i>
+                            <span> Autentikasi </span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="<?= base_url() ?>index.php/admin/usermanagement">Kelola Pengguna</a></li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
 
             </ul>
         </div>

@@ -9,6 +9,8 @@ class BarangPersediaan extends CI_Controller
         $data['title'] = 'Barang Persediaan';
         $data['pagetitle'] = 'Pilih ruangan';
         $data['subtitle'] = '';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('barangpersediaan/pilihruangan', $data);
     }
@@ -18,6 +20,8 @@ class BarangPersediaan extends CI_Controller
         $data['title'] = 'Barang Persediaan';
         $data['pagetitle'] = 'Daftar barang persediaan';
         $data['subtitle'] = 'Daftar barang persediaan';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('barangpersediaan/daftarbarang', $data);
     }
@@ -27,6 +31,8 @@ class BarangPersediaan extends CI_Controller
         $data['title'] = 'Barang Persediaan';
         $data['pagetitle'] = 'Daftar barang persediaan';
         $data['subtitle'] = 'Detail barang persediaan';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('barangpersediaan/detailbarangbp', $data);
     }
@@ -36,6 +42,8 @@ class BarangPersediaan extends CI_Controller
         $data['title'] = 'Halaman Barang Persediaan Hilang';
         $data['pagetitle'] = 'Barang Persediaan';
         $data['subtitle'] = 'Daftar hilang barang persediaan';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('barangpersediaan/daftarhilangpersediaan', $data);
     }
@@ -45,6 +53,8 @@ class BarangPersediaan extends CI_Controller
         $data['title'] = 'Halaman Barang Persediaan Rusak';
         $data['pagetitle'] = 'Barang Persediaan';
         $data['subtitle'] = 'Daftar rusak barang persediaan';
+        $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('barangpersediaan/daftarrusakpersediaan', $data);
     }

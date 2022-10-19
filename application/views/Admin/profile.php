@@ -31,8 +31,24 @@
                     <!-- Start content -->
                     <div class="row">
                         <div class="col-12">
+                            <div class="card mb-3" style="max-width: 540px;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="
+                                        <?= base_url('assets/images/users/') . $userdata['image']; ?>" class="img-fluid rounded-start">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?= $userdata['nama_pegawai'] ?></h5>
+                                            <p class="card-text text-capitalize"><?= $userdata['nama_unit'] ?> | <?= $userdata['jabatan'] ?></p>
+                                            <p class="card-text"><small class="text-muted">Created at <?= date('d F Y', $userdata['created_at']) ?></small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card">
                                 <div class="card-body">
+
 
                                     <h4 class="card-title">Detail Profile</h4>
                                     <p class="card-title-desc">Anda dapat mengatur detail profil anda melalui form dibawah ini.</p>
