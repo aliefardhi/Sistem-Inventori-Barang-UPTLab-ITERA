@@ -23,6 +23,21 @@ class M_pengguna extends CI_Model
         return $query->row();
     }
 
+    public function getPenggunaByUsername($username)
+    {
+        $query = $this->db->query("SELECT * FROM tbl_pengguna LEFT JOIN tbl_pegawai_upt ON tbl_pengguna.id_pegawai = tbl_pegawai_upt.id_pegawai LEFT JOIN v_simuk_pegawai ON tbl_pegawai_upt.id_pegawai = v_simuk_pegawai.id_pegawai LEFT JOIN tbl_lab ON tbl_pegawai_upt.id_lab = tbl_lab.id_lab WHERE username = '$username'");
+
+        return $query->row();
+    }
+
+    public function editPenggunaByUsername($data, $username)
+    {
+        $query = $this->db->set($data);
+        $query = $this->db->where(['username' => $username]);
+        $query = $this->db->update($this->_table, $data);
+        return $query;
+    }
+
     public function deleteUser($id_pegawai)
     {
         return $this->db->delete($this->_table, ['id_pegawai' => $id_pegawai]);

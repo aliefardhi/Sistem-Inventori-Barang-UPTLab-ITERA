@@ -30,34 +30,42 @@
 
                     <!-- Start content -->
                     <div class="row">
-                        <div class="col-lg-8">
-                            <?php if ($this->session->flashdata('message')) : ?>
-                                <?= $this->session->flashdata('message'); ?>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-12">
-                            <div class="card mb-3" style="max-width: 768px;">
-                                <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img src="<?= base_url('assets/images/users/') . $userdata['image']; ?>" class="img-fluid rounded-start">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?= $userdata['nama_pegawai'] ?></h5>
-                                            <p class="card-text text-capitalize"><?= $userdata['nama_unit'] ?> | <?= $userdata['jabatan'] ?></p>
-                                            <p class="card-text"><small class="text-muted">Created at <?= date('d F Y', $userdata['created_at']) ?> | Last Updated at <?= date('d F Y', $userdata['updated_at']) ?></small></p>
-                                        </div>
-                                        <div class="mx-3">
-                                            <a href="<?= base_url('index.php/admin/editprofile') ?>" type="button" class="btn btn-sm btn-info"><i class="far fa-image"></i> Ubah foto profil</a>
-                                            <a href="<?= base_url('index.php/admin/changepassword/') ?>" type="button" class="btn btn-sm btn-warning"><i class="mdi mdi-key"></i> Ubah password</a>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <?php if ($this->session->flashdata('message')) : ?>
+                                                <?= $this->session->flashdata('message'); ?>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
+                                    <h4 class="card-title">Upload foto profil</h4>
+                                    <p class="card-title-desc mb-3">Upload foto profil baru anda.</p>
+                                    <form action="<?= base_url('index.php/laboran/editprofileprocess/') ?>" method="POST" enctype="multipart/form-data">
+                                        <div class="mb-3 row">
+                                            <div class="col-md-10">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <img src="<?= base_url('assets/images/users/') . $userdata['image']; ?>" class="img-thumbnail">
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <div class="custom-file">
+                                                            <input type="file" class="form-control" id="image" name="image">
+                                                            <label for="image" class="form-label"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end row  -->
+
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <a href="javascript:window.history.go(-1);" type="button" class="btn btn-secondary mx-2">Kembali</a>
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <!-- end col -->

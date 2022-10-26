@@ -33,7 +33,12 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item d-flex align-items-center" href="<?= base_url() ?>index.php/admin/profile"><i class="fas fa-user-alt font-size-17 text-muted align-middle me-1"></i> My Profile</a>
+                    <?php if ($this->session->login['role_id'] == 'admin') : ?>
+                        <a class="dropdown-item d-flex align-items-center" href="<?= base_url() ?>index.php/admin/profile"><i class="fas fa-user-alt font-size-17 text-muted align-middle me-1"></i> My Profile</a>
+                    <?php endif; ?>
+                    <?php if ($this->session->login['role_id'] == 'laboran') : ?>
+                        <a class="dropdown-item d-flex align-items-center" href="<?= base_url() ?>index.php/laboran/profile"><i class="fas fa-user-alt font-size-17 text-muted align-middle me-1"></i> My Profile</a>
+                    <?php endif; ?>
                     <div class="dropdown-divider"></div>
                     <button type="button" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="mdi mdi-power font-size-17 text-muted align-middle me-1 text-danger"></i> Logout</button>
                 </div>

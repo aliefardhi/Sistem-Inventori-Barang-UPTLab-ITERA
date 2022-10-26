@@ -10,12 +10,22 @@
 
                 <li class="menu-title">Menu</li>
 
-                <li>
-                    <a href="<?= base_url() ?>index.php/admin" class="waves-effect">
-                        <i class="mdi mdi-view-dashboard"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
+                <?php if ($this->session->login['role_id'] == 'laboran') : ?>
+                    <li>
+                        <a href="<?= base_url() ?>index.php/laboran" class="waves-effect">
+                            <i class="mdi mdi-view-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($this->session->login['role_id'] == 'admin') : ?>
+                    <li>
+                        <a href="<?= base_url() ?>index.php/admin" class="waves-effect">
+                            <i class="mdi mdi-view-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">

@@ -51,8 +51,8 @@
                                             <p class="card-text"><small class="text-muted">Created at <?= date('d F Y', $userdata['created_at']) ?> | Last Updated at <?= date('d F Y', $userdata['updated_at']) ?></small></p>
                                         </div>
                                         <div class="mx-3">
-                                            <a href="<?= base_url('index.php/admin/editprofile') ?>" type="button" class="btn btn-sm btn-info"><i class="far fa-image"></i> Ubah foto profil</a>
-                                            <a href="<?= base_url('index.php/admin/changepassword/') ?>" type="button" class="btn btn-sm btn-warning"><i class="mdi mdi-key"></i> Ubah password</a>
+                                            <a href="<?= base_url('index.php/laboran/editprofile') ?>" type="button" class="btn btn-sm btn-info"><i class="far fa-image"></i> Ubah foto profil</a>
+                                            <a href="<?= base_url('index.php/laboran/changepassword/') ?>" type="button" class="btn btn-sm btn-warning"><i class="mdi mdi-key"></i> Ubah password</a>
                                         </div>
                                     </div>
                                 </div>

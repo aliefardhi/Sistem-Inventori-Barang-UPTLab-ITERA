@@ -7,41 +7,137 @@ class Admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if (!$this->session->login['role_id'] == 'Admin') {
-            redirect('index.php/login');
+        if (!$this->session->login['username'] && !$this->session->login['role_id'] == 'admin') {
+            redirect('login');
         }
         $this->load->model('M_simukPegawai');
         $this->load->model('M_laboratorium');
         $this->load->model('M_pegawaiUpt');
         $this->load->model('M_pengguna');
-        $this->data['aktif'] = 'admin';
-        $this->data['dashboard'] = 'dashboard';
     }
 
     public function index()
     {
-        // $username = $this->session->userdata('username');
-        $data['title'] = 'Dashboard';
-        $data['pagetitle'] = 'Dashboard';
-        $data['subtitle'] = 'Dashboard';
-        $data['userdata'] = $this->session->userdata('login');
-        $this->load->view('partials/topbar', $data);
-        $this->load->view('partials/page-title', $data);
-        $this->load->view('admin/index', $data);
+        if ($this->session->login['role_id'] == 'admin') {
+            // $username = $this->session->userdata('username');
+            $data['title'] = 'Dashboard';
+            $data['pagetitle'] = 'Dashboard';
+            $data['subtitle'] = 'Dashboard';
+            $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/index', $data);
+        } else {
+            redirect('login/blocked');
+        }
+    }
+
+    // Profile admin
+    public function profile()
+    {
+        if ($this->session->login['role_id'] == 'admin') {
+            $data['title'] = 'Halaman Profile';
+            $data['pagetitle'] = 'Profile';
+            $data['subtitle'] = 'My profile';
+            $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/profile', $data);
+        } else {
+            redirect('login/blocked');
+        }
+    }
+    public function editProfile()
+    {
+        if ($this->session->login['role_id'] == 'admin') {
+            $data['title'] = 'Halaman Profile';
+            $data['pagetitle'] = 'Profile';
+            $data['subtitle'] = 'Edit profile';
+            $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/editprofile', $data);
+        } else {
+            redirect('login/blocked');
+        }
+    }
+
+    public function editProfileProcess()
+    {
+        $username = $this->session->login['username'];
+
+        $config['upload_path'] = './assets/images/users/';
+        $config['allowed_types'] = 'jpg|png';
+        $config['max_size'] = '2000';
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('image')) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+            redirect('admin/editprofile');
+        } else {
+            $old_image = $this->session->login['image'];
+            if ($old_image != 'default.jpg') {
+                unlink(FCPATH . 'assets/images/users/' . $old_image);
+            }
+
+            $upload_data = $this->upload->data();
+            $data = array(
+                'image' => $upload_data['file_name'],
+            );
+
+            if ($this->M_pengguna->editPenggunaByUsername($data, $username)) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Profil berhasil diubah! Silahkan login kembali untuk memperbaharui profil</div>');
+                redirect('admin/profile');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Profile gagal diperbaharui!</div>');
+                redirect('admin/profile');
+            }
+        }
+    }
+
+    public function changePassword()
+    {
+        if ($this->session->login['role_id'] == 'admin') {
+            $this->form_validation->set_rules('currentPassword', 'Current Password', 'required|trim');
+            $this->form_validation->set_rules('newPassword1', 'New Password', 'required|trim|min_length[3]|matches[newPassword2]');
+            $this->form_validation->set_rules('newPassword2', 'Confirm New Password', 'required|trim|min_length[3]|matches[newPassword1]');
+
+            if ($this->form_validation->run() == false) {
+                $data['title'] = 'Halaman Profile';
+                $data['pagetitle'] = 'Profile';
+                $data['subtitle'] = 'Ganti Password';
+                $data['userdata'] = $this->session->userdata('login');
+                $this->load->view('partials/topbar', $data);
+                $this->load->view('partials/page-title', $data);
+                $this->load->view('admin/changepassword', $data);
+            } else {
+                $currentPassword = md5($this->input->post('currentPassword'));
+                $newPassword = md5($this->input->post('newPassword1'));
+
+                if ($currentPassword != $this->session->login['password']) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password salah!</div>');
+                    redirect('admin/changepassword');
+                } else {
+                    if ($currentPassword == $newPassword) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password baru tidak boleh sama dengan password saat ini!</div>');
+                        redirect('admin/changepassword');
+                    } else {
+                        $this->db->set('password', $newPassword);
+                        $this->db->where('username', $this->session->login['username']);
+                        $this->db->update('tbl_pengguna');
+
+                        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password berhasil diperbaharui!</div>');
+                        redirect('admin/changepassword');
+                    }
+                }
+            }
+        } else {
+            redirect('login/blocked');
+        }
     }
 
     // User management
-    public function profile()
-    {
-        $data['title'] = 'Halaman Profile';
-        $data['pagetitle'] = 'Profile';
-        $data['subtitle'] = 'Pengaturan profile';
-        $data['userdata'] = $this->session->userdata('login');
-        $this->load->view('partials/topbar', $data);
-        $this->load->view('partials/page-title', $data);
-        $this->load->view('admin/profile', $data);
-    }
-
     public function userManagement()
     {
         $data['title'] = 'Halaman Kelola Pengguna';
@@ -76,14 +172,18 @@ class Admin extends CI_Controller
 
     public function userEdit($id)
     {
-        $data['title'] = 'Halaman Edit Pengguna';
-        $data['pagetitle'] = 'Admin';
-        $data['subtitle'] = 'Edit pengguna';
-        $data['userdetail'] = $this->M_pengguna->getPenggunaDetail($id);
-        $data['userdata'] = $this->session->userdata('login');
-        $this->load->view('partials/topbar', $data);
-        $this->load->view('partials/page-title', $data);
-        $this->load->view('admin/useredit', $data);
+        if ($this->session->login['role_id'] == 'admin') {
+            $data['title'] = 'Halaman Edit Pengguna';
+            $data['pagetitle'] = 'Admin';
+            $data['subtitle'] = 'Edit pengguna';
+            $data['userdetail'] = $this->M_pengguna->getPenggunaDetail($id);
+            $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/useredit', $data);
+        } else {
+            redirect('login/blocked');
+        }
     }
 
     public function userEditProcess($id)
@@ -113,28 +213,36 @@ class Admin extends CI_Controller
     // Pegawai
     public function daftarPegawai()
     {
-        $data['title'] = 'Halaman Daftar Pegawai UPT Lab. ITERA';
-        $data['pagetitle'] = 'Admin';
-        $data['subtitle'] = 'Daftar Pegawai';
-        $data['all_pegawai_simuk'] = $this->M_simukPegawai->getAllPegawai();
-        $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
-        $data['all_pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
-        $data['userdata'] = $this->session->userdata('login');
-        $this->load->view('partials/topbar', $data);
-        $this->load->view('partials/page-title', $data);
-        $this->load->view('admin/daftarpegawai', $data);
+        if ($this->session->login['role_id'] == 'admin') {
+            $data['title'] = 'Halaman Daftar Pegawai UPT Lab. ITERA';
+            $data['pagetitle'] = 'Admin';
+            $data['subtitle'] = 'Daftar Pegawai';
+            $data['all_pegawai_simuk'] = $this->M_simukPegawai->getAllPegawai();
+            $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
+            $data['all_pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+            $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/daftarpegawai', $data);
+        } else {
+            redirect('login/blocked');
+        }
     }
 
     public function detailPegawai($id)
     {
-        $data['title'] = 'Halaman Detail Pegawai';
-        $data['pagetitle'] = 'Admin';
-        $data['subtitle'] = 'Detail Pegawai';
-        $data['detail_pegawai_upt'] = $this->M_pegawaiUpt->getDetailPegawaiUpt($id);
-        $data['userdata'] = $this->session->userdata('login');
-        $this->load->view('partials/topbar', $data);
-        $this->load->view('partials/page-title', $data);
-        $this->load->view('admin/detailpegawai', $data);
+        if ($this->session->login['role_id'] == 'admin') {
+            $data['title'] = 'Halaman Detail Pegawai';
+            $data['pagetitle'] = 'Admin';
+            $data['subtitle'] = 'Detail Pegawai';
+            $data['detail_pegawai_upt'] = $this->M_pegawaiUpt->getDetailPegawaiUpt($id);
+            $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/detailpegawai', $data);
+        } else {
+            redirect('login/blocked');
+        }
     }
 
     public function editPegawai($id)
@@ -163,9 +271,9 @@ class Admin extends CI_Controller
         ];
 
         if ($this->M_pegawaiUpt->editPegawai($data, $id)) {
-            redirect('index.php/admin/daftarpegawai');
+            redirect('admin/daftarpegawai');
         } else {
-            redirect('index.php/admin/daftarpegawai');
+            redirect('admin/daftarpegawai');
         }
     }
 
@@ -214,15 +322,19 @@ class Admin extends CI_Controller
     // Laboratorium
     public function daftarLaboratorium()
     {
-        $data['title'] = 'Halaman Daftar Laboratorium ITERA';
-        $data['pagetitle'] = 'Admin';
-        $data['subtitle'] = 'Daftar Laboratorium';
-        $data['all_lab'] = $this->M_laboratorium->getAllLab();
-        $data['no'] = 1;
-        $data['userdata'] = $this->session->userdata('login');
-        $this->load->view('partials/topbar', $data);
-        $this->load->view('partials/page-title', $data);
-        $this->load->view('admin/daftarlab', $data);
+        if ($this->session->login['role_id'] == 'admin') {
+            $data['title'] = 'Halaman Daftar Laboratorium ITERA';
+            $data['pagetitle'] = 'Admin';
+            $data['subtitle'] = 'Daftar Laboratorium';
+            $data['all_lab'] = $this->M_laboratorium->getAllLab();
+            $data['no'] = 1;
+            $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/daftarlab', $data);
+        } else {
+            redirect('login/blocked');
+        }
     }
 
     public function addLab()

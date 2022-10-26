@@ -39,7 +39,9 @@ class Login extends CI_Controller
                 if ($password == $user['password']) {
                     // berhasil login
                     $data = [
+                        'id_pegawai' => $user['id_pegawai'],
                         'username' => $user['username'],
+                        'password' => $user['password'],
                         'nama_pegawai' => $user['nama_pegawai'],
                         'role_id' => $user['role_id'],
                         'image' => $user['image'],
@@ -54,24 +56,24 @@ class Login extends CI_Controller
                     // cek role
                     if ($user['role_id'] == 'admin') {
                         // admin
-                        redirect('index.php/admin');
+                        redirect('admin');
                     } else if ($user['role_id'] == 'laboran') {
                         // laboran
-                        redirect('index.php/laboran');
+                        redirect('laboran');
                     }
                 } else {
                     // jika password salah
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password salah!</div>');
-                    redirect('index.php/login');
+                    redirect('login');
                 }
             } else {
                 // jika user tidak aktif
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">User has not been activated!</div>');
-                redirect('index.php/login');
+                redirect('login');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">User is not available!</div>');
-            redirect('index.php/login');
+            redirect('login');
         }
     }
 
@@ -82,79 +84,12 @@ class Login extends CI_Controller
         $this->session->sess_destroy();
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil logout!</div>');
-        redirect('index.php/login');
+        redirect('login');
     }
 
-    public function userLogin()
+    public function blocked()
     {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        $user_data = $this->M_pengguna->login_user($username, $password);
-
-        if ($user_data) {
-            $login_data = array(
-
-                'user_data' => $user_data,
-                'id_pegawai' => $user_data->id_pegawai,
-                'username'  => $username,
-                'role_id'   => $user_data->role_id,
-
-            ); // Data keeps in SESSION
-
-            $this->session->set_userdata($login_data);
-
-            if ($user_data->role_id == 'admin') // Admin
-            {
-
-                $this->session->set_flashdata('login_success', 'Login Berhasil. Sekarang anda berada di halaman Admin.');
-                redirect('admin/index');
-            } elseif ($user_data->role_id == 'laboran') // Laboran
-            {
-                $this->session->set_flashdata('login_success', 'Selamat datang, <a href = "user-home" class = "text-primary">' . $this->session->userdata('name') . '</a>. Login anda berhasil');
-                redirect('laboran/index');
-            }
-        } else {
-            $this->session->set_flashdata('login_fail', '<i class="fas fa-exclamation-triangle"></i> Login gagal. Username atau Password anda salah, Silahkan Coba Lagi. ');
-
-            redirect($_SERVER['HTTP_REFERER']); // Redirect at same page.
-        }
-    }
-
-    public function loginProcess()
-    {
-        if ($this->input->post('role_id') === 'admin') $this->adminLogin($this->input->post('username'));
-        // elseif ($this->input->post('role') === 'admin') $this->_proses_login_admin($this->input->post('username'));
-        else {
-?>
-            <script>
-                alert('role tidak tersedia!')
-            </script>
-<?php
-        }
-    }
-
-    public function adminLogin($username)
-    {
-        $get_petugas = $this->M_pengguna->getUsername($username);
-        if ($get_petugas) {
-            if ($get_petugas->password == md5($this->input->post('password'))) {
-                $session = [
-                    'id_pegawai' => $get_petugas->id_pegawai,
-                    'username' => $get_petugas->username,
-                    'password' => $get_petugas->password,
-                    'role' => $get_petugas->role_id,
-                ];
-
-                $this->session->set_userdata('login', $session);
-                $this->session->set_flashdata('success', '<strong>Login</strong> Berhasil!');
-                redirect('admin');
-            } else {
-                $this->session->set_flashdata('error', 'Password Salah!');
-                redirect();
-            }
-        } else {
-            $this->session->set_flashdata('error', 'Username Salah!');
-            redirect();
-        }
+        $data['title'] = 'Access Blocked!';
+        $this->load->view('login/blocked', $data);
     }
 }
