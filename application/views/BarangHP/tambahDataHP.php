@@ -39,79 +39,92 @@
                                     </div>
 
                                     <!-- Start form input -->
-                                    <form class="row g-3 mt-1">
+                                    <form class="row g-3 mt-1" method="POST" action="<?= base_url('index.php/laboran/tambahdatahp') ?>">
                                         <div class="col-md-4">
-                                            <label for="inputIdBHP" class="form-label">ID Barang</label>
-                                            <input type="text" class="form-control" id="inputIdBHP" value="">
+                                            <label for="idBhp" class="form-label">ID Barang</label>
+                                            <input type="text" class="form-control" id="idBhp" name="idBhp">
+                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputIdBHP" class="form-label">Nama Barang</label>
-                                            <input type="text" class="form-control" id="inputNamaBHP" placeholder="" value="">
+                                            <label for="namaBhp" class="form-label">Nama Barang</label>
+                                            <input type="text" class="form-control" id="namaBhp" name="namaBhp">
+                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputStatusBHP" class="form-label">Jenis Barang</label>
-                                            <select id="inputStatusBHP" class="form-select">
+                                            <label for="jenisBhp" class="form-label">Jenis Barang</label>
+                                            <select id="jenisBhp" class="form-select" name="jenisBhp">
                                                 <option selected>- Pilih -</option>
-                                                <option>Elektronik</option>
-                                                <option>Bahan Kimia</option>
-                                                <option>Konsumsi</option>
-                                                <option>Lainnya</option>
-                                                <option>...</option>
+                                                <option value="elektronik">Elektronik</option>
+                                                <option value="bahan kimia">Bahan Kimia</option>
+                                                <option value="konsumsi">Konsumsi</option>
+                                                <option value="lainnya">Lainnya</option>
                                             </select>
+                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputJumlahBHP" class="form-label">Jumlah Barang</label>
-                                            <input type="number" class="form-control" id="inputJumlahBHP" value="">
+                                            <label for="jumlahBhp" class="form-label">Jumlah Barang</label>
+                                            <input type="number" class="form-control" id="jumlahBhp" name="jumlahBhp">
+                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputSisaBHP" class="form-label">Sisa Barang</label>
-                                            <input type="text" class="form-control" id="inputSisaBHP" placeholder="" value="">
+                                            <label for="sisaBhp" class="form-label">Sisa Barang</label>
+                                            <input type="text" class="form-control" id="sisaBhp" name="sisaBhp">
+                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputSatuanBHP" class="form-label">Satuan</label>
-                                            <select id="inputSatuanBHP" class="form-select">
+                                            <label for="satuanBhp" class="form-label">Satuan</label>
+                                            <select id="satuanBhp" class="form-select" name="satuanBhp">
                                                 <option selected>- Pilih -</option>
-                                                <option>pcs</option>
-                                                <option>dus</option>
-                                                <option>bal</option>
-                                                <option>pak</option>
-                                                <option>liter</option>
-                                                <option>meter</option>
-                                                <option>...</option>
+                                                <option value="pcs">pcs</option>
+                                                <option value="dus">dus</option>
+                                                <option value="bal">bal</option>
+                                                <option value="pak">pak</option>
+                                                <option value="liter">liter</option>
+                                                <option value="meter">meter</option>
                                             </select>
+                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputTahunAnggaranBHP" class="form-label">Tahun Anggaran</label>
-                                            <input type="text" class="form-control" id="inputTahunAnggaranBHP" value="">
+                                            <label for="tahunAnggaranBhp" class="form-label">Tahun Anggaran</label>
+                                            <input type="text" class="form-control" id="tahunAnggaranBhp" name="tahunAnggaranBhp">
+                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputTanggalTerimaBHP" class="form-label">Tanggal Terima</label>
-                                            <input type="date" class="form-control" id="inputTanggalTerimaBHP">
+                                            <label for="tanggalTerimaBhp" class="form-label">Tanggal Terima</label>
+                                            <input type="date" class="form-control" id="tanggalTerimaBhp" name="tanggalTerimaBhp">
+                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputVendorBHP" class="form-label">Vendor</label>
-                                            <input type="text" class="form-control" id="inputVendorBHP" placeholder="Contoh: 2021/2022" value="">
+                                            <label for="vendorBhp" class="form-label">Vendor</label>
+                                            <input type="text" class="form-control" id="vendorBhp" name="vendorBhp">
+                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputKondisiBHP" class="form-label">Kondisi</label>
-                                            <select id="inputKondisiBHP" class="form-select">
+                                            <label for="kondisiBhp" class="form-label">Kondisi</label>
+                                            <select id="kondisiBhp" class="form-select" name="kondisiBhp">
                                                 <option selected>- Pilih -</option>
-                                                <option>Baik</option>
-                                                <option>Rusak</option>
-                                                <option>Hilang</option>
+                                                <option value="baik">Baik</option>
+                                                <option value="rusak">Rusak</option>
+                                                <option value="hilang">Hilang</option>
                                             </select>
+                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputHargaSatuanBHP" class="form-label">Harga Satuan</label>
-                                            <input type="text" class="form-control" id="inputHargaSatuanBHP" value="Rp">
+                                            <label for="hargaSatuanBhp" class="form-label">Harga Satuan</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">Rp</span>
+                                                <input type="number" class="form-control" id="hargaSatuanBhp" placeholder="Contoh: 15000000" name="hargaSatuanBhp">
+                                            </div>
+                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputSpesifikasiBHP" class="form-label">Spesifikasi</label>
-                                            <textarea class="form-control" id="inputSpesifikasiBHP" rows="3"></textarea>
+                                            <label for="spesifikasiBhp" class="form-label">Spesifikasi</label>
+                                            <textarea class="form-control" id="spesifikasiBhp" rows="3" name="spesifikasiBhp"></textarea>
+                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputKeteranganBHP" class="form-label">Keterangan</label>
-                                            <textarea class="form-control" id="inputKeteranganBHP" rows="3"></textarea>
+                                            <label for="keteranganBhp" class="form-label">Keterangan</label>
+                                            <textarea class="form-control" id="keteranganBhp" rows="3" name="keteranganBhp"></textarea>
                                         </div>
                                         <div class="col-12">
                                             <a href="javascript:window.history.go(-1);" type="button" class="btn btn-secondary">Kembali</a>

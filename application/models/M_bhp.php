@@ -28,4 +28,9 @@ class M_bhp extends CI_Model
         $query = $this->db->query("SELECT * FROM tbl_bhp WHERE id_bhp = '$idBhp'");
         return $query->row_array();
     }
+
+    public function addBhp($data)
+    {
+        return $this->db->insert($this->_table, $data);
+    }
 }

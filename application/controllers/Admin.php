@@ -298,10 +298,10 @@ class Admin extends CI_Controller
         ];
 
         if ($this->M_pegawaiUpt->addPegawai($data)) {
-            $this->session->set_flashdata('message', 'Data Laboratorium <strong>Berhasil</strong> Ditambahkan!');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data pegawai berhasil ditambahkan!</div>');
             redirect('admin/daftarpegawai');
         } else {
-            $this->session->set_flashdata('message', 'Data Laboratorium <strong>Gagal</strong> Ditambahkan!');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal menambahkan data pegawai!</div>');
             redirect('admin/daftarpegawai');
         }
     }
@@ -354,10 +354,10 @@ class Admin extends CI_Controller
         ];
 
         if ($this->M_laboratorium->addLab($data)) {
-            $this->session->set_flashdata('message', 'Data Laboratorium <strong>Berhasil</strong> Ditambahkan!');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data laboratorium berhasil ditambahkan!</div>');
             redirect('admin/daftarlaboratorium');
         } else {
-            $this->session->set_flashdata('message', 'Data Laboratorium <strong>Gagal</strong> Ditambahkan!');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal menambahkan data laboratorium!</div>');
             redirect('admin/daftarlaboratorium');
         }
     }

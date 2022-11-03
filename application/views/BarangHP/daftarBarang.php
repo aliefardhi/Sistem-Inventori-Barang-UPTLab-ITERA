@@ -70,6 +70,9 @@
                                 <div class="card-body">
 
                                     <div class="row">
+                                        <?php if ($this->session->flashdata('message')) : ?>
+                                            <?= $this->session->flashdata('message'); ?>
+                                        <?php endif; ?>
                                         <div class="col-6">
                                             <h4 class="card-title">Daftar Barang</h4>
                                             <p class="card-title-desc">Daftar barang-barang yang terdapat pada ruangan -.

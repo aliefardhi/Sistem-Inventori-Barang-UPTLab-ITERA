@@ -10,6 +10,7 @@ class Laboran extends CI_Controller
             redirect('login');
         }
         $this->load->model('M_pengguna');
+        $this->load->model('M_bhp');
     }
 
     public function index()
@@ -165,14 +166,73 @@ class Laboran extends CI_Controller
     // Barang habis pakai
     public function tambahDataHP()
     {
-        $data['title'] = 'Tambah Data Barang Habis Pakai';
-        $data['pagetitle'] = 'Daftar Barang Habis Pakai';
-        $data['subtitle'] = 'Tambah Data Barang';
-        $data['userdata'] = $this->session->userdata('login');
-        $this->load->view('partials/header', $data);
-        $this->load->view('partials/topbar', $data);
-        $this->load->view('partials/page-title', $data);
-        $this->load->view('baranghp/tambahdatahp', $data);
+        $this->form_validation->set_rules('idBhp', 'ID BHP', 'required');
+        $this->form_validation->set_rules('namaBhp', 'Nama Barang', 'required');
+        $this->form_validation->set_rules('jenisBhp', 'Jenis Barang', 'required');
+        $this->form_validation->set_rules('jumlahBhp', 'Jumlah Barang', 'required|numeric');
+        $this->form_validation->set_rules('sisaBhp', 'Sisa Barang', 'required|numeric');
+        $this->form_validation->set_rules('satuanBhp', 'Satuan', 'required');
+        $this->form_validation->set_rules('tahunAnggaranBhp', 'Tahun Anggaran', 'required');
+        $this->form_validation->set_rules('tanggalTerimaBhp', 'Tanggal Terima', 'required');
+        $this->form_validation->set_rules('vendorBhp', 'Vendor', 'required');
+        $this->form_validation->set_rules('kondisiBhp', 'Kondisi ', 'required');
+        $this->form_validation->set_rules('hargaSatuanBhp', 'Harga Satuan', 'required|numeric');
+        $this->form_validation->set_rules('spesifikasiBhp', 'Spesifikasi', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Tambah Data Barang Habis Pakai';
+            $data['pagetitle'] = 'Daftar Barang Habis Pakai';
+            $data['subtitle'] = 'Tambah Data Barang';
+            $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('baranghp/tambahdatahp', $data);
+        } else {
+            $idLab = $this->session->login['id_lab'];
+            $idBhp = $this->input->post('idBhp');
+            $namaBhp = $this->input->post('namaBhp');
+            $jenisBhp = $this->input->post('jenisBhp');
+            $jumlahBhp = $this->input->post('jumlahBhp');
+            $sisaBhp = $this->input->post('sisaBhp');
+            $satuanBhp = $this->input->post('satuanBhp');
+            $tahunAnggaranBhp = $this->input->post('tahunAnggaranBhp');
+            $tanggalTerimaBhp = $this->input->post('tanggalTerimaBhp');
+            $vendorBhp = $this->input->post('vendorBhp');
+            $kondisiBhp = $this->input->post('kondisiBhp');
+            $hargaSatuanBhp = $this->input->post('hargaSatuanBhp');
+            $spesifikasiBhp = $this->input->post('spesifikasiBhp');
+            $keteranganBhp = $this->input->post('keteranganBhp');
+
+            $data = [
+                'id_lab' => $idLab,
+                'id_bhp' => $idBhp,
+                'nama_barang' => $namaBhp,
+                'jenis_barang' => $jenisBhp,
+                'jumlah' => $jumlahBhp,
+                'sisa_barang' => $sisaBhp,
+                'satuan' => $satuanBhp,
+                'tahun_anggaran' => $tahunAnggaranBhp,
+                'tanggal_terima' => $tanggalTerimaBhp,
+                'vendor' => $vendorBhp,
+                'kondisi' => $kondisiBhp,
+                'harga_satuan' => $hargaSatuanBhp,
+                'spesifikasi' => $spesifikasiBhp,
+                'keterangan' => $keteranganBhp,
+                'created_at' => time(),
+                'updated_at' => time(),
+            ];
+
+            if ($this->M_bhp->addBhp($data)) {
+                $idLab = $this->session->login['id_lab'];
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data barang berhasil ditambahkan!</div>');
+                redirect('baranghp/daftarbarang/' . $idLab);
+            } else {
+                $idLab = $this->session->login['id_lab'];
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal menambahkan data barang!</div>');
+                redirect('baranghp/daftarbarang/' . $idLab);
+            }
+        }
     }
 
     public function importDataHP()

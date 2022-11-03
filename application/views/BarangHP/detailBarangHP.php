@@ -118,13 +118,13 @@
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Kondisi</div>
-                                                        <?php if ($detail_bhp['kondisi'] == 'Baik') : ?>
+                                                        <?php if ($detail_bhp['kondisi'] == 'baik') : ?>
                                                             <span class="badge rounded-pill text-bg-success">Baik</span>
                                                         <?php endif; ?>
-                                                        <?php if ($detail_bhp['kondisi'] == 'Rusak') : ?>
+                                                        <?php if ($detail_bhp['kondisi'] == 'rusak') : ?>
                                                             <span class="badge rounded-pill text-bg-warning">Rusak</span>
                                                         <?php endif; ?>
-                                                        <?php if ($detail_bhp['kondisi'] == 'Hilang') : ?>
+                                                        <?php if ($detail_bhp['kondisi'] == 'hilang') : ?>
                                                             <span class="badge rounded-pill text-bg-danger">Hilang</span>
                                                         <?php endif; ?>
                                                     </div>
