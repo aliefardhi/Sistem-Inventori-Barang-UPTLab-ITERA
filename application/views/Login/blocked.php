@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <!-- load title -->
-    <?php $this->load->view('partials/title-meta') ?>
-
-    <!-- load css -->
-    <?php $this->load->view('partials/head-css') ?>
-
-</head>
-
 <body>
     <div class="account-pages my-5 pt-sm-5">
         <div class="container">

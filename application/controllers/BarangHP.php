@@ -9,6 +9,8 @@ class BarangHP extends CI_Controller
         if (!$this->session->login['username']) {
             redirect('index.php/login');
         }
+
+        $this->load->model('M_bhp');
     }
 
     public function index()
@@ -17,28 +19,37 @@ class BarangHP extends CI_Controller
         $data['pagetitle'] = 'Pilih ruangan';
         $data['subtitle'] = '';
         $data['userdata'] = $this->session->userdata('login');
+        $data['lab'] = $this->M_bhp->getLab();
+        $data['no'] = 1;
+        $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/pilihruangan', $data);
     }
 
-    public function daftarBarang()
+    public function daftarBarang($idLab)
     {
+        $idPegawai = $this->session->login['id_pegawai'];
         $data['title'] = 'Barang Habis Pakai';
         $data['pagetitle'] = 'Daftar barang habis pakai';
         $data['subtitle'] = 'Daftar barang habis pakai';
         $data['userdata'] = $this->session->userdata('login');
+        $data['barang_habis_pakai'] = $this->M_bhp->daftarBarang($idLab);
+        $data['data_lab'] = $this->M_bhp->getThisLab($idPegawai);
+        $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/daftarbarang', $data);
     }
 
-    public function detailBarangHP()
+    public function detailBarangHP($idBhp)
     {
         $data['title'] = 'Barang Habis Pakai';
         $data['pagetitle'] = 'Daftar barang habis pakai';
         $data['subtitle'] = 'Detail barang habis pakai';
         $data['userdata'] = $this->session->userdata('login');
+        $data['detail_bhp'] = $this->M_bhp->detailBarang($idBhp);
+        $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/detailbaranghp', $data);
@@ -50,6 +61,7 @@ class BarangHP extends CI_Controller
         $data['pagetitle'] = 'Barang habis pakai';
         $data['subtitle'] = 'Daftar hilang barang habis pakai';
         $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/daftarhilangbhp', $data);
@@ -61,6 +73,7 @@ class BarangHP extends CI_Controller
         $data['pagetitle'] = 'Barang habis pakai';
         $data['subtitle'] = 'Daftar rusak barang habis pakai';
         $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/daftarrusakbhp', $data);

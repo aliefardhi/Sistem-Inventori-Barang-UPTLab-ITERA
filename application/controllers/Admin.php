@@ -24,6 +24,7 @@ class Admin extends CI_Controller
             $data['pagetitle'] = 'Dashboard';
             $data['subtitle'] = 'Dashboard';
             $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
             $this->load->view('admin/index', $data);
@@ -40,6 +41,7 @@ class Admin extends CI_Controller
             $data['pagetitle'] = 'Profile';
             $data['subtitle'] = 'My profile';
             $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
             $this->load->view('admin/profile', $data);
@@ -54,6 +56,7 @@ class Admin extends CI_Controller
             $data['pagetitle'] = 'Profile';
             $data['subtitle'] = 'Edit profile';
             $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
             $this->load->view('admin/editprofile', $data);
@@ -108,6 +111,7 @@ class Admin extends CI_Controller
                 $data['pagetitle'] = 'Profile';
                 $data['subtitle'] = 'Ganti Password';
                 $data['userdata'] = $this->session->userdata('login');
+                $this->load->view('partials/header', $data);
                 $this->load->view('partials/topbar', $data);
                 $this->load->view('partials/page-title', $data);
                 $this->load->view('admin/changepassword', $data);
@@ -147,6 +151,7 @@ class Admin extends CI_Controller
         $data['pengguna'] = $this->M_pengguna->getPengguna();
         $data['userdata'] = $this->session->userdata('login');
         $data['aktif'] = 'usermanagement';
+        $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/usermanagement', $data);
@@ -178,6 +183,7 @@ class Admin extends CI_Controller
             $data['subtitle'] = 'Edit pengguna';
             $data['userdetail'] = $this->M_pengguna->getPenggunaDetail($id);
             $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
             $this->load->view('admin/useredit', $data);
@@ -221,6 +227,7 @@ class Admin extends CI_Controller
             $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
             $data['all_pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
             $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
             $this->load->view('admin/daftarpegawai', $data);
@@ -237,6 +244,7 @@ class Admin extends CI_Controller
             $data['subtitle'] = 'Detail Pegawai';
             $data['detail_pegawai_upt'] = $this->M_pegawaiUpt->getDetailPegawaiUpt($id);
             $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
             $this->load->view('admin/detailpegawai', $data);
@@ -254,6 +262,7 @@ class Admin extends CI_Controller
         $data['detail_pegawai_upt_obj'] = $this->M_pegawaiUpt->getDetailPegawaiUptObj($id);
         $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
         $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/editpegawai', $data);
@@ -289,10 +298,10 @@ class Admin extends CI_Controller
         ];
 
         if ($this->M_pegawaiUpt->addPegawai($data)) {
-            // $this->session->set_flashdata('success', 'Data Laboratorium <strong>Berhasil</strong> Ditambahkan!');
+            $this->session->set_flashdata('message', 'Data Laboratorium <strong>Berhasil</strong> Ditambahkan!');
             redirect('admin/daftarpegawai');
         } else {
-            // $this->session->set_flashdata('error', 'Data Laboratorium <strong>Gagal</strong> Ditambahkan!');
+            $this->session->set_flashdata('message', 'Data Laboratorium <strong>Gagal</strong> Ditambahkan!');
             redirect('admin/daftarpegawai');
         }
     }
@@ -329,6 +338,7 @@ class Admin extends CI_Controller
             $data['all_lab'] = $this->M_laboratorium->getAllLab();
             $data['no'] = 1;
             $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
             $this->load->view('admin/daftarlab', $data);
@@ -344,10 +354,10 @@ class Admin extends CI_Controller
         ];
 
         if ($this->M_laboratorium->addLab($data)) {
-            // $this->session->set_flashdata('success', 'Data Laboratorium <strong>Berhasil</strong> Ditambahkan!');
+            $this->session->set_flashdata('message', 'Data Laboratorium <strong>Berhasil</strong> Ditambahkan!');
             redirect('admin/daftarlaboratorium');
         } else {
-            // $this->session->set_flashdata('error', 'Data Laboratorium <strong>Gagal</strong> Ditambahkan!');
+            $this->session->set_flashdata('message', 'Data Laboratorium <strong>Gagal</strong> Ditambahkan!');
             redirect('admin/daftarlaboratorium');
         }
     }

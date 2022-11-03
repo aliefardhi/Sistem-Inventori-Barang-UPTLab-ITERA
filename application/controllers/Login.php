@@ -44,6 +44,7 @@ class Login extends CI_Controller
                         'password' => $user['password'],
                         'nama_pegawai' => $user['nama_pegawai'],
                         'role_id' => $user['role_id'],
+                        'id_lab' => $user['id_lab'],
                         'image' => $user['image'],
                         'nama_unit' => $user['nama_unit'],
                         'kontak' => $user['kontak'],

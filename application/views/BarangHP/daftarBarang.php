@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- load title -->
-    <?php $this->load->view('partials/title-meta') ?>
-    <!-- load css -->
-    <?php $this->load->view('partials/head-css') ?>
-</head>
-
 <body data-sidebar="dark">
 
     <!-- Begin page -->
@@ -35,10 +25,10 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-xl-6">
-                                            <h3 class="">Laboratorium Multimedia</h3>
-                                            <p class="card-title-desc"> <i class="far fa-building"></i> Laboratorium Teknik 2 | Lantai 2</p>
-                                            <p class="card-title-desc"> <i class="mdi mdi-email-outline"></i> lab.mm@itera.ac.id</p>
-                                            <p class="card-title-desc"> <i class="fas fa-user" style="margin-right: 5px;"></i>Michael Owen | michael@laboran.itera.ac.id</p>
+                                            <h3 class=""><?= $data_lab['nama_lab'] ?></h3>
+                                            <p class="card-title-desc text-danger"> <i class="far fa-building"></i> Laboratorium Teknik 2 | Lantai 2</p>
+                                            <p class="card-title-desc text-danger"> <i class="mdi mdi-email-outline"></i> lab.mm@itera.ac.id</p>
+                                            <!-- <p class="card-title-desc"> <i class="fas fa-user" style="margin-right: 5px;"></i>Michael Owen | michael@laboran.itera.ac.id</p> -->
                                         </div>
                                         <div class="col-xl-6">
                                             <div class="row">
@@ -111,18 +101,20 @@
                                         </thead>
 
                                         <tbody>
-                                            <tr>
-                                                <td>101.987</td>
-                                                <td>Lenovo IdeaCentre 5</td>
-                                                <td>Elektronik</td>
-                                                <td>150</td>
-                                                <td>145</td>
-                                                <td>pcs</td>
-                                                <td><a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url() ?>index.php/baranghp/detailbaranghp">
-                                                        Detail
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            <?php foreach ($barang_habis_pakai as $bhp) : ?>
+                                                <tr>
+                                                    <td><?= $bhp->id_bhp ?></td>
+                                                    <td><?= $bhp->nama_barang ?></td>
+                                                    <td><?= $bhp->jenis_barang ?></td>
+                                                    <td><?= $bhp->jumlah ?></td>
+                                                    <td><?= $bhp->sisa_barang ?></td>
+                                                    <td><?= $bhp->satuan ?></td>
+                                                    <td><a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url('index.php/baranghp/detailbaranghp/') . $bhp->id_bhp ?>">
+                                                            Detail
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                     <!-- End of table -->

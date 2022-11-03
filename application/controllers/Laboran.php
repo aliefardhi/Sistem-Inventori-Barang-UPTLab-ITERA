@@ -19,6 +19,7 @@ class Laboran extends CI_Controller
             $data['pagetitle'] = 'Dashboard';
             $data['subtitle'] = 'Dashboard';
             $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
             $this->load->view('laboran/index', $data);
@@ -35,6 +36,7 @@ class Laboran extends CI_Controller
             $data['pagetitle'] = 'Profile';
             $data['subtitle'] = 'Pengaturan profile';
             $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
             $this->load->view('laboran/profile', $data);
@@ -50,6 +52,7 @@ class Laboran extends CI_Controller
             $data['pagetitle'] = 'Profile';
             $data['subtitle'] = 'Edit profile';
             $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
             $this->load->view('laboran/editprofile', $data);
@@ -104,6 +107,7 @@ class Laboran extends CI_Controller
                 $data['pagetitle'] = 'Profile';
                 $data['subtitle'] = 'Ganti Password';
                 $data['userdata'] = $this->session->userdata('login');
+                $this->load->view('partials/header', $data);
                 $this->load->view('partials/topbar', $data);
                 $this->load->view('partials/page-title', $data);
                 $this->load->view('laboran/changepassword', $data);
@@ -140,6 +144,7 @@ class Laboran extends CI_Controller
         $data['pagetitle'] = 'Daftar Barang Persediaan';
         $data['subtitle'] = 'Tambah Data Barang';
         $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('barangpersediaan/tambahdatabp', $data);
@@ -151,6 +156,7 @@ class Laboran extends CI_Controller
         $data['pagetitle'] = 'Tambah Data Barang Persediaan';
         $data['subtitle'] = 'Import Data Barang';
         $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('barangpersediaan/importdatabp', $data);
@@ -163,6 +169,7 @@ class Laboran extends CI_Controller
         $data['pagetitle'] = 'Daftar Barang Habis Pakai';
         $data['subtitle'] = 'Tambah Data Barang';
         $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/tambahdatahp', $data);
@@ -174,6 +181,7 @@ class Laboran extends CI_Controller
         $data['pagetitle'] = 'Tambah Data Barang Habis Pakai';
         $data['subtitle'] = 'Import Data Barang';
         $data['userdata'] = $this->session->userdata('login');
+        $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/importdatahp', $data);
