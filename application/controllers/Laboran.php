@@ -235,6 +235,90 @@ class Laboran extends CI_Controller
         }
     }
 
+    public function editDataBhp($idBhp)
+    {
+        $this->form_validation->set_rules('editIdBhp', 'ID BHP', 'required');
+        $this->form_validation->set_rules('editNamaBhp', 'Nama Barang', 'required');
+        $this->form_validation->set_rules('editJenisBhp', 'Jenis Barang', 'required');
+        $this->form_validation->set_rules('editJumlahBhp', 'Jumlah Barang', 'required|numeric');
+        $this->form_validation->set_rules('editSisaBhp', 'Sisa Barang', 'required|numeric');
+        $this->form_validation->set_rules('editSatuanBhp', 'Satuan', 'required');
+        $this->form_validation->set_rules('editTahunAnggaranBhp', 'Tahun Anggaran', 'required');
+        $this->form_validation->set_rules('editTanggalTerimaBhp', 'Tanggal Terima', 'required');
+        $this->form_validation->set_rules('editVendorBhp', 'Vendor', 'required');
+        $this->form_validation->set_rules('editKondisiBhp', 'Kondisi ', 'required');
+        $this->form_validation->set_rules('editHargaSatuanBhp', 'Harga Satuan', 'required|numeric');
+        $this->form_validation->set_rules('editSpesifikasiBhp', 'Spesifikasi', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Barang Habis Pakai';
+            $data['pagetitle'] = 'Daftar barang habis pakai';
+            $data['subtitle'] = 'Edit barang habis pakai';
+            $data['userdata'] = $this->session->userdata('login');
+            $data['detail_bhp'] = $this->M_bhp->detailBarang($idBhp);
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('laboran/editbhp', $data);
+        } else {
+            $idLab = $this->session->login['id_lab'];
+            $idBhp = $this->input->post('editIdBhp');
+            $namaBhp = $this->input->post('editNamaBhp');
+            $jenisBhp = $this->input->post('editJenisBhp');
+            $jumlahBhp = $this->input->post('editJumlahBhp');
+            $sisaBhp = $this->input->post('editSisaBhp');
+            $satuanBhp = $this->input->post('editSatuanBhp');
+            $tahunAnggaranBhp = $this->input->post('editTahunAnggaranBhp');
+            $tanggalTerimaBhp = $this->input->post('editTanggalTerimaBhp');
+            $vendorBhp = $this->input->post('editVendorBhp');
+            $kondisiBhp = $this->input->post('editKondisiBhp');
+            $hargaSatuanBhp = $this->input->post('editHargaSatuanBhp');
+            $spesifikasiBhp = $this->input->post('editSpesifikasiBhp');
+            $keteranganBhp = $this->input->post('editKeteranganBhp');
+
+            $data = [
+                'id_lab' => $idLab,
+                'id_bhp' => $idBhp,
+                'nama_barang' => $namaBhp,
+                'jenis_barang' => $jenisBhp,
+                'jumlah' => $jumlahBhp,
+                'sisa_barang' => $sisaBhp,
+                'satuan' => $satuanBhp,
+                'tahun_anggaran' => $tahunAnggaranBhp,
+                'tanggal_terima' => $tanggalTerimaBhp,
+                'vendor' => $vendorBhp,
+                'kondisi' => $kondisiBhp,
+                'harga_satuan' => $hargaSatuanBhp,
+                'spesifikasi' => $spesifikasiBhp,
+                'keterangan' => $keteranganBhp,
+                'updated_at' => time(),
+            ];
+
+            if ($this->M_bhp->editBhp($data, $idBhp)) {
+                $idLab = $this->session->login['id_lab'];
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data barang berhasil diubah!</div>');
+                redirect('baranghp/daftarbarang/' . $idLab);
+            } else {
+                $idLab = $this->session->login['id_lab'];
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal mengubah data barang!</div>');
+                redirect('baranghp/daftarbarang/' . $idLab);
+            }
+        }
+    }
+
+    public function deleteBhp($idBhp)
+    {
+        if ($this->M_bhp->deleteBhp($idBhp)) {
+            $idLab = $this->session->login['id_lab'];
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data barang berhasil dihapus!</div>');
+            redirect('baranghp/daftarbarang/' . $idLab);
+        } else {
+            $idLab = $this->session->login['id_lab'];
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Gagal menghapus data barang!</div>');
+            redirect('baranghp/daftarbarang/' . $idLab);
+        }
+    }
+
     public function importDataHP()
     {
         $data['title'] = 'Tambah Data Barang Habis Pakai';

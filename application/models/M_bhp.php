@@ -33,4 +33,17 @@ class M_bhp extends CI_Model
     {
         return $this->db->insert($this->_table, $data);
     }
+
+    public function editBhp($data, $idBhp)
+    {
+        $query = $this->db->set($data);
+        $query = $this->db->where('id_bhp', $idBhp);
+        $query = $this->db->update($this->_table);
+        return $query;
+    }
+
+    public function deleteBhp($idBhp)
+    {
+        return $this->db->delete($this->_table, ['id_bhp' => $idBhp]);
+    }
 }

@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label for="sisaBhp" class="form-label">Sisa Barang</label>
-                                            <input type="text" class="form-control" id="sisaBhp" name="sisaBhp">
+                                            <input type="number" class="form-control" id="sisaBhp" name="sisaBhp">
                                             <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">

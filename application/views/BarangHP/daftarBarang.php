@@ -80,9 +80,11 @@
                                         </div>
 
                                         <div class="col-6">
-                                            <a class="btn btn-primary btn-sm edit float-end" href="<?= base_url() ?>index.php/laboran/tambahdatahp">
-                                                <i class="mdi mdi-plus me-1"></i>Tambah Data Barang
-                                            </a>
+                                            <?php if ($this->session->login['role_id'] == 'laboran') : ?>
+                                                <a class="btn btn-primary btn-sm edit float-end" href="<?= base_url() ?>index.php/laboran/tambahdatahp">
+                                                    <i class="mdi mdi-plus me-1"></i>Tambah Data Barang
+                                                </a>
+                                            <?php endif; ?>
                                             <a class="btn excel-button btn-sm edit float-end mx-1">
                                                 <i class="mdi mdi-microsoft-excel me-1"></i>Export Data Barang
                                             </a>
@@ -113,8 +115,18 @@
                                                     <td><?= $bhp->sisa_barang ?></td>
                                                     <td><?= $bhp->satuan ?></td>
                                                     <td><a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url('index.php/baranghp/detailbaranghp/') . $bhp->id_bhp ?>">
-                                                            Detail
+                                                            <i class="mdi mdi-information-outline"></i>
                                                         </a>
+
+                                                        <?php if ($this->session->login['role_id'] == 'laboran') : ?>
+                                                            <a class="btn btn-info btn-sm edit" title="Edit Data" href="<?= base_url('index.php/laboran/editdatabhp/') . $bhp->id_bhp ?>">
+                                                                <i class="mdi mdi-circle-edit-outline"></i>
+                                                            </a>
+
+                                                            <a class="btn btn-danger btn-sm edit tombol-delete" title="Hapus" href="<?= base_url('index.php/laboran/deletebhp/') . $bhp->id_bhp ?>">
+                                                                <i class="mdi mdi-trash-can-outline"></i>
+                                                            </a>
+                                                        <?php endif; ?>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -171,7 +183,9 @@
 
     <script type="text/javascript" src="<?= base_url() ?>assets/js/pages/dashboard.init.js"></script>
 
+    <!-- App js -->
     <script type="text/javascript" src="<?= base_url() ?>assets/js/app.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>assets/js/custom.js"></script>
 
 </body>
 
