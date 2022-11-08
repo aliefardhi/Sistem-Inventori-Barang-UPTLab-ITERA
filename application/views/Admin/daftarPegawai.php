@@ -21,8 +21,10 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-
                                     <div class="row">
+                                        <?php if ($this->session->flashdata('message')) : ?>
+                                            <?= $this->session->flashdata('message'); ?>
+                                        <?php endif; ?>
                                         <div class="col-6">
                                             <h4 class="card-title mb-3">Daftar Pegawai UPT Laboratorium ITERA</h4>
                                         </div>
@@ -94,7 +96,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <!-- Start form input -->
-                                                    <form class="row g-3" method="POST" action="<?= base_url('index.php/admin/addpegawai') ?>">
+                                                    <form class="row g-3" method="POST" action="<?= base_url('index.php/admin/daftarpegawai') ?>">
                                                         <div class="col-md-6">
                                                             <label for="pilihPegawaiSimuk" class="form-label">Pilih Pegawai</label>
                                                             <select name="id_pegawai" id="pilihPegawaiSimuk" class="form-select">
@@ -103,6 +105,7 @@
                                                                     <option value="<?= $pegawai->id_pegawai ?>"><?= $pegawai->nama_pegawai ?></option>
                                                                 <?php endforeach; ?>
                                                             </select>
+                                                            <?= form_error('id_pegawai', '<small class="text-danger pl-3">', '</small>'); ?>
                                                         </div>
                                                         <div class="col-6">
                                                             <label for="jabatan" class="form-label">Jabatan</label>
@@ -113,6 +116,7 @@
                                                                 <option value="koorlab">Koordinator Laboratorium</option>
                                                                 <option value="laboran">Laboran</option>
                                                             </select>
+                                                            <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
                                                         </div>
                                                         <div class="col-6">
                                                             <label for="status_kepegawaian" class="form-label">Status Kepegawaian</label>
@@ -122,6 +126,7 @@
                                                                 <option value="p3k">P3K</option>
                                                                 <option value="ppnpm">ppnpm</option>
                                                             </select>
+                                                            <?= form_error('status_kepegawaian', '<small class="text-danger pl-3">', '</small>'); ?>
                                                         </div>
                                                         <div class="col-6">
                                                             <label for="isactive" class="form-label">Is Active?</label>
@@ -129,21 +134,23 @@
                                                                 <option value="Aktif" selected>Aktif</option>
                                                                 <option value="Tidak Aktif">Tidak Aktif</option>
                                                             </select>
+                                                            <?= form_error('isactive', '<small class="text-danger pl-3">', '</small>'); ?>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <label for="nama_lab" class="form-label">Nama Lab.</label>
+                                                            <label for="nama_lab" class="form-label">Unit Kerja</label>
                                                             <select id="nama_lab" class="form-select" name="nama_lab">
                                                                 <option selected>- Pilih -</option>
                                                                 <?php foreach ($all_laboratorium as $lab) : ?>
                                                                     <option value="<?= $lab->id_lab ?>"><?= $lab->nama_lab ?></option>
                                                                 <?php endforeach; ?>
                                                             </select>
+                                                            <?= form_error('nama_lab', '<small class="text-danger pl-3">', '</small>'); ?>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="kontak" class="form-label">Kontak</label>
                                                             <input class="form-control" type="tel" value="" id="kontak" name="kontak">
+                                                            <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
                                                         </div>
-
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

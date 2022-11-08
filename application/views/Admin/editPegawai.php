@@ -25,7 +25,7 @@
                                     <h4 class="card-title">Edit Pegawai</h4>
                                     <p class="card-title-desc">Edit data pegawai UPT Laboratorium ITERA.</p>
 
-                                    <form action="<?= base_url('index.php/admin/editpegawaiprocess/' . $detail_pegawai_upt->id) ?>" method="POST">
+                                    <form action="<?= base_url('index.php/admin/editpegawaiprocess/') . $detail_pegawai_upt->id ?>" method="POST">
 
                                         <div class="mb-3 row">
                                             <label for="nama_pegawai" class="col-md-2 col-form-label">Nama Pegawai</label>
@@ -42,6 +42,7 @@
                                                     <option value="ppnpm" <?= $detail_pegawai_upt->status == 'ppnpm' ? 'selected' : '' ?>>PPNPM</option>
                                                 </select>
                                             </div>
+                                            <?= form_error('status', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="jabatan" class="col-md-2 col-form-label">Jabatan</label>
@@ -53,6 +54,7 @@
                                                     <option value="laboran" <?= $detail_pegawai_upt->jabatan == 'laboran' ? 'selected' : '' ?>>Laboran</option>
                                                 </select>
                                             </div>
+                                            <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="nama_lab" class="col-md-2 col-form-label">Unit Kerja</label>
@@ -65,12 +67,14 @@
                                                     <?php endforeach ?>
                                                 </select>
                                             </div>
+                                            <?= form_error('nama_lab', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="kontak" class="col-md-2 col-form-label">No. HP</label>
                                             <div class="col-md-10">
                                                 <input class="form-control" type="tel" value="<?= $detail_pegawai_upt->kontak ?>" id="kontak" name="kontak">
                                             </div>
+                                            <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="isactive" class="col-md-2 col-form-label">Is Active?</label>
@@ -80,6 +84,7 @@
                                                     <option value="Tidak Aktif" <?= $detail_pegawai_upt->is_active == 'Tidak Aktif' ? 'selected' : '' ?>>Tidak Aktif</option>
                                                 </select>
                                             </div>
+                                            <?= form_error('isactive', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-12">
                                             <a href="javascript:window.history.go(-1);" type="button" class="btn btn-secondary">Kembali</a>

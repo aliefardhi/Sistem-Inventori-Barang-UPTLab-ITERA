@@ -44,14 +44,14 @@
                                             <div class="d-flex justify-content-end">
                                                 <div class="text-muted ms-3 mt-1">
                                                     Created At
-                                                    <?= $detail_pegawai_upt->created_at ?>
+                                                    <?= date('d/m/Y', $detail_pegawai_upt->created_at) ?>
                                                 </div>
                                                 <div class="text-muted ms-3 mt-1">
                                                     |
                                                 </div>
                                                 <div class="text-muted ms-3 mt-1">
                                                     Updated At
-                                                    <?= $detail_pegawai_upt->updated_at ?>
+                                                    <?= date('d/m/Y', $detail_pegawai_upt->updated_at) ?>
                                                 </div>
                                             </div>
                                         </div>

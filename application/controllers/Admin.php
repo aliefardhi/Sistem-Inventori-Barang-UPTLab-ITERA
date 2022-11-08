@@ -220,17 +220,45 @@ class Admin extends CI_Controller
     public function daftarPegawai()
     {
         if ($this->session->login['role_id'] == 'admin') {
-            $data['title'] = 'Halaman Daftar Pegawai UPT Lab. ITERA';
-            $data['pagetitle'] = 'Admin';
-            $data['subtitle'] = 'Daftar Pegawai';
-            $data['all_pegawai_simuk'] = $this->M_simukPegawai->getAllPegawai();
-            $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
-            $data['all_pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
-            $data['userdata'] = $this->session->userdata('login');
-            $this->load->view('partials/header', $data);
-            $this->load->view('partials/topbar', $data);
-            $this->load->view('partials/page-title', $data);
-            $this->load->view('admin/daftarpegawai', $data);
+            $this->form_validation->set_rules('id_pegawai', 'Pilih pegawai', 'required');
+            $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+            $this->form_validation->set_rules('status_kepegawaian', 'Status kepegawaian', 'required');
+            $this->form_validation->set_rules('isactive', 'Status aktif', 'required');
+            $this->form_validation->set_rules('nama_lab', 'Nama unit', 'required');
+            $this->form_validation->set_rules('kontak', 'Kontak', 'required');
+
+            if ($this->form_validation->run() == false) {
+                $data['title'] = 'Halaman Daftar Pegawai UPT Lab. ITERA';
+                $data['pagetitle'] = 'Admin';
+                $data['subtitle'] = 'Daftar Pegawai';
+                $data['all_pegawai_simuk'] = $this->M_simukPegawai->getPegawaiUptLab();
+                $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
+                $data['all_pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+                $data['userdata'] = $this->session->userdata('login');
+                $this->load->view('partials/header', $data);
+                $this->load->view('partials/topbar', $data);
+                $this->load->view('partials/page-title', $data);
+                $this->load->view('admin/daftarpegawai', $data);
+            } else {
+                $data = [
+                    'id_pegawai' => $this->input->post('id_pegawai'),
+                    'status' => $this->input->post('status_kepegawaian'),
+                    'jabatan' => $this->input->post('jabatan'),
+                    'id_lab' => $this->input->post('nama_lab'),
+                    'is_active' => $this->input->post('isactive'),
+                    'kontak' => $this->input->post('kontak'),
+                    'created_at' => time(),
+                    'updated_at' => time(),
+                ];
+
+                if ($this->M_pegawaiUpt->addPegawai($data)) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data pegawai berhasil ditambahkan!</div>');
+                    redirect('admin/daftarpegawai');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal menambahkan data pegawai!</div>');
+                    redirect('admin/daftarpegawai');
+                }
+            }
         } else {
             redirect('login/blocked');
         }
@@ -280,8 +308,10 @@ class Admin extends CI_Controller
         ];
 
         if ($this->M_pegawaiUpt->editPegawai($data, $id)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data pegawai berhasil diubah!</div>');
             redirect('admin/daftarpegawai');
         } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal mengubah data pegawai!</div>');
             redirect('admin/daftarpegawai');
         }
     }
