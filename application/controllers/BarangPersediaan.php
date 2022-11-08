@@ -9,6 +9,8 @@ class BarangPersediaan extends CI_Controller
         if (!$this->session->login['username']) {
             redirect('index.php/login');
         }
+
+        $this->load->model('M_persediaan');
     }
 
     public function index()
@@ -23,24 +25,28 @@ class BarangPersediaan extends CI_Controller
         $this->load->view('barangpersediaan/pilihruangan', $data);
     }
 
-    public function daftarBarang()
+    public function daftarBarang($idLab)
     {
+        $idPegawai = $this->session->login['id_pegawai'];
         $data['title'] = 'Barang Persediaan';
-        $data['pagetitle'] = 'Daftar barang persediaan';
-        $data['subtitle'] = 'Daftar barang persediaan';
+        $data['pagetitle'] = 'Daftar persediaan';
+        $data['subtitle'] = 'Daftar persediaan';
         $data['userdata'] = $this->session->userdata('login');
+        $data['barang_persediaan'] = $this->M_persediaan->daftarBarang($idLab);
+        $data['data_lab'] = $this->M_persediaan->getThisLab($idPegawai);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('barangpersediaan/daftarbarang', $data);
     }
 
-    public function detailBarangPersediaan()
+    public function detailBarangPersediaan($idPersediaan)
     {
         $data['title'] = 'Barang Persediaan';
         $data['pagetitle'] = 'Daftar barang persediaan';
         $data['subtitle'] = 'Detail barang persediaan';
         $data['userdata'] = $this->session->userdata('login');
+        $data['detail_persediaan'] = $this->M_persediaan->detailBarang($idPersediaan);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);

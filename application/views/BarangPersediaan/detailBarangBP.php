@@ -36,23 +36,23 @@
                                     <div class="d-flex justify-content-between">
 
                                         <!-- Start details data -->
-                                        <h3 class="">Lenovo IdeaCentre 5</h3>
+                                        <h3 class=""><?= $detail_persediaan['nama_barang'] ?></h3>
 
                                         <div class="d-inline-flex">
                                             <div class="text-muted ms-3 mt-1">
                                                 Created At
-                                                29/09/2022
+                                                <?= date('d/m/Y', $detail_persediaan['created_at']) ?>
                                             </div>
                                             <div class="text-muted ms-3 mt-1">
                                                 |
                                             </div>
                                             <div class="text-muted ms-3 mt-1">
                                                 Updated At
-                                                29/09/2022
+                                                <?= date('d/m/Y', $detail_persediaan['updated_at']) ?>
                                             </div>
                                             <div class="ms-3">
-                                                <a class="btn btn-primary btn-sm edit" data-bs-toggle="modal" data-bs-target="#barangHP-modal" title="Edit">
-                                                    <i class="mdi mdi-square-edit-outline"></i>Edit
+                                                <a href="javascript:window.history.go(-1);" class="btn btn-primary btn-sm edit" type="button" title="Kembali">
+                                                    <i class="typcn typcn-chevron-left me-1"></i>Kembali
                                                 </a>
                                             </div>
                                         </div>
@@ -64,45 +64,45 @@
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">ID Barang</div>
-                                                        101
+                                                        <?= $detail_persediaan['id_persediaan'] ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                    <div class="ms-2 me-auto">
+                                                    <div class="ms-2 me-auto text-capitalize">
                                                         <div class="fw-bold">Jenis Barang</div>
-                                                        Elektronik
+                                                        <?= $detail_persediaan['jenis_barang'] ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2">
                                                         <div class="fw-bold">Jumlah Barang</div>
-                                                        250
+                                                        <?= $detail_persediaan['jumlah'] ?>
                                                     </div>
                                                     <div class="ms-2">
                                                         |
                                                     </div>
                                                     <div class="ms-2">
                                                         <div class="fw-bold">Sisa Barang</div>
-                                                        200
+                                                        <?= $detail_persediaan['sisa_barang'] ?>
                                                     </div>
                                                     <div class="ms-2">
                                                         |
                                                     </div>
                                                     <div class="ms-2">
                                                         <div class="fw-bold">Satuan</div>
-                                                        pcs
+                                                        <?= $detail_persediaan['satuan'] ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Tahun Anggaran</div>
-                                                        2021/2022
+                                                        <?= $detail_persediaan['tahun_anggaran'] ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Tanggal Terima</div>
-                                                        29/09/2022
+                                                        <?= $detail_persediaan['tanggal_terima'] ?>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -112,31 +112,39 @@
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Vendor</div>
-                                                        Maju Jaya Komputer
+                                                        <?= $detail_persediaan['vendor'] ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Kondisi</div>
-                                                        <span class="badge rounded-pill text-bg-success">Baik</span>
+                                                        <?php if ($detail_persediaan['kondisi'] == 'baik') : ?>
+                                                            <span class="badge rounded-pill text-bg-success">Baik</span>
+                                                        <?php endif; ?>
+                                                        <?php if ($detail_persediaan['kondisi'] == 'rusak') : ?>
+                                                            <span class="badge rounded-pill text-bg-warning">Rusak</span>
+                                                        <?php endif; ?>
+                                                        <?php if ($detail_persediaan['kondisi'] == 'hilang') : ?>
+                                                            <span class="badge rounded-pill text-bg-danger">Hilang</span>
+                                                        <?php endif; ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Spesifikasi</div>
-                                                        Intel Core i7-12700k, AMD Radeon 6700xt 12GB, RAM8GB, 512SSD
+                                                        <?= $detail_persediaan['spesifikasi'] ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto" style="text-align: justify;">
                                                         <div class="fw-bold">Keterangan</div>
-                                                        Hanya digunakan untuk kegiatan pembelajaran/praktikum.
+                                                        <?= $detail_persediaan['keterangan'] ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Harga Satuan</div>
-                                                        Rp15.000.000
+                                                        Rp<?= number_format($detail_persediaan['harga_satuan'], 2, ',', '.') ?>
                                                     </div>
                                                 </li>
                                             </ul>

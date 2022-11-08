@@ -39,79 +39,92 @@
                                     </div>
 
                                     <!-- Start form input -->
-                                    <form class="row g-3 mt-1">
+                                    <form class="row g-3 mt-1" method="POST" action="<?= base_url('index.php/laboran/tambahdatabp') ?>">
                                         <div class="col-md-4">
-                                            <label for="inputIdPersediaan" class="form-label">ID Barang</label>
-                                            <input type="text" class="form-control" id="inputIdPersediaan" value="">
+                                            <label for="idBp" class="form-label">ID Barang</label>
+                                            <input type="text" class="form-control" id="idBp" name="idBp">
+                                            <?= form_error('idBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputIdPersediaan" class="form-label">Nama Barang</label>
-                                            <input type="text" class="form-control" id="inputNamaPersediaan" placeholder="" value="">
+                                            <label for="namaBp" class="form-label">Nama Barang</label>
+                                            <input type="text" class="form-control" id="namaBp" name="namaBp">
+                                            <?= form_error('namaBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputStatusPersediaan" class="form-label">Jenis Barang</label>
-                                            <select id="inputStatusPersediaan" class="form-select">
+                                            <label for="jenisBp" class="form-label">Jenis Barang</label>
+                                            <select id="jenisBp" class="form-select" name="jenisBp">
                                                 <option selected>- Pilih -</option>
-                                                <option>Elektronik</option>
-                                                <option>Bahan Kimia</option>
-                                                <option>Konsumsi</option>
-                                                <option>Lainnya</option>
-                                                <option>...</option>
+                                                <option value="elektronik">Elektronik</option>
+                                                <option value="bahan kimia">Bahan Kimia</option>
+                                                <option value="konsumsi">Konsumsi</option>
+                                                <option value="lainnya">Lainnya</option>
                                             </select>
+                                            <?= form_error('jenisBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputJumlahPersediaan" class="form-label">Jumlah Barang</label>
-                                            <input type="number" class="form-control" id="inputJumlahPersediaan" value="">
+                                            <label for="jumlahBp" class="form-label">Jumlah Barang</label>
+                                            <input type="number" class="form-control" id="jumlahBp" name="jumlahBp">
+                                            <?= form_error('jumlahBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputSisaPersediaan" class="form-label">Sisa Barang</label>
-                                            <input type="text" class="form-control" id="inputSisaPersediaan" placeholder="" value="">
+                                            <label for="sisaBp" class="form-label">Sisa Barang</label>
+                                            <input type="number" class="form-control" id="sisaBp" name="sisaBp">
+                                            <?= form_error('sisaBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputSatuanPersediaan" class="form-label">Satuan</label>
-                                            <select id="inputSatuanPersediaan" class="form-select">
+                                            <label for="satuanBp" class="form-label">Satuan</label>
+                                            <select id="satuanBp" class="form-select" name="satuanBp">
                                                 <option selected>- Pilih -</option>
-                                                <option>pcs</option>
-                                                <option>dus</option>
-                                                <option>bal</option>
-                                                <option>pak</option>
-                                                <option>liter</option>
-                                                <option>meter</option>
-                                                <option>...</option>
+                                                <option value="pcs">pcs</option>
+                                                <option value="dus">dus</option>
+                                                <option value="bal">bal</option>
+                                                <option value="pak">pak</option>
+                                                <option value="liter">liter</option>
+                                                <option value="meter">meter</option>
                                             </select>
+                                            <?= form_error('satuanBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputTahunAnggaranPersediaan" class="form-label">Tahun Anggaran</label>
-                                            <input type="text" class="form-control" id="inputTahunAnggaranPersediaan" value="">
+                                            <label for="tahunAnggaranBp" class="form-label">Tahun Anggaran</label>
+                                            <input type="text" class="form-control" id="tahunAnggaranBp" name="tahunAnggaranBp">
+                                            <?= form_error('tahunAnggaranBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputTanggalTerimaPersediaan" class="form-label">Tanggal Terima</label>
-                                            <input type="date" class="form-control" id="inputTanggalTerimaPersediaan">
+                                            <label for="tanggalTerimaBp" class="form-label">Tanggal Terima</label>
+                                            <input type="date" class="form-control" id="tanggalTerimaBp" name="tanggalTerimaBp">
+                                            <?= form_error('tanggalTerimaBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputVendorPersediaan" class="form-label">Vendor</label>
-                                            <input type="text" class="form-control" id="inputVendorPersediaan" placeholder="Contoh: 2021/2022" value="">
+                                            <label for="vendorBp" class="form-label">Vendor</label>
+                                            <input type="text" class="form-control" id="vendorBp" name="vendorBp">
+                                            <?= form_error('vendorBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputKondisiPersediaan" class="form-label">Kondisi</label>
-                                            <select id="inputKondisiPersediaan" class="form-select">
+                                            <label for="kondisiBp" class="form-label">Kondisi</label>
+                                            <select id="kondisiBp" class="form-select" name="kondisiBp">
                                                 <option selected>- Pilih -</option>
-                                                <option>Baik</option>
-                                                <option>Rusak</option>
-                                                <option>Hilang</option>
+                                                <option value="baik">Baik</option>
+                                                <option value="rusak">Rusak</option>
+                                                <option value="hilang">Hilang</option>
                                             </select>
+                                            <?= form_error('kondisiBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="inputHargaSatuanPersediaan" class="form-label">Harga Satuan</label>
-                                            <input type="text" class="form-control" id="inputHargaSatuanPersediaan" value="Rp">
+                                            <label for="hargaSatuanBp" class="form-label">Harga Satuan</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">Rp</span>
+                                                <input type="number" class="form-control" id="hargaSatuanBp" placeholder="Contoh: 15000000" name="hargaSatuanBp">
+                                            </div>
+                                            <?= form_error('hargaSatuanBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputSpesifikasiPersediaan" class="form-label">Spesifikasi</label>
-                                            <textarea class="form-control" id="inputSpesifikasiPersediaan" rows="3"></textarea>
+                                            <label for="spesifikasiBp" class="form-label">Spesifikasi</label>
+                                            <textarea class="form-control" id="spesifikasiBp" rows="3" name="spesifikasiBp"></textarea>
+                                            <?= form_error('spesifikasiBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputKeteranganPersediaan" class="form-label">Keterangan</label>
-                                            <textarea class="form-control" id="inputKeteranganPersediaan" rows="3"></textarea>
+                                            <label for="keteranganBp" class="form-label">Keterangan</label>
+                                            <textarea class="form-control" id="keteranganBp" rows="3" name="keteranganBp"></textarea>
                                         </div>
                                         <div class="col-12">
                                             <a href="javascript:window.history.go(-1);" type="button" class="btn btn-secondary">Kembali</a>

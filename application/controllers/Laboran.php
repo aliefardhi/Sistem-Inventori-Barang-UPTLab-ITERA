@@ -11,6 +11,7 @@ class Laboran extends CI_Controller
         }
         $this->load->model('M_pengguna');
         $this->load->model('M_bhp');
+        $this->load->model('M_persediaan');
     }
 
     public function index()
@@ -141,14 +142,157 @@ class Laboran extends CI_Controller
     // Barang persediaan
     public function tambahDataBP()
     {
-        $data['title'] = 'Tambah Data Barang Persediaan';
-        $data['pagetitle'] = 'Daftar Barang Persediaan';
-        $data['subtitle'] = 'Tambah Data Barang';
-        $data['userdata'] = $this->session->userdata('login');
-        $this->load->view('partials/header', $data);
-        $this->load->view('partials/topbar', $data);
-        $this->load->view('partials/page-title', $data);
-        $this->load->view('barangpersediaan/tambahdatabp', $data);
+        $this->form_validation->set_rules('idBp', 'ID Barang', 'required');
+        $this->form_validation->set_rules('namaBp', 'Nama Barang', 'required');
+        $this->form_validation->set_rules('jenisBp', 'Jenis Barang', 'required');
+        $this->form_validation->set_rules('jumlahBp', 'Jumlah Barang', 'required|numeric');
+        $this->form_validation->set_rules('sisaBp', 'Sisa Barang', 'required|numeric');
+        $this->form_validation->set_rules('satuanBp', 'Satuan', 'required');
+        $this->form_validation->set_rules('tahunAnggaranBp', 'Tahun Anggaran', 'required');
+        $this->form_validation->set_rules('tanggalTerimaBp', 'Tanggal Terima', 'required');
+        $this->form_validation->set_rules('vendorBp', 'Vendor', 'required');
+        $this->form_validation->set_rules('kondisiBp', 'Kondisi ', 'required');
+        $this->form_validation->set_rules('hargaSatuanBp', 'Harga Satuan', 'required|numeric');
+        $this->form_validation->set_rules('spesifikasiBp', 'Spesifikasi', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Tambah Data Barang Persediaan';
+            $data['pagetitle'] = 'Daftar Barang Persediaan';
+            $data['subtitle'] = 'Tambah Data Barang';
+            $data['userdata'] = $this->session->userdata('login');
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('barangpersediaan/tambahdatabp', $data);
+        } else {
+            $idLab = $this->session->login['id_lab'];
+            $idBp = $this->input->post('idBp');
+            $namaBp = $this->input->post('namaBp');
+            $jenisBp = $this->input->post('jenisBp');
+            $jumlahBp = $this->input->post('jumlahBp');
+            $sisaBp = $this->input->post('sisaBp');
+            $satuanBp = $this->input->post('satuanBp');
+            $tahunAnggaranBp = $this->input->post('tahunAnggaranBp');
+            $tanggalTerimaBp = $this->input->post('tanggalTerimaBp');
+            $vendorBp = $this->input->post('vendorBp');
+            $kondisiBp = $this->input->post('kondisiBp');
+            $hargaSatuanBp = $this->input->post('hargaSatuanBp');
+            $spesifikasiBp = $this->input->post('spesifikasiBp');
+            $keteranganBp = $this->input->post('keteranganBp');
+
+            $data = [
+                'id_lab' => $idLab,
+                'id_persediaan' => $idBp,
+                'nama_barang' => $namaBp,
+                'jenis_barang' => $jenisBp,
+                'jumlah' => $jumlahBp,
+                'sisa_barang' => $sisaBp,
+                'satuan' => $satuanBp,
+                'tahun_anggaran' => $tahunAnggaranBp,
+                'tanggal_terima' => $tanggalTerimaBp,
+                'vendor' => $vendorBp,
+                'kondisi' => $kondisiBp,
+                'harga_satuan' => $hargaSatuanBp,
+                'spesifikasi' => $spesifikasiBp,
+                'keterangan' => $keteranganBp,
+                'created_at' => time(),
+                'updated_at' => time(),
+            ];
+
+            if ($this->M_persediaan->addPersediaan($data)) {
+                $idLab = $this->session->login['id_lab'];
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data barang berhasil ditambahkan!</div>');
+                redirect('barangpersediaan/daftarbarang/' . $idLab);
+            } else {
+                $idLab = $this->session->login['id_lab'];
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal menambahkan data barang!</div>');
+                redirect('barangpersediaan/daftarbarang/' . $idLab);
+            }
+        }
+    }
+
+    public function editDataPersediaan($idBp)
+    {
+        $this->form_validation->set_rules('editIdBp', 'ID BHP', 'required');
+        $this->form_validation->set_rules('editNamaBp', 'Nama Barang', 'required');
+        $this->form_validation->set_rules('editJenisBp', 'Jenis Barang', 'required');
+        $this->form_validation->set_rules('editJumlahBp', 'Jumlah Barang', 'required|numeric');
+        $this->form_validation->set_rules('editSisaBp', 'Sisa Barang', 'required|numeric');
+        $this->form_validation->set_rules('editSatuanBp', 'Satuan', 'required');
+        $this->form_validation->set_rules('editTahunAnggaranBp', 'Tahun Anggaran', 'required');
+        $this->form_validation->set_rules('editTanggalTerimaBp', 'Tanggal Terima', 'required');
+        $this->form_validation->set_rules('editVendorBp', 'Vendor', 'required');
+        $this->form_validation->set_rules('editKondisiBp', 'Kondisi ', 'required');
+        $this->form_validation->set_rules('editHargaSatuanBp', 'Harga Satuan', 'required|numeric');
+        $this->form_validation->set_rules('editSpesifikasiBp', 'Spesifikasi', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Barang Habis Pakai';
+            $data['pagetitle'] = 'Daftar barang habis pakai';
+            $data['subtitle'] = 'Edit barang habis pakai';
+            $data['userdata'] = $this->session->userdata('login');
+            $data['detail_persediaan'] = $this->M_persediaan->detailBarang($idBp);
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('laboran/editpersediaan', $data);
+        } else {
+            $idLab = $this->session->login['id_lab'];
+            $idBp = $this->input->post('editIdBp');
+            $namaBp = $this->input->post('editNamaBp');
+            $jenisBp = $this->input->post('editJenisBp');
+            $jumlahBp = $this->input->post('editJumlahBp');
+            $sisaBp = $this->input->post('editSisaBp');
+            $satuanBp = $this->input->post('editSatuanBp');
+            $tahunAnggaranBp = $this->input->post('editTahunAnggaranBp');
+            $tanggalTerimaBp = $this->input->post('editTanggalTerimaBp');
+            $vendorBp = $this->input->post('editVendorBp');
+            $kondisiBp = $this->input->post('editKondisiBp');
+            $hargaSatuanBp = $this->input->post('editHargaSatuanBp');
+            $spesifikasiBp = $this->input->post('editSpesifikasiBp');
+            $keteranganBp = $this->input->post('editKeteranganBp');
+
+            $data = [
+                'id_lab' => $idLab,
+                'id_persediaan' => $idBp,
+                'nama_barang' => $namaBp,
+                'jenis_barang' => $jenisBp,
+                'jumlah' => $jumlahBp,
+                'sisa_barang' => $sisaBp,
+                'satuan' => $satuanBp,
+                'tahun_anggaran' => $tahunAnggaranBp,
+                'tanggal_terima' => $tanggalTerimaBp,
+                'vendor' => $vendorBp,
+                'kondisi' => $kondisiBp,
+                'harga_satuan' => $hargaSatuanBp,
+                'spesifikasi' => $spesifikasiBp,
+                'keterangan' => $keteranganBp,
+                'updated_at' => time(),
+            ];
+
+            if ($this->M_persediaan->editPersediaan($data, $idBp)) {
+                $idLab = $this->session->login['id_lab'];
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data barang berhasil diubah!</div>');
+                redirect('barangpersediaan/daftarbarang/' . $idLab);
+            } else {
+                $idLab = $this->session->login['id_lab'];
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal mengubah data barang!</div>');
+                redirect('barangpersediaan/daftarbarang/' . $idLab);
+            }
+        }
+    }
+
+    public function deletePersediaan($idBp)
+    {
+        if ($this->M_persediaan->deletePersediaan($idBp)) {
+            $idLab = $this->session->login['id_lab'];
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data barang berhasil dihapus!</div>');
+            redirect('barangpersediaan/daftarbarang/' . $idLab);
+        } else {
+            $idLab = $this->session->login['id_lab'];
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Gagal menghapus data barang!</div>');
+            redirect('barangpersediaan/daftarbarang/' . $idLab);
+        }
     }
 
     public function importDataBP()
@@ -166,7 +310,7 @@ class Laboran extends CI_Controller
     // Barang habis pakai
     public function tambahDataHP()
     {
-        $this->form_validation->set_rules('idBhp', 'ID BHP', 'required');
+        $this->form_validation->set_rules('idBhp', 'ID Barang', 'required');
         $this->form_validation->set_rules('namaBhp', 'Nama Barang', 'required');
         $this->form_validation->set_rules('jenisBhp', 'Jenis Barang', 'required');
         $this->form_validation->set_rules('jumlahBhp', 'Jumlah Barang', 'required|numeric');

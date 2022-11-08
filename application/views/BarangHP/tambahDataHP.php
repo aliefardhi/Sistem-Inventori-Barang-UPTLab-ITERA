@@ -48,7 +48,7 @@
                                         <div class="col-md-4">
                                             <label for="namaBhp" class="form-label">Nama Barang</label>
                                             <input type="text" class="form-control" id="namaBhp" name="namaBhp">
-                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <?= form_error('namaBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="jenisBhp" class="form-label">Jenis Barang</label>
@@ -59,17 +59,17 @@
                                                 <option value="konsumsi">Konsumsi</option>
                                                 <option value="lainnya">Lainnya</option>
                                             </select>
-                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <?= form_error('jenisBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="jumlahBhp" class="form-label">Jumlah Barang</label>
                                             <input type="number" class="form-control" id="jumlahBhp" name="jumlahBhp">
-                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <?= form_error('jumlahBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="sisaBhp" class="form-label">Sisa Barang</label>
                                             <input type="number" class="form-control" id="sisaBhp" name="sisaBhp">
-                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <?= form_error('sisaBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="satuanBhp" class="form-label">Satuan</label>
@@ -82,22 +82,22 @@
                                                 <option value="liter">liter</option>
                                                 <option value="meter">meter</option>
                                             </select>
-                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <?= form_error('satuanBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="tahunAnggaranBhp" class="form-label">Tahun Anggaran</label>
                                             <input type="text" class="form-control" id="tahunAnggaranBhp" name="tahunAnggaranBhp">
-                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <?= form_error('tahunAnggaranBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="tanggalTerimaBhp" class="form-label">Tanggal Terima</label>
                                             <input type="date" class="form-control" id="tanggalTerimaBhp" name="tanggalTerimaBhp">
-                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <?= form_error('tanggalTerimaBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="vendorBhp" class="form-label">Vendor</label>
                                             <input type="text" class="form-control" id="vendorBhp" name="vendorBhp">
-                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <?= form_error('vendorBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="kondisiBhp" class="form-label">Kondisi</label>
@@ -107,7 +107,7 @@
                                                 <option value="rusak">Rusak</option>
                                                 <option value="hilang">Hilang</option>
                                             </select>
-                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <?= form_error('kondisiBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="hargaSatuanBhp" class="form-label">Harga Satuan</label>
@@ -115,12 +115,12 @@
                                                 <span class="input-group-text">Rp</span>
                                                 <input type="number" class="form-control" id="hargaSatuanBhp" placeholder="Contoh: 15000000" name="hargaSatuanBhp">
                                             </div>
-                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <?= form_error('hargaSatuanBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="spesifikasiBhp" class="form-label">Spesifikasi</label>
                                             <textarea class="form-control" id="spesifikasiBhp" rows="3" name="spesifikasiBhp"></textarea>
-                                            <?= form_error('idBhp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <?= form_error('spesifikasiBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="keteranganBhp" class="form-label">Keterangan</label>
