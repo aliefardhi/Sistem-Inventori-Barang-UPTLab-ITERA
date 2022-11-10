@@ -95,12 +95,12 @@
                                     <table id="datatable" class="table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead class="table-dark">
                                             <tr>
-                                                <th>ID Barang</th>
                                                 <th>Nama</th>
                                                 <th>Jenis</th>
                                                 <th>Jumlah</th>
                                                 <th>Sisa Barang</th>
                                                 <th>Satuan</th>
+                                                <th>Tanggal Terima</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -108,12 +108,12 @@
                                         <tbody>
                                             <?php foreach ($barang_persediaan as $bp) : ?>
                                                 <tr>
-                                                    <td><?= $bp->id_persediaan ?></td>
                                                     <td><?= $bp->nama_barang ?></td>
                                                     <td><?= $bp->jenis_barang ?></td>
                                                     <td><?= $bp->jumlah ?></td>
                                                     <td><?= $bp->sisa_barang ?></td>
                                                     <td><?= $bp->satuan ?></td>
+                                                    <td><?= $bp->tanggal_terima ?></td>
                                                     <td><a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url('index.php/barangpersediaan/detailbarangpersediaan/') . $bp->id_persediaan ?>">
                                                             <i class="mdi mdi-information-outline"></i>
                                                         </a>

@@ -36,7 +36,7 @@
                                     <div class="d-flex justify-content-between">
 
                                         <!-- Start details data -->
-                                        <h3 class="">Lenovo IdeaCentre 5</h3>
+                                        <h3 class=""><?= $detail_bhp['nama_barang'] ?></h3>
 
                                         <div class="d-inline-flex">
                                             <div class="text-muted ms-3 mt-1">
@@ -151,108 +151,6 @@
                                         </div>
                                     </div>
                                     <!-- end of details data -->
-
-                                    <!-- Modal start -->
-                                    <div class="modal modal-lg fade" id="barangHP-modal" tabindex="-1" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Edit Barang</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <!-- Start form input -->
-                                                    <form class="row g-3" method="POST" action="<?= base_url('index.php/editdatahp') ?>">
-                                                        <div class="col-md-4">
-                                                            <label for="editIdBHP" class="form-label">ID Barang</label>
-                                                            <input type="text" class="form-control" id="editIdBHP" value="<?= $detail_bhp['id_bhp'] ?>" name="editIdBhp">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label for="editNamaBhp" class="form-label">Nama Barang</label>
-                                                            <input type="text" class="form-control" id="editNamaBhp" value="<?= $detail_bhp['nama_barang'] ?>" name="editNamaBhp">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label for="editJenisBhp" class="form-label">Jenis Barang</label>
-                                                            <select id="editJenisBhp" class="form-select" name="editJenisBhp">
-                                                                <option>- Pilih -</option>
-                                                                <option value="elektronik" <?= $detail_bhp['jenis_barang'] == 'elektronik' ? 'selected' : '' ?>>Elektronik</option>
-                                                                <option value="bahan kimia" <?= $detail_bhp['jenis_barang'] == 'bahan kimia' ? 'selected' : '' ?>>Bahan Kimia</option>
-                                                                <option value="konsumsi" <?= $detail_bhp['jenis_barang'] == 'konsumsi' ? 'selected' : '' ?>>Konsumsi</option>
-                                                                <option value="lainnya" <?= $detail_bhp['jenis_barang'] == 'lainnya' ? 'selected' : '' ?>>Lainnya</option>
-                                                            </select>
-                                                        </div>
-                                                        <hr>
-                                                        <div class="col-md-4">
-                                                            <label for="editJumlahBhp" class="form-label">Jumlah Barang</label>
-                                                            <input type="number" class="form-control" id="editJumlahBhp" name="editJumlahBhp" value="<?= $detail_bhp['jumlah'] ?>">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label for="editSisaBhp" class="form-label">Sisa Barang</label>
-                                                            <input type="text" class="form-control" id="editSisaBhp" placeholder="" value="<?= $detail_bhp['sisa_barang'] ?>" name="editSisaBhp">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label for="editSatuanBhp" class="form-label">Satuan</label>
-                                                            <select id="editSatuanBhp" class="form-select" name="editSatuanBhp">
-                                                                <option>- Pilih -</option>
-                                                                <option <?= $detail_bhp['satuan'] == 'pcs' ? 'selected' : '' ?> value="pcs">pcs</option>
-                                                                <option <?= $detail_bhp['satuan'] == 'dus' ? 'selected' : '' ?> value="dus">dus</option>
-                                                                <option <?= $detail_bhp['satuan'] == 'bal' ? 'selected' : '' ?> value="bal">bal</option>
-                                                                <option <?= $detail_bhp['satuan'] == 'pak' ? 'selected' : '' ?> value="pak">pak</option>
-                                                                <option <?= $detail_bhp['satuan'] == 'liter' ? 'selected' : '' ?> value="liter">liter</option>
-                                                                <option <?= $detail_bhp['satuan'] == 'meter' ? 'selected' : '' ?> value="meter">meter</option>
-                                                            </select>
-                                                        </div>
-                                                        <hr>
-                                                        <div class="col-md-6">
-                                                            <label for="editTahunAnggaranBhp" class="form-label">Tahun Anggaran</label>
-                                                            <input type="text" class="form-control" id="editTahunAnggaranBhp" name="editTahunAnggaranBhp" value="<?= $detail_bhp['tahun_anggaran'] ?>">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="editTanggalTerimaBhp" class="form-label">Tanggal Terima</label>
-                                                            <input type="date" class="form-control" id="editTanggalTerimaBhp" name="editTanggalTerimaBhp" value="<?= $detail_bhp['tanggal_terima'] ?>">
-                                                        </div>
-                                                        <hr>
-                                                        <div class="col-md-4">
-                                                            <label for="editVendorBhp" class="form-label">Vendor</label>
-                                                            <input type="text" class="form-control" id="editVendorBhp" name="editVendorBhp" value="<?= $detail_bhp['vendor'] ?>">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label for="editKondisiBhp" class="form-label">Kondisi</label>
-                                                            <select id="editKondisiBhp" name="editKondisiBhp" class="form-select">
-                                                                <option>- Pilih -</option>
-                                                                <option value="baik" <?= $detail_bhp['kondisi'] == 'baik' ? 'selected' : '' ?>>Baik</option>
-                                                                <option value="rusak" <?= $detail_bhp['kondisi'] == 'rusak' ? 'selected' : '' ?>>Rusak</option>
-                                                                <option value="hilang" <?= $detail_bhp['kondisi'] == 'hilang' ? 'selected' : '' ?>>Hilang</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label for="editHargaSatuanBhp" class="form-label">Harga Satuan</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-text">Rp</span>
-                                                                <input type="text" class="form-control" id="editHargaSatuanBhp" value="<?= $detail_bhp['harga_satuan']; ?>" name="editHargaSatuanBhp">
-                                                            </div>
-                                                        </div>
-                                                        <hr>
-                                                        <div class="col-md-6">
-                                                            <label for="editSpesifikasiBhp" class="form-label">Spesifikasi</label>
-                                                            <textarea class="form-control" name="editSpesifikasiBhp" id="editSpesifikasiBhp" rows="3"><?= $detail_bhp['spesifikasi'] ?></textarea>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="editKeteranganBhp" class="form-label">Keterangan</label>
-                                                            <textarea class="form-control" name="editKeteranganBhp" id="editKeteranganBhp" rows="3"><?= $detail_bhp['keterangan'] ?></textarea>
-                                                        </div>
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                                </div>
-                                                </form>
-                                                <!-- end form input -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End of Modal -->
 
                                 </div>
                             </div>

@@ -85,6 +85,7 @@ class Laboran extends CI_Controller
             $upload_data = $this->upload->data();
             $data = array(
                 'image' => $upload_data['file_name'],
+                'updated_at' => time(),
             );
 
             if ($this->M_pengguna->editPenggunaByUsername($data, $username)) {
@@ -126,6 +127,7 @@ class Laboran extends CI_Controller
                         redirect('laboran/changepassword');
                     } else {
                         $this->db->set('password', $newPassword);
+                        $this->db->set('updated_at', time());
                         $this->db->where('username', $this->session->login['username']);
                         $this->db->update('tbl_pengguna');
 
@@ -142,7 +144,6 @@ class Laboran extends CI_Controller
     // Barang persediaan
     public function tambahDataBP()
     {
-        $this->form_validation->set_rules('idBp', 'ID Barang', 'required');
         $this->form_validation->set_rules('namaBp', 'Nama Barang', 'required');
         $this->form_validation->set_rules('jenisBp', 'Jenis Barang', 'required');
         $this->form_validation->set_rules('jumlahBp', 'Jumlah Barang', 'required|numeric');
@@ -166,7 +167,6 @@ class Laboran extends CI_Controller
             $this->load->view('barangpersediaan/tambahdatabp', $data);
         } else {
             $idLab = $this->session->login['id_lab'];
-            $idBp = $this->input->post('idBp');
             $namaBp = $this->input->post('namaBp');
             $jenisBp = $this->input->post('jenisBp');
             $jumlahBp = $this->input->post('jumlahBp');
@@ -182,7 +182,6 @@ class Laboran extends CI_Controller
 
             $data = [
                 'id_lab' => $idLab,
-                'id_persediaan' => $idBp,
                 'nama_barang' => $namaBp,
                 'jenis_barang' => $jenisBp,
                 'jumlah' => $jumlahBp,
@@ -213,7 +212,6 @@ class Laboran extends CI_Controller
 
     public function editDataPersediaan($idBp)
     {
-        $this->form_validation->set_rules('editIdBp', 'ID BHP', 'required');
         $this->form_validation->set_rules('editNamaBp', 'Nama Barang', 'required');
         $this->form_validation->set_rules('editJenisBp', 'Jenis Barang', 'required');
         $this->form_validation->set_rules('editJumlahBp', 'Jumlah Barang', 'required|numeric');
@@ -238,7 +236,6 @@ class Laboran extends CI_Controller
             $this->load->view('laboran/editpersediaan', $data);
         } else {
             $idLab = $this->session->login['id_lab'];
-            $idBp = $this->input->post('editIdBp');
             $namaBp = $this->input->post('editNamaBp');
             $jenisBp = $this->input->post('editJenisBp');
             $jumlahBp = $this->input->post('editJumlahBp');
@@ -254,7 +251,6 @@ class Laboran extends CI_Controller
 
             $data = [
                 'id_lab' => $idLab,
-                'id_persediaan' => $idBp,
                 'nama_barang' => $namaBp,
                 'jenis_barang' => $jenisBp,
                 'jumlah' => $jumlahBp,
@@ -310,7 +306,6 @@ class Laboran extends CI_Controller
     // Barang habis pakai
     public function tambahDataHP()
     {
-        $this->form_validation->set_rules('idBhp', 'ID Barang', 'required');
         $this->form_validation->set_rules('namaBhp', 'Nama Barang', 'required');
         $this->form_validation->set_rules('jenisBhp', 'Jenis Barang', 'required');
         $this->form_validation->set_rules('jumlahBhp', 'Jumlah Barang', 'required|numeric');
@@ -334,7 +329,6 @@ class Laboran extends CI_Controller
             $this->load->view('baranghp/tambahdatahp', $data);
         } else {
             $idLab = $this->session->login['id_lab'];
-            $idBhp = $this->input->post('idBhp');
             $namaBhp = $this->input->post('namaBhp');
             $jenisBhp = $this->input->post('jenisBhp');
             $jumlahBhp = $this->input->post('jumlahBhp');
@@ -350,7 +344,6 @@ class Laboran extends CI_Controller
 
             $data = [
                 'id_lab' => $idLab,
-                'id_bhp' => $idBhp,
                 'nama_barang' => $namaBhp,
                 'jenis_barang' => $jenisBhp,
                 'jumlah' => $jumlahBhp,
@@ -381,7 +374,6 @@ class Laboran extends CI_Controller
 
     public function editDataBhp($idBhp)
     {
-        $this->form_validation->set_rules('editIdBhp', 'ID BHP', 'required');
         $this->form_validation->set_rules('editNamaBhp', 'Nama Barang', 'required');
         $this->form_validation->set_rules('editJenisBhp', 'Jenis Barang', 'required');
         $this->form_validation->set_rules('editJumlahBhp', 'Jumlah Barang', 'required|numeric');
@@ -406,7 +398,6 @@ class Laboran extends CI_Controller
             $this->load->view('laboran/editbhp', $data);
         } else {
             $idLab = $this->session->login['id_lab'];
-            $idBhp = $this->input->post('editIdBhp');
             $namaBhp = $this->input->post('editNamaBhp');
             $jenisBhp = $this->input->post('editJenisBhp');
             $jumlahBhp = $this->input->post('editJumlahBhp');
@@ -422,7 +413,6 @@ class Laboran extends CI_Controller
 
             $data = [
                 'id_lab' => $idLab,
-                'id_bhp' => $idBhp,
                 'nama_barang' => $namaBhp,
                 'jenis_barang' => $jenisBhp,
                 'jumlah' => $jumlahBhp,

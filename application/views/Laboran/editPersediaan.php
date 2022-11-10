@@ -35,11 +35,6 @@
                                     <!-- Start form input -->
                                     <form class="row g-3" method="POST" action="<?= base_url('index.php/laboran/editdatapersediaan/') . $detail_persediaan['id_persediaan'] ?>">
                                         <div class="col-md-4">
-                                            <label for="editIdBp" class="form-label">ID Barang</label>
-                                            <input type="text" class="form-control" id="editIdBp" value="<?= $detail_persediaan['id_persediaan'] ?>" name="editIdBp">
-                                            <?= form_error('editIdBp', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="col-md-4">
                                             <label for="editNamaBp" class="form-label">Nama Barang</label>
                                             <input type="text" class="form-control" id="editNamaBp" value="<?= $detail_persediaan['nama_barang'] ?>" name="editNamaBp">
                                             <?= form_error('editNamaBp', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -54,6 +49,14 @@
                                                 <option value="lainnya" <?= $detail_persediaan['jenis_barang'] == 'lainnya' ? 'selected' : '' ?>>Lainnya</option>
                                             </select>
                                             <?= form_error('editJenisBp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="editHargaSatuanBp" class="form-label">Harga Satuan</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">Rp</span>
+                                                <input type="text" class="form-control" id="editHargaSatuanBp" value="<?= $detail_persediaan['harga_satuan']; ?>" name="editHargaSatuanBp">
+                                            </div>
+                                            <?= form_error('editHargaSatuanBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <hr>
                                         <div class="col-md-4">
@@ -80,23 +83,22 @@
                                             <?= form_error('editSatuanBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <hr>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <label for="editTahunAnggaranBp" class="form-label">Tahun Anggaran</label>
                                             <input type="text" class="form-control" id="editTahunAnggaranBp" name="editTahunAnggaranBp" value="<?= $detail_persediaan['tahun_anggaran'] ?>">
                                             <?= form_error('editTahunAnggaranBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <label for="editTanggalTerimaBp" class="form-label">Tanggal Terima</label>
                                             <input type="date" class="form-control" id="editTanggalTerimaBp" name="editTanggalTerimaBp" value="<?= $detail_persediaan['tanggal_terima'] ?>">
                                             <?= form_error('editTanggalTerimaBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <hr>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="editVendorBp" class="form-label">Vendor</label>
                                             <input type="text" class="form-control" id="editVendorBp" name="editVendorBp" value="<?= $detail_persediaan['vendor'] ?>">
                                             <?= form_error('editVendorBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="editKondisiBp" class="form-label">Kondisi</label>
                                             <select id="editKondisiBp" name="editKondisiBp" class="form-select">
                                                 <option>- Pilih -</option>
@@ -106,14 +108,7 @@
                                             </select>
                                             <?= form_error('editKondisiBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label for="editHargaSatuanBp" class="form-label">Harga Satuan</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">Rp</span>
-                                                <input type="text" class="form-control" id="editHargaSatuanBp" value="<?= $detail_persediaan['harga_satuan']; ?>" name="editHargaSatuanBp">
-                                            </div>
-                                            <?= form_error('editHargaSatuanBp', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
+
                                         <hr>
                                         <div class="col-md-6">
                                             <label for="editSpesifikasiBp" class="form-label">Spesifikasi</label>

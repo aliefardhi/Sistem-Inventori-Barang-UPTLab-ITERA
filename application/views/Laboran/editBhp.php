@@ -35,11 +35,6 @@
                                     <!-- Start form input -->
                                     <form class="row g-3" method="POST" action="<?= base_url('index.php/laboran/editdatabhp/') . $detail_bhp['id_bhp'] ?>">
                                         <div class="col-md-4">
-                                            <label for="editIdBHP" class="form-label">ID Barang</label>
-                                            <input type="text" class="form-control" id="editIdBHP" value="<?= $detail_bhp['id_bhp'] ?>" name="editIdBhp">
-                                            <?= form_error('editIdBhp', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="col-md-4">
                                             <label for="editNamaBhp" class="form-label">Nama Barang</label>
                                             <input type="text" class="form-control" id="editNamaBhp" value="<?= $detail_bhp['nama_barang'] ?>" name="editNamaBhp">
                                             <?= form_error('editNamaBhp', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -54,6 +49,14 @@
                                                 <option value="lainnya" <?= $detail_bhp['jenis_barang'] == 'lainnya' ? 'selected' : '' ?>>Lainnya</option>
                                             </select>
                                             <?= form_error('editJenisBhp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="editHargaSatuanBhp" class="form-label">Harga Satuan</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">Rp</span>
+                                                <input type="text" class="form-control" id="editHargaSatuanBhp" value="<?= $detail_bhp['harga_satuan']; ?>" name="editHargaSatuanBhp">
+                                            </div>
+                                            <?= form_error('editHargaSatuanBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <hr>
                                         <div class="col-md-4">
@@ -80,23 +83,22 @@
                                             <?= form_error('editSatuanBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <hr>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <label for="editTahunAnggaranBhp" class="form-label">Tahun Anggaran</label>
                                             <input type="text" class="form-control" id="editTahunAnggaranBhp" name="editTahunAnggaranBhp" value="<?= $detail_bhp['tahun_anggaran'] ?>">
                                             <?= form_error('editTahunAnggaranBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <label for="editTanggalTerimaBhp" class="form-label">Tanggal Terima</label>
                                             <input type="date" class="form-control" id="editTanggalTerimaBhp" name="editTanggalTerimaBhp" value="<?= $detail_bhp['tanggal_terima'] ?>">
                                             <?= form_error('editTanggalTerimaBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <hr>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="editVendorBhp" class="form-label">Vendor</label>
                                             <input type="text" class="form-control" id="editVendorBhp" name="editVendorBhp" value="<?= $detail_bhp['vendor'] ?>">
                                             <?= form_error('editVendorBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="editKondisiBhp" class="form-label">Kondisi</label>
                                             <select id="editKondisiBhp" name="editKondisiBhp" class="form-select">
                                                 <option>- Pilih -</option>
@@ -106,14 +108,7 @@
                                             </select>
                                             <?= form_error('editKondisiBhp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label for="editHargaSatuanBhp" class="form-label">Harga Satuan</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">Rp</span>
-                                                <input type="text" class="form-control" id="editHargaSatuanBhp" value="<?= $detail_bhp['harga_satuan']; ?>" name="editHargaSatuanBhp">
-                                            </div>
-                                            <?= form_error('editHargaSatuanBhp', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
+
                                         <hr>
                                         <div class="col-md-6">
                                             <label for="editSpesifikasiBhp" class="form-label">Spesifikasi</label>

@@ -25,7 +25,7 @@
                                     <h4 class="card-title">Edit Pegawai</h4>
                                     <p class="card-title-desc">Edit data pegawai UPT Laboratorium ITERA.</p>
 
-                                    <form action="<?= base_url('index.php/admin/usereditprocess/') . $userdetail->id_pegawai ?>" method="post">
+                                    <form action="<?= base_url('index.php/admin/useredit/') . $userdetail->id_pegawai ?>" method="post">
 
                                         <!-- <div class="mb-3 row">
                                             <label for="nama_pegawai" class="col-md-2 col-form-label">Nama Pegawai</label>
@@ -38,12 +38,15 @@
                                             <div class="col-md-10">
                                                 <input class="form-control" type="text" value="<?= $userdetail->username ?>" id="username" name="username">
                                             </div>
+                                            <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="password" class="col-md-2 col-form-label">Password</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="password" value="<?= $userdetail->password ?>" id="password" name="password">
+                                                <input type="hidden" value="<?= $userdetail->password ?>" name="currentPassword">
+                                                <input class="form-control" type="text" value="<?= $userdetail->password ?>" id="password" name="password">
                                             </div>
+                                            <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="role_id" class="col-md-2 col-form-label">Role Pengguna</label>
@@ -53,6 +56,7 @@
                                                     <option value="laboran" <?= $userdetail->role_id == 'laboran' ? 'selected' : '' ?>>Laboran</option>
                                                 </select>
                                             </div>
+                                            <?= form_error('role_id', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-12">
                                             <a href="javascript:window.history.go(-1);" type="button" class="btn btn-secondary">Kembali</a>

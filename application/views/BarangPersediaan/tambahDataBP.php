@@ -41,11 +41,6 @@
                                     <!-- Start form input -->
                                     <form class="row g-3 mt-1" method="POST" action="<?= base_url('index.php/laboran/tambahdatabp') ?>">
                                         <div class="col-md-4">
-                                            <label for="idBp" class="form-label">ID Barang</label>
-                                            <input type="text" class="form-control" id="idBp" name="idBp">
-                                            <?= form_error('idBp', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="col-md-4">
                                             <label for="namaBp" class="form-label">Nama Barang</label>
                                             <input type="text" class="form-control" id="namaBp" name="namaBp">
                                             <?= form_error('namaBp', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -60,6 +55,14 @@
                                                 <option value="lainnya">Lainnya</option>
                                             </select>
                                             <?= form_error('jenisBp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="hargaSatuanBp" class="form-label">Harga Satuan</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">Rp</span>
+                                                <input type="number" class="form-control" id="hargaSatuanBp" placeholder="Contoh: 15000000" name="hargaSatuanBp">
+                                            </div>
+                                            <?= form_error('hargaSatuanBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="jumlahBp" class="form-label">Jumlah Barang</label>
@@ -84,22 +87,22 @@
                                             </select>
                                             <?= form_error('satuanBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <label for="tahunAnggaranBp" class="form-label">Tahun Anggaran</label>
                                             <input type="text" class="form-control" id="tahunAnggaranBp" name="tahunAnggaranBp">
                                             <?= form_error('tahunAnggaranBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <label for="tanggalTerimaBp" class="form-label">Tanggal Terima</label>
                                             <input type="date" class="form-control" id="tanggalTerimaBp" name="tanggalTerimaBp">
                                             <?= form_error('tanggalTerimaBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="vendorBp" class="form-label">Vendor</label>
                                             <input type="text" class="form-control" id="vendorBp" name="vendorBp">
                                             <?= form_error('vendorBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="kondisiBp" class="form-label">Kondisi</label>
                                             <select id="kondisiBp" class="form-select" name="kondisiBp">
                                                 <option selected>- Pilih -</option>
@@ -108,14 +111,6 @@
                                                 <option value="hilang">Hilang</option>
                                             </select>
                                             <?= form_error('kondisiBp', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="hargaSatuanBp" class="form-label">Harga Satuan</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">Rp</span>
-                                                <input type="number" class="form-control" id="hargaSatuanBp" placeholder="Contoh: 15000000" name="hargaSatuanBp">
-                                            </div>
-                                            <?= form_error('hargaSatuanBp', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="spesifikasiBp" class="form-label">Spesifikasi</label>

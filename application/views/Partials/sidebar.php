@@ -42,6 +42,21 @@
                         </ul>
                     </li>
                 <?php endif; ?>
+                <?php if ($this->session->login['role_id'] == 'laboran') : ?>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class="mdi mdi-archive"></i>
+                            <span>Barang Modal</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="<?= base_url() ?>index.php/barangmodal">Daftar Barang</a></li>
+                            <li><a href="email-inbox.html">Barang Rusak</a></li>
+                            <li><a href="email-read.html">Barang Hilang</a></li>
+                            <li><a href="email-compose.html">Barang Pinjam</a></li>
+                            <li><a href="email-compose.html">Barang Pindah</a></li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
 
                 <?php if ($this->session->login['role_id'] == 'admin') : ?>
                     <li>
@@ -53,8 +68,6 @@
                             <li><a class="" href="<?= base_url() ?>index.php/barangpersediaan">Daftar Barang</a></li>
                             <li><a href="<?= base_url() ?>index.php/barangpersediaan/persediaanrusak">Barang Rusak</a></li>
                             <li><a href="<?= base_url() ?>index.php/barangpersediaan/persediaanhilang">Barang Hilang</a></li>
-                            <li><a href="email-compose.html">Barang Pinjam</a></li>
-                            <li><a href="email-compose.html">Barang Pindah</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>
@@ -68,8 +81,6 @@
                             <li><a class="" href="<?= base_url('index.php/barangpersediaan/daftarbarang/') . $this->session->login['id_lab'] ?>">Daftar Barang</a></li>
                             <li><a href="<?= base_url() ?>index.php/barangpersediaan/persediaanrusak">Barang Rusak</a></li>
                             <li><a href="<?= base_url() ?>index.php/barangpersediaan/persediaanhilang">Barang Hilang</a></li>
-                            <li><a href="email-compose.html">Barang Pinjam</a></li>
-                            <li><a href="email-compose.html">Barang Pindah</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>
@@ -84,8 +95,6 @@
                             <li><a href="<?= base_url() ?>index.php/baranghp">Daftar Barang</a></li>
                             <li><a href="<?= base_url() ?>index.php/baranghp/bhprusak">Barang Rusak</a></li>
                             <li><a href="<?= base_url() ?>index.php/baranghp/bhphilang">Barang Hilang</a></li>
-                            <li><a href="email-compose.html">Barang Pinjam</a></li>
-                            <li><a href="email-compose.html">Barang Pindah</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>
@@ -99,8 +108,6 @@
                             <li><a href="<?= base_url('index.php/baranghp/daftarbarang/') . $this->session->login['id_lab'] ?>">Daftar Barang</a></li>
                             <li><a href="<?= base_url() ?>index.php/baranghp/bhprusak">Barang Rusak</a></li>
                             <li><a href="<?= base_url() ?>index.php/baranghp/bhphilang">Barang Hilang</a></li>
-                            <li><a href="email-compose.html">Barang Pinjam</a></li>
-                            <li><a href="email-compose.html">Barang Pindah</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>

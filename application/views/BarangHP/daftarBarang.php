@@ -95,12 +95,12 @@
                                     <table id="datatable" class="table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead class="table-dark">
                                             <tr>
-                                                <th>ID Barang</th>
                                                 <th>Nama</th>
                                                 <th>Jenis</th>
                                                 <th>Jumlah</th>
                                                 <th>Sisa Barang</th>
                                                 <th>Satuan</th>
+                                                <th>Tanggal Terima</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -108,12 +108,12 @@
                                         <tbody>
                                             <?php foreach ($barang_habis_pakai as $bhp) : ?>
                                                 <tr>
-                                                    <td><?= $bhp->id_bhp ?></td>
                                                     <td><?= $bhp->nama_barang ?></td>
                                                     <td><?= $bhp->jenis_barang ?></td>
                                                     <td><?= $bhp->jumlah ?></td>
                                                     <td><?= $bhp->sisa_barang ?></td>
                                                     <td><?= $bhp->satuan ?></td>
+                                                    <td><?= $bhp->tanggal_terima ?></td>
                                                     <td><a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url('index.php/baranghp/detailbaranghp/') . $bhp->id_bhp ?>">
                                                             <i class="mdi mdi-information-outline"></i>
                                                         </a>

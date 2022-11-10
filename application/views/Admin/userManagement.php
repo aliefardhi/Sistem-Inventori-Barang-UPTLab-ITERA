@@ -23,6 +23,9 @@
                                 <div class="card-body">
 
                                     <div class="row">
+                                        <?php if ($this->session->flashdata('message')) : ?>
+                                            <?= $this->session->flashdata('message'); ?>
+                                        <?php endif; ?>
                                         <div class="col-6">
                                             <h4 class="card-title">Kelola Pengguna</h4>
                                             <p class="card-title-desc" style="text-align: justify;">Kelola pengguna yang telah terdaftar pada sistem atau tambahkan pengguna baru untuk dapat menggunakan sistem sesuai dengan autentikasi yang diberikan.

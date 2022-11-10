@@ -87,6 +87,7 @@ class Admin extends CI_Controller
             $upload_data = $this->upload->data();
             $data = array(
                 'image' => $upload_data['file_name'],
+                'updated_at' => time(),
             );
 
             if ($this->M_pengguna->editPenggunaByUsername($data, $username)) {
@@ -128,6 +129,7 @@ class Admin extends CI_Controller
                         redirect('admin/changepassword');
                     } else {
                         $this->db->set('password', $newPassword);
+                        $this->db->set('updated_at', time());
                         $this->db->where('username', $this->session->login['username']);
                         $this->db->update('tbl_pengguna');
 
@@ -166,11 +168,15 @@ class Admin extends CI_Controller
             'username' => $this->input->post('username'),
             'password' => md5($password),
             'image' => 'default.jpg',
+            'created_at' => time(),
+            'updated_at' => time(),
         ];
 
         if ($this->M_pengguna->addUser($data)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data pengguna berhasil ditambahkan!</div>');
             redirect('admin/usermanagement');
         } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal menambahkan data pengguna!</div>');
             redirect('admin/usermanagement');
         }
     }
@@ -178,40 +184,69 @@ class Admin extends CI_Controller
     public function userEdit($id)
     {
         if ($this->session->login['role_id'] == 'admin') {
-            $data['title'] = 'Halaman Edit Pengguna';
-            $data['pagetitle'] = 'Admin';
-            $data['subtitle'] = 'Edit pengguna';
-            $data['userdetail'] = $this->M_pengguna->getPenggunaDetail($id);
-            $data['userdata'] = $this->session->userdata('login');
-            $this->load->view('partials/header', $data);
-            $this->load->view('partials/topbar', $data);
-            $this->load->view('partials/page-title', $data);
-            $this->load->view('admin/useredit', $data);
+            $this->form_validation->set_rules('username', 'Username', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('role_id', 'Role Pengguna', 'required');
+
+            if ($this->form_validation->run() == false) {
+                $data['title'] = 'Halaman Edit Pengguna';
+                $data['pagetitle'] = 'Admin';
+                $data['subtitle'] = 'Edit pengguna';
+                $data['userdetail'] = $this->M_pengguna->getPenggunaDetail($id);
+                $data['userdata'] = $this->session->userdata('login');
+                $this->load->view('partials/header', $data);
+                $this->load->view('partials/topbar', $data);
+                $this->load->view('partials/page-title', $data);
+                $this->load->view('admin/useredit', $data);
+            } else {
+                // get current user password
+                $currentPassword = $this->input->post('currentPassword');
+                $newPassword = $this->input->post('password');
+                // check if current password == new password
+                if ($newPassword == $currentPassword) {
+                    // then don't update password
+                    $data = array(
+                        'username' => $this->input->post('username'),
+                        'role_id' => $this->input->post('role_id'),
+                        'updated_at' => time(),
+                    );
+
+                    if ($this->M_pengguna->editPengguna($data, $id)) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data pengguna berhasil diubah!</div>');
+                        redirect('admin/usermanagement');
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal mengubah data pengguna!</div>');
+                        redirect('admin/usermanagement');
+                    }
+                } else if ($newPassword != $currentPassword) { // check if current password != new password
+                    $data = array( // then update new password
+                        'username' => $this->input->post('username'),
+                        'role_id' => $this->input->post('role_id'),
+                        'password' => md5($this->input->post('password')),
+                        'updated_at' => time(),
+                    );
+
+                    if ($this->M_pengguna->editPengguna($data, $id)) {
+                        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data pengguna berhasil diubah!</div>');
+                        redirect('admin/usermanagement');
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal mengubah data pengguna!</div>');
+                        redirect('admin/usermanagement');
+                    }
+                }
+            }
         } else {
             redirect('login/blocked');
-        }
-    }
-
-    public function userEditProcess($id)
-    {
-        $data = array(
-            'username' => $this->input->post('username'),
-            'password' => md5($this->input->post('password')),
-            'role_id' => $this->input->post('role_id'),
-        );
-
-        if ($this->M_pengguna->editPengguna($data, $id)) {
-            redirect('admin/usermanagement');
-        } else {
-            redirect('admin/usermanagement');
         }
     }
 
     public function deleteUser($idUser)
     {
         if ($this->M_pengguna->deleteUser($idUser)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data pengguna berhasil dihapus!</div>');
             redirect('admin/usermanagement');
         } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal menghapus data pengguna!</div>');
             redirect('admin/usermanagement');
         }
     }
@@ -240,6 +275,7 @@ class Admin extends CI_Controller
                 $this->load->view('partials/page-title', $data);
                 $this->load->view('admin/daftarpegawai', $data);
             } else {
+                // tambah data pegawai
                 $data = [
                     'id_pegawai' => $this->input->post('id_pegawai'),
                     'status' => $this->input->post('status_kepegawaian'),
@@ -325,6 +361,8 @@ class Admin extends CI_Controller
             'id_lab' => $this->input->post('nama_lab'),
             'is_active' => $this->input->post('isactive'),
             'kontak' => $this->input->post('kontak'),
+            'created_at' => time(),
+            'updated_at' => time(),
         ];
 
         if ($this->M_pegawaiUpt->addPegawai($data)) {
