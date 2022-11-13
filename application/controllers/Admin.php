@@ -19,11 +19,12 @@ class Admin extends CI_Controller
     public function index()
     {
         if ($this->session->login['role_id'] == 'admin') {
-            // $username = $this->session->userdata('username');
             $data['title'] = 'Dashboard';
             $data['pagetitle'] = 'Dashboard';
             $data['subtitle'] = 'Dashboard';
             $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
             $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
@@ -41,6 +42,8 @@ class Admin extends CI_Controller
             $data['pagetitle'] = 'Profile';
             $data['subtitle'] = 'My profile';
             $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
             $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
@@ -56,6 +59,8 @@ class Admin extends CI_Controller
             $data['pagetitle'] = 'Profile';
             $data['subtitle'] = 'Edit profile';
             $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
             $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
@@ -91,10 +96,10 @@ class Admin extends CI_Controller
             );
 
             if ($this->M_pengguna->editPenggunaByUsername($data, $username)) {
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Profil berhasil diubah! Silahkan login kembali untuk memperbaharui profil</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Profil berhasil diperbaharui!</div>');
                 redirect('admin/profile');
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Profile gagal diperbaharui!</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal memperbaharui profil!</div>');
                 redirect('admin/profile');
             }
         }
@@ -112,6 +117,8 @@ class Admin extends CI_Controller
                 $data['pagetitle'] = 'Profile';
                 $data['subtitle'] = 'Ganti Password';
                 $data['userdata'] = $this->session->userdata('login');
+                $idPegawai = $this->session->login['id_pegawai'];
+                $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
                 $this->load->view('partials/header', $data);
                 $this->load->view('partials/topbar', $data);
                 $this->load->view('partials/page-title', $data);
@@ -152,7 +159,8 @@ class Admin extends CI_Controller
         $data['all_pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
         $data['pengguna'] = $this->M_pengguna->getPengguna();
         $data['userdata'] = $this->session->userdata('login');
-        $data['aktif'] = 'usermanagement';
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
@@ -194,6 +202,8 @@ class Admin extends CI_Controller
                 $data['subtitle'] = 'Edit pengguna';
                 $data['userdetail'] = $this->M_pengguna->getPenggunaDetail($id);
                 $data['userdata'] = $this->session->userdata('login');
+                $idPegawai = $this->session->login['id_pegawai'];
+                $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
                 $this->load->view('partials/header', $data);
                 $this->load->view('partials/topbar', $data);
                 $this->load->view('partials/page-title', $data);
@@ -270,6 +280,8 @@ class Admin extends CI_Controller
                 $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
                 $data['all_pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
                 $data['userdata'] = $this->session->userdata('login');
+                $idPegawai = $this->session->login['id_pegawai'];
+                $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
                 $this->load->view('partials/header', $data);
                 $this->load->view('partials/topbar', $data);
                 $this->load->view('partials/page-title', $data);
@@ -308,6 +320,8 @@ class Admin extends CI_Controller
             $data['subtitle'] = 'Detail Pegawai';
             $data['detail_pegawai_upt'] = $this->M_pegawaiUpt->getDetailPegawaiUpt($id);
             $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
             $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
@@ -326,6 +340,8 @@ class Admin extends CI_Controller
         $data['detail_pegawai_upt_obj'] = $this->M_pegawaiUpt->getDetailPegawaiUptObj($id);
         $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
         $data['userdata'] = $this->session->userdata('login');
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
@@ -406,6 +422,8 @@ class Admin extends CI_Controller
             $data['all_lab'] = $this->M_laboratorium->getAllLab();
             $data['no'] = 1;
             $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
             $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);

@@ -21,6 +21,8 @@ class Laboran extends CI_Controller
             $data['pagetitle'] = 'Dashboard';
             $data['subtitle'] = 'Dashboard';
             $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
             $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
@@ -38,6 +40,8 @@ class Laboran extends CI_Controller
             $data['pagetitle'] = 'Profile';
             $data['subtitle'] = 'Pengaturan profile';
             $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
             $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
@@ -54,6 +58,8 @@ class Laboran extends CI_Controller
             $data['pagetitle'] = 'Profile';
             $data['subtitle'] = 'Edit profile';
             $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
             $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
@@ -89,10 +95,10 @@ class Laboran extends CI_Controller
             );
 
             if ($this->M_pengguna->editPenggunaByUsername($data, $username)) {
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Profil berhasil diubah! Silahkan login kembali untuk memperbaharui profil</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Profil berhasil diperbaharui!</div>');
                 redirect('laboran/profile');
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Profile gagal diperbaharui!</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal memperbaharui profil!</div>');
                 redirect('laboran/profile');
             }
         }
@@ -110,6 +116,8 @@ class Laboran extends CI_Controller
                 $data['pagetitle'] = 'Profile';
                 $data['subtitle'] = 'Ganti Password';
                 $data['userdata'] = $this->session->userdata('login');
+                $idPegawai = $this->session->login['id_pegawai'];
+                $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
                 $this->load->view('partials/header', $data);
                 $this->load->view('partials/topbar', $data);
                 $this->load->view('partials/page-title', $data);
@@ -161,6 +169,8 @@ class Laboran extends CI_Controller
             $data['pagetitle'] = 'Daftar Barang Persediaan';
             $data['subtitle'] = 'Tambah Data Barang';
             $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
             $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
@@ -230,6 +240,8 @@ class Laboran extends CI_Controller
             $data['subtitle'] = 'Edit barang habis pakai';
             $data['userdata'] = $this->session->userdata('login');
             $data['detail_persediaan'] = $this->M_persediaan->detailBarang($idBp);
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
             $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
@@ -297,6 +309,8 @@ class Laboran extends CI_Controller
         $data['pagetitle'] = 'Tambah Data Barang Persediaan';
         $data['subtitle'] = 'Import Data Barang';
         $data['userdata'] = $this->session->userdata('login');
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
@@ -323,6 +337,8 @@ class Laboran extends CI_Controller
             $data['pagetitle'] = 'Daftar Barang Habis Pakai';
             $data['subtitle'] = 'Tambah Data Barang';
             $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
             $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
@@ -392,6 +408,8 @@ class Laboran extends CI_Controller
             $data['subtitle'] = 'Edit barang habis pakai';
             $data['userdata'] = $this->session->userdata('login');
             $data['detail_bhp'] = $this->M_bhp->detailBarang($idBhp);
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
             $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
@@ -459,6 +477,8 @@ class Laboran extends CI_Controller
         $data['pagetitle'] = 'Tambah Data Barang Habis Pakai';
         $data['subtitle'] = 'Import Data Barang';
         $data['userdata'] = $this->session->userdata('login');
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);

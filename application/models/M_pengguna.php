@@ -23,6 +23,13 @@ class M_pengguna extends CI_Model
         return $query->row();
     }
 
+    public function getPenggunaDetailBySession($idPegawai)
+    {
+        $query = $this->db->query("SELECT * FROM tbl_pengguna LEFT JOIN tbl_pegawai_upt ON tbl_pengguna.id_pegawai = tbl_pegawai_upt.id_pegawai LEFT JOIN v_simuk_pegawai ON tbl_pegawai_upt.id_pegawai = v_simuk_pegawai.id_pegawai LEFT JOIN tbl_lab ON tbl_pegawai_upt.id_lab = tbl_lab.id_lab WHERE tbl_pengguna.id_pegawai = '$idPegawai'");
+
+        return $query->row();
+    }
+
     public function getPenggunaByUsername($username)
     {
         $query = $this->db->query("SELECT * FROM tbl_pengguna LEFT JOIN tbl_pegawai_upt ON tbl_pengguna.id_pegawai = tbl_pegawai_upt.id_pegawai LEFT JOIN v_simuk_pegawai ON tbl_pegawai_upt.id_pegawai = v_simuk_pegawai.id_pegawai LEFT JOIN tbl_lab ON tbl_pegawai_upt.id_lab = tbl_lab.id_lab WHERE username = '$username'");

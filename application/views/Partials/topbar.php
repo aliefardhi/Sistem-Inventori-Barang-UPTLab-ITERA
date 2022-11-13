@@ -29,7 +29,7 @@
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="<?= base_url('assets/images/users/') . $userdata['image'] ?>">
+                    <img class="rounded-circle header-profile-user" src="<?= base_url('assets/images/users/') . $user_session->image ?>">
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->

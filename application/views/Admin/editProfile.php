@@ -32,12 +32,12 @@
                                     </div>
                                     <h4 class="card-title">Upload foto profil</h4>
                                     <p class="card-title-desc mb-3">Upload foto profil baru anda.</p>
-                                    <form action="<?= base_url('index.php/admin/editprofileprocess/') ?>" method="POST" enctype="multipart/form-data">
+                                    <form action="<?= base_url('index.php/admin/editprofileprocess') ?>" method="POST" enctype="multipart/form-data">
                                         <div class="mb-3 row">
                                             <div class="col-md-10">
                                                 <div class="row">
                                                     <div class="col-sm-3">
-                                                        <img src="<?= base_url('assets/images/users/') . $userdata['image']; ?>" class="img-thumbnail">
+                                                        <img src="<?= base_url('assets/images/users/') . $user_session->image; ?>" class="img-thumbnail">
                                                     </div>
                                                     <div class="col-sm-9">
                                                         <div class="custom-file">

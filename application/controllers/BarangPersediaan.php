@@ -11,6 +11,7 @@ class BarangPersediaan extends CI_Controller
         }
 
         $this->load->model('M_persediaan');
+        $this->load->model('M_pengguna');
     }
 
     public function index()
@@ -19,6 +20,8 @@ class BarangPersediaan extends CI_Controller
         $data['pagetitle'] = 'Pilih ruangan';
         $data['subtitle'] = '';
         $data['userdata'] = $this->session->userdata('login');
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
@@ -34,6 +37,8 @@ class BarangPersediaan extends CI_Controller
         $data['userdata'] = $this->session->userdata('login');
         $data['barang_persediaan'] = $this->M_persediaan->daftarBarang($idLab);
         $data['data_lab'] = $this->M_persediaan->getThisLab($idPegawai);
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
@@ -47,6 +52,8 @@ class BarangPersediaan extends CI_Controller
         $data['subtitle'] = 'Detail barang persediaan';
         $data['userdata'] = $this->session->userdata('login');
         $data['detail_persediaan'] = $this->M_persediaan->detailBarang($idPersediaan);
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
@@ -59,6 +66,8 @@ class BarangPersediaan extends CI_Controller
         $data['pagetitle'] = 'Barang Persediaan';
         $data['subtitle'] = 'Daftar hilang barang persediaan';
         $data['userdata'] = $this->session->userdata('login');
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
@@ -71,6 +80,8 @@ class BarangPersediaan extends CI_Controller
         $data['pagetitle'] = 'Barang Persediaan';
         $data['subtitle'] = 'Daftar rusak barang persediaan';
         $data['userdata'] = $this->session->userdata('login');
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
