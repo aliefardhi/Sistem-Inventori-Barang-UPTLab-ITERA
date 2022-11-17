@@ -12,6 +12,8 @@ class Laboran extends CI_Controller
         $this->load->model('M_pengguna');
         $this->load->model('M_bhp');
         $this->load->model('M_persediaan');
+        $this->load->model('M_ruangan');
+        $this->load->model('M_pegawaiUpt');
     }
 
     public function index()
@@ -148,6 +150,7 @@ class Laboran extends CI_Controller
             redirect('login/blocked');
         }
     }
+    // end of profile laboran
 
     // Barang persediaan
     public function tambahDataBP()
@@ -316,6 +319,7 @@ class Laboran extends CI_Controller
         $this->load->view('partials/page-title', $data);
         $this->load->view('barangpersediaan/importdatabp', $data);
     }
+    // end of barang persediaan
 
     // Barang habis pakai
     public function tambahDataHP()
@@ -484,4 +488,84 @@ class Laboran extends CI_Controller
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/importdatahp', $data);
     }
+    // end of barang habis pakai
+
+    // Ruangan
+    public function daftarRuangan()
+    {
+        if ($this->session->login['role_id'] == 'laboran') {
+            $this->form_validation->set_rules('namaRuangan', 'Nama Ruangan', 'required');
+            $this->form_validation->set_rules('gedung', 'Gedung', 'required');
+            $this->form_validation->set_rules('lantai', 'Lantai', 'required');
+            $this->form_validation->set_rules('pegawai', 'Penanggung Jawab', 'required');
+            $this->form_validation->set_rules('waktuOperasional', 'Waktu Operasional', 'required');
+            $this->form_validation->set_rules('kapasitas', 'Kapasitas', 'required');
+
+            if ($this->form_validation->run() == false) {
+                $data['title'] = 'Halaman Daftar Ruangan';
+                $data['pagetitle'] = 'Laboran';
+                $data['subtitle'] = 'Daftar Ruangan';
+                $data['all_ruangan'] = $this->M_ruangan->getAllRuangan();
+                $data['no'] = 1;
+                $data['userdata'] = $this->session->userdata('login');
+                $idPegawai = $this->session->login['id_pegawai'];
+                $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+                $data['pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+                $this->load->view('partials/header', $data);
+                $this->load->view('partials/topbar', $data);
+                $this->load->view('partials/page-title', $data);
+                $this->load->view('laboran/daftarruangan', $data);
+            } else {
+                // tambah data ruangan
+                $idLab = $this->input->post('idLab');
+                $namaRuangan = $this->input->post('namaRuangan');
+                $gedung = $this->input->post('gedung');
+                $lantai = $this->input->post('lantai');
+                $penanggungJawab = $this->input->post('pegawai');
+                $waktuOperasional = $this->input->post('waktuOperasional');
+                $kapasitas = $this->input->post('kapasitas');
+                $keterangan = $this->input->post('keteranganRuangan');
+
+                $data = [
+                    'id_lab' => $idLab,
+                    'nama_ruangan' => $namaRuangan,
+                    'gedung' => $gedung,
+                    'lantai' => $lantai,
+                    'id_pegawai' => $penanggungJawab,
+                    'waktu_operasional' => $waktuOperasional,
+                    'kapasitas' => $kapasitas,
+                    'keterangan' => $keterangan,
+                    'created_at' => time(),
+                    'updated_at' => time(),
+                ];
+
+                if ($this->M_ruangan->addRuangan($data)) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data ruangan berhasil ditambahkan!</div>');
+                    redirect('laboran/daftarruangan');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal menambahkan data ruangan!</div>');
+                    redirect('laboran/daftarruangan');
+                }
+            }
+        } else {
+            redirect('login/blocked');
+        }
+    }
+
+    public function detailRuangan($idRuang)
+    {
+        $data['title'] = 'Data Ruangan';
+        $data['pagetitle'] = 'Daftar ruangan';
+        $data['subtitle'] = 'Detail ruangan';
+        $data['userdata'] = $this->session->userdata('login');
+        $data['detail_ruang'] = $this->M_ruangan->getDetailRuangan($idRuang);
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+        $data['pic_ruang'] = $this->M_ruangan->getPicRuangan($idPegawai);
+        $this->load->view('partials/header', $data);
+        $this->load->view('partials/topbar', $data);
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('laboran/detailruangan', $data);
+    }
+    // end of ruangan
 }

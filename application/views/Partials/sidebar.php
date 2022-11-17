@@ -29,6 +29,23 @@
 
                 <?php if ($this->session->login['role_id'] == 'admin') : ?>
                     <li>
+                        <a href="<?= base_url('index.php/admin/daftarruangan') ?>" class="waves-effect">
+                            <i class="fas fa-building"></i>
+                            <span>Daftar Ruangan</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($this->session->login['role_id'] == 'laboran') : ?>
+                    <li>
+                        <a href="<?= base_url('index.php/laboran/daftarruangan') ?>" class="waves-effect">
+                            <i class="fas fa-building"></i>
+                            <span>Daftar Ruangan</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($this->session->login['role_id'] == 'admin') : ?>
+                    <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="mdi mdi-archive"></i>
                             <span>Barang Modal</span>

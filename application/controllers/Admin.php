@@ -149,6 +149,7 @@ class Admin extends CI_Controller
             redirect('login/blocked');
         }
     }
+    // end of profile admin
 
     // User management
     public function userManagement()
@@ -260,6 +261,7 @@ class Admin extends CI_Controller
             redirect('admin/usermanagement');
         }
     }
+    // end of user management
 
     // Pegawai
     public function daftarPegawai()
@@ -411,6 +413,7 @@ class Admin extends CI_Controller
         $data = $this->M_simukPegawai->getIdPegawai($namaPegawai);
         echo json_encode($data);
     }
+    // end of pegawai
 
     // Laboratorium
     public function daftarLaboratorium()
@@ -456,4 +459,5 @@ class Admin extends CI_Controller
             redirect('admin/daftarlaboratorium');
         }
     }
+    // end of laboratorium
 }
