@@ -82,6 +82,16 @@
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                    <div class="ms-2 me-auto" style="text-align: justify;">
+                                                        <div class="fw-bold">Keterangan</div>
+                                                        <?= $detail_ruang['keterangan'] ?>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Penanggung Jawab</div>
                                                         <?= $pic_ruang['nama_pegawai'] ?>
@@ -98,28 +108,6 @@
                                                     <div class="ms-2">
                                                         <div class="fw-bold">Email</div>
                                                         <?= $pic_ruang['email'] ?>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <ul class="list-group">
-                                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                    <div class="ms-2 me-auto">
-                                                        <div class="fw-bold">Email Ruangan</div>
-                                                        <!-- <?= $detail_ruang['email'] ?> -->
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                    <div class="ms-2 me-auto">
-                                                        <div class="fw-bold">No. Telepon</div>
-                                                        <!-- <?= $detail_ruang['no_telepon'] ?> -->
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                    <div class="ms-2 me-auto" style="text-align: justify;">
-                                                        <div class="fw-bold">Keterangan</div>
-                                                        <?= $detail_ruang['keterangan'] ?>
                                                     </div>
                                                 </li>
                                             </ul>

@@ -30,4 +30,17 @@ class M_ruangan extends CI_Model
     {
         return $this->db->insert($this->_table, $data);
     }
+
+    public function editRuangan($data, $idRuang)
+    {
+        $query = $this->db->set($data);
+        $query = $this->db->where('id_ruang', $idRuang);
+        $query = $this->db->update($this->_table);
+        return $query;
+    }
+
+    public function deleteRuangan($idRuang)
+    {
+        return $this->db->delete($this->_table, ['id_ruang' => $idRuang]);
+    }
 }

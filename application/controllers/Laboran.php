@@ -567,5 +567,68 @@ class Laboran extends CI_Controller
         $this->load->view('partials/page-title', $data);
         $this->load->view('laboran/detailruangan', $data);
     }
+
+    public function editDataRuangan($idRuang)
+    {
+        $this->form_validation->set_rules('namaRuangan', 'Nama Ruangan', 'required');
+        $this->form_validation->set_rules('gedung', 'Gedung', 'required');
+        $this->form_validation->set_rules('lantai', 'Lantai', 'required|numeric');
+        $this->form_validation->set_rules('pegawai', 'Penanggung Jawab', 'required');
+        $this->form_validation->set_rules('waktuOperasional', 'Waktu Operasional', 'required');
+        $this->form_validation->set_rules('kapasitas', 'Kapasitas', 'required|numeric');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data Ruangan';
+            $data['pagetitle'] = 'Edit data ruangan';
+            $data['subtitle'] = 'Edit data ruangan';
+            $data['userdata'] = $this->session->userdata('login');
+            $data['detail_ruangan'] = $this->M_ruangan->getDetailRuangan($idRuang);
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+            $data['pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('laboran/editruangan', $data);
+        } else {
+            $namaRuangan = $this->input->post('namaRuangan');
+            $gedung = $this->input->post('gedung');
+            $lantai = $this->input->post('lantai');
+            $pegawai = $this->input->post('pegawai');
+            $waktuOperasional = $this->input->post('waktuOperasional');
+            $kapasitas = $this->input->post('kapasitas');
+            $keterangan = $this->input->post('keterangan');
+
+            $data = [
+                'nama_ruangan' => $namaRuangan,
+                'gedung' => $gedung,
+                'lantai' => $lantai,
+                'id_pegawai' => $pegawai,
+                'waktu_operasional' => $waktuOperasional,
+                'kapasitas' => $kapasitas,
+                'keterangan' => $keterangan,
+                'updated_at' => time(),
+            ];
+
+            if ($this->M_ruangan->editRuangan($data, $idRuang)) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data ruangan berhasil diubah!</div>');
+                redirect('laboran/daftarruangan');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal mengubah data ruangan!</div>');
+                redirect('laboran/daftarruangan');
+            }
+        }
+    }
+
+    public function deleteRuangan($idRuang)
+    {
+        if ($this->M_ruangan->deleteRuangan($idRuang)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data ruangan berhasil dihapus!</div>');
+            redirect('laboran/daftarruangan');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Gagal menghapus data ruangan!</div>');
+            redirect('laboran/daftarruangan');
+        }
+    }
     // end of ruangan
 }

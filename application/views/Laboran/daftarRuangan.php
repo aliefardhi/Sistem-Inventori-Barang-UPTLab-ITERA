@@ -60,7 +60,7 @@
                                                         <a class="btn btn-info btn-sm edit" title="Edit Data" href="<?= base_url('index.php/laboran/editdataruangan/') . $r->id_ruang ?>">
                                                             <i class="mdi mdi-circle-edit-outline"></i>
                                                         </a>
-                                                        <a class="btn btn-danger btn-sm edit tombol-delete" title="Hapus" href="<?= base_url('index.php/admin/deleteruangan/' . $r->id_ruang) ?>">
+                                                        <a class="btn btn-danger btn-sm edit tombol-delete" title="Hapus" href="<?= base_url('index.php/laboran/deleteruangan/' . $r->id_ruang) ?>">
                                                             <i class="mdi mdi-trash-can-outline"></i>
                                                         </a>
                                                     </td>
