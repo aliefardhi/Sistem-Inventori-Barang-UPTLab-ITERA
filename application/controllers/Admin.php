@@ -14,6 +14,7 @@ class Admin extends CI_Controller
         $this->load->model('M_laboratorium');
         $this->load->model('M_pegawaiUpt');
         $this->load->model('M_pengguna');
+        $this->load->model('M_ruangan');
     }
 
     public function index()
@@ -460,4 +461,152 @@ class Admin extends CI_Controller
         }
     }
     // end of laboratorium
+
+    // Ruangan
+    public function daftarRuangan()
+    {
+        if ($this->session->login['role_id'] == 'admin') {
+            $this->form_validation->set_rules('namaRuangan', 'Nama Ruangan', 'required');
+            $this->form_validation->set_rules('gedung', 'Gedung', 'required');
+            $this->form_validation->set_rules('lantai', 'Lantai', 'required|numeric');
+            $this->form_validation->set_rules('laboratorium', 'Laboratorium', 'required');
+            $this->form_validation->set_rules('pegawai', 'Penanggung Jawab', 'required');
+            $this->form_validation->set_rules('waktuOperasional', 'Waktu Operasional', 'required');
+            $this->form_validation->set_rules('kapasitas', 'Kapasitas', 'required|numeric');
+
+            if ($this->form_validation->run() == false) {
+                $data['title'] = 'Halaman Daftar Ruangan';
+                $data['pagetitle'] = 'Admin';
+                $data['subtitle'] = 'Daftar Ruangan';
+                $data['all_ruangan'] = $this->M_ruangan->getAllRuanganInfo();
+                $data['no'] = 1;
+                $data['userdata'] = $this->session->userdata('login');
+                $idPegawai = $this->session->login['id_pegawai'];
+                $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+                $data['pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+                $data['laboratorium'] = $this->M_laboratorium->getAllLab();
+                $this->load->view('partials/header', $data);
+                $this->load->view('partials/topbar', $data);
+                $this->load->view('partials/page-title', $data);
+                $this->load->view('admin/daftarruangan', $data);
+            } else {
+                // tambah data ruangan
+                $idLab = $this->input->post('laboratorium');
+                $namaRuangan = $this->input->post('namaRuangan');
+                $gedung = $this->input->post('gedung');
+                $lantai = $this->input->post('lantai');
+                $penanggungJawab = $this->input->post('pegawai');
+                $waktuOperasional = $this->input->post('waktuOperasional');
+                $kapasitas = $this->input->post('kapasitas');
+                $keterangan = $this->input->post('keteranganRuangan');
+
+                $data = [
+                    'id_lab' => $idLab,
+                    'nama_ruangan' => $namaRuangan,
+                    'gedung' => $gedung,
+                    'lantai' => $lantai,
+                    'id_pegawai' => $penanggungJawab,
+                    'waktu_operasional' => $waktuOperasional,
+                    'kapasitas' => $kapasitas,
+                    'keterangan' => $keterangan,
+                    'created_at' => time(),
+                    'updated_at' => time(),
+                ];
+
+                if ($this->M_ruangan->addRuangan($data)) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data ruangan berhasil ditambahkan!</div>');
+                    redirect('admin/daftarruangan');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal menambahkan data ruangan!</div>');
+                    redirect('admin/daftarruangan');
+                }
+            }
+        } else {
+            redirect('login/blocked');
+        }
+    }
+
+    public function detailRuangan($idRuang)
+    {
+        $data['title'] = 'Data Ruangan';
+        $data['pagetitle'] = 'Daftar ruangan';
+        $data['subtitle'] = 'Detail ruangan';
+        $data['userdata'] = $this->session->userdata('login');
+        $data['detail_ruang'] = $this->M_ruangan->getDetailRuangan($idRuang);
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+        $data['pic_ruang'] = $this->M_ruangan->getPicRuangan($idRuang);
+        $this->load->view('partials/header', $data);
+        $this->load->view('partials/topbar', $data);
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('admin/detailruangan', $data);
+    }
+
+    public function editDataRuangan($idRuang)
+    {
+        $this->form_validation->set_rules('namaRuangan', 'Nama Ruangan', 'required');
+        $this->form_validation->set_rules('gedung', 'Gedung', 'required');
+        $this->form_validation->set_rules('lantai', 'Lantai', 'required|numeric');
+        $this->form_validation->set_rules('laboratorium', 'Laboratorium', 'required|numeric');
+        $this->form_validation->set_rules('pegawai', 'Penanggung Jawab', 'required');
+        $this->form_validation->set_rules('waktuOperasional', 'Waktu Operasional', 'required');
+        $this->form_validation->set_rules('kapasitas', 'Kapasitas', 'required|numeric');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data Ruangan';
+            $data['pagetitle'] = 'Edit data ruangan';
+            $data['subtitle'] = 'Edit data ruangan';
+            $data['userdata'] = $this->session->userdata('login');
+            $data['detail_ruangan'] = $this->M_ruangan->getDetailRuangan($idRuang);
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+            $data['pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+            $data['laboratorium'] = $this->M_laboratorium->getAllLab();
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/editruangan', $data);
+        } else {
+            $namaRuangan = $this->input->post('namaRuangan');
+            $gedung = $this->input->post('gedung');
+            $lantai = $this->input->post('lantai');
+            $laboratorium = $this->input->post('laboratorium');
+            $pegawai = $this->input->post('pegawai');
+            $waktuOperasional = $this->input->post('waktuOperasional');
+            $kapasitas = $this->input->post('kapasitas');
+            $keterangan = $this->input->post('keterangan');
+
+            $data = [
+                'nama_ruangan' => $namaRuangan,
+                'gedung' => $gedung,
+                'lantai' => $lantai,
+                'id_lab' => $laboratorium,
+                'id_pegawai' => $pegawai,
+                'waktu_operasional' => $waktuOperasional,
+                'kapasitas' => $kapasitas,
+                'keterangan' => $keterangan,
+                'updated_at' => time(),
+            ];
+
+            if ($this->M_ruangan->editRuangan($data, $idRuang)) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data ruangan berhasil diubah!</div>');
+                redirect('admin/daftarruangan');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal mengubah data ruangan!</div>');
+                redirect('admin/daftarruangan');
+            }
+        }
+    }
+
+    public function deleteRuangan($idRuang)
+    {
+        if ($this->M_ruangan->deleteRuangan($idRuang)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data ruangan berhasil dihapus!</div>');
+            redirect('admin/daftarruangan');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Gagal menghapus data ruangan!</div>');
+            redirect('admin/daftarruangan');
+        }
+    }
+    // end of ruangan
 }

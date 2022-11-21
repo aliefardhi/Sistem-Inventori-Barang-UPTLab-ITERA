@@ -505,7 +505,8 @@ class Laboran extends CI_Controller
                 $data['title'] = 'Halaman Daftar Ruangan';
                 $data['pagetitle'] = 'Laboran';
                 $data['subtitle'] = 'Daftar Ruangan';
-                $data['all_ruangan'] = $this->M_ruangan->getAllRuangan();
+                $idLab = $this->session->login['id_lab'];
+                $data['all_ruangan'] = $this->M_ruangan->getLabRuangan($idLab);
                 $data['no'] = 1;
                 $data['userdata'] = $this->session->userdata('login');
                 $idPegawai = $this->session->login['id_pegawai'];
@@ -561,7 +562,7 @@ class Laboran extends CI_Controller
         $data['detail_ruang'] = $this->M_ruangan->getDetailRuangan($idRuang);
         $idPegawai = $this->session->login['id_pegawai'];
         $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
-        $data['pic_ruang'] = $this->M_ruangan->getPicRuangan($idPegawai);
+        $data['pic_ruang'] = $this->M_ruangan->getPicRuangan($idRuang);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
