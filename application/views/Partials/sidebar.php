@@ -51,7 +51,7 @@
                             <span>Barang Modal</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="<?= base_url() ?>index.php/barangmodal">Daftar Barang</a></li>
+                            <li><a href="<?= base_url('index.php/admin/pilihlab/') ?>">Daftar Barang</a></li>
                             <li><a href="email-inbox.html">Barang Rusak</a></li>
                             <li><a href="email-read.html">Barang Hilang</a></li>
                             <li><a href="email-compose.html">Barang Pinjam</a></li>

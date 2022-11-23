@@ -15,6 +15,7 @@ class Admin extends CI_Controller
         $this->load->model('M_pegawaiUpt');
         $this->load->model('M_pengguna');
         $this->load->model('M_ruangan');
+        $this->load->model('M_barangmodal');
     }
 
     public function index()
@@ -609,4 +610,83 @@ class Admin extends CI_Controller
         }
     }
     // end of ruangan
+
+    // Barang Lab
+    public function pilihLab()
+    {
+        if ($this->session->login['role_id'] == 'admin') {
+            $data['title'] = 'Barang Modal Laboratorium';
+            $data['pagetitle'] = 'Admin';
+            $data['subtitle'] = 'Pilih Laboratorium';
+            $data['all_lab'] = $this->M_laboratorium->getAllLab();
+            $data['no'] = 1;
+            $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+            $data['pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/pilihlab', $data);
+        } else {
+            redirect('login/blocked');
+        }
+    }
+
+    public function pilihRuangan($idLab)
+    {
+        if ($this->session->login['role_id'] == 'admin') {
+            $data['title'] = 'Barang Modal Laboratorium';
+            $data['pagetitle'] = 'Admin';
+            $data['subtitle'] = 'Pilih Ruangan';
+            $data['all_ruangan'] = $this->M_ruangan->getLabRuangan($idLab);
+            $data['nama_lab'] = $this->M_laboratorium->namaLab($idLab);
+            $data['no'] = 1;
+            $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+            $data['pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/pilihruangan', $data);
+        } else {
+            redirect('login/blocked');
+        }
+    }
+
+    public function daftarBarangLab($idRuang)
+    {
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['title'] = 'Barang Modal';
+        $data['pagetitle'] = 'Daftar barang modal';
+        $data['subtitle'] = 'Daftar barang modal';
+        $data['userdata'] = $this->session->userdata('login');
+        $data['barang_lab'] = $this->M_barangmodal->getBarangLab($idRuang);
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+        $data['thisRuang'] = $idRuang;
+        $data['ruangan_detail'] = $this->M_ruangan->getDetailRuangan($idRuang);
+        $data['barang_bmn'] = $this->M_barangmodal->getBarangBmn();
+        $this->load->view('partials/header', $data);
+        $this->load->view('partials/topbar', $data);
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('admin/daftarbarangmodal', $data);
+    }
+
+    public function detailBarangLab($idBarangLab)
+    {
+        $data['title'] = 'Barang Modal';
+        $data['pagetitle'] = 'Daftar barang modal';
+        $data['subtitle'] = 'Detail barang modal';
+        $data['userdata'] = $this->session->userdata('login');
+        $data['detail_barang'] = $this->M_barangmodal->getBarangDetail($idBarangLab);
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+        $this->load->view('partials/header', $data);
+        $this->load->view('partials/topbar', $data);
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('admin/detailbarangmodal', $data);
+    }
+    // end of barang lab
 }
