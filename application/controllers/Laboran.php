@@ -14,6 +14,7 @@ class Laboran extends CI_Controller
         $this->load->model('M_persediaan');
         $this->load->model('M_ruangan');
         $this->load->model('M_pegawaiUpt');
+        $this->load->model('M_barangmodal');
     }
 
     public function index()
@@ -489,6 +490,152 @@ class Laboran extends CI_Controller
         $this->load->view('baranghp/importdatahp', $data);
     }
     // end of barang habis pakai
+
+    // Barang Lab
+    public function pilihRuangan()
+    {
+        if ($this->session->login['role_id'] == 'laboran') {
+            $data['title'] = 'Barang Modal Laboratorium';
+            $data['pagetitle'] = 'Laboran';
+            $data['subtitle'] = 'Pilih Ruangan';
+            $idLab = $this->session->login['id_lab'];
+            $data['all_ruangan'] = $this->M_ruangan->getLabRuangan($idLab);
+            $data['no'] = 1;
+            $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+            $data['pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('laboran/pilihruangan', $data);
+        } else {
+            redirect('login/blocked');
+        }
+    }
+
+    public function daftarBarangLab($idRuang)
+    {
+        $this->form_validation->set_rules('namaBarang', 'Nama Barang', 'required');
+        $this->form_validation->set_rules('kondisi', 'Kondisi', 'required');
+        $this->form_validation->set_rules('statusBarang', 'Status', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['title'] = 'Barang Modal';
+            $data['pagetitle'] = 'Daftar barang modal';
+            $data['subtitle'] = 'Daftar barang modal';
+            $data['userdata'] = $this->session->userdata('login');
+            $data['barang_lab'] = $this->M_barangmodal->getBarangLab($idRuang);
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+            $data['thisRuang'] = $idRuang;
+            $data['ruangan_detail'] = $this->M_ruangan->getDetailRuangan($idRuang);
+            $data['barang_bmn'] = $this->M_barangmodal->getBarangBmn();
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('laboran/daftarbarangmodal', $data);
+        } else {
+            $idLab = $this->input->post('idLab');
+            $idPegawai = $this->input->post('idPegawai');
+            $idRuang = $this->input->post('idRuang');
+            $namaBarang = $this->input->post('namaBarang');
+            $kondisi = $this->input->post('kondisi');
+            $statusBarang = $this->input->post('statusBarang');
+            $keterangan = $this->input->post('keterangan');
+
+            $data = [
+                'id_lab' => $idLab,
+                'id_pegawai' => $idPegawai,
+                'id_ruang' => $idRuang,
+                'id_barang_bmn' => $namaBarang,
+                'kondisi' => $kondisi,
+                'status' => $statusBarang,
+                'keterangan' => $keterangan,
+                'created_at' => time(),
+                'updated_at' => time(),
+            ];
+
+            if ($this->M_barangmodal->addBarangLab($data)) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data barang berhasil ditambahkan!</div>');
+                redirect('laboran/daftarbaranglab/' . $idRuang);
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal menambahkan data barang!</div>');
+                redirect('laboran/daftarbaranglab/' . $idRuang);
+            }
+        }
+    }
+
+    public function detailBarangLab($idBarangLab)
+    {
+        $data['title'] = 'Barang Modal';
+        $data['pagetitle'] = 'Daftar barang modal';
+        $data['subtitle'] = 'Detail barang modal';
+        $data['userdata'] = $this->session->userdata('login');
+        $data['detail_barang'] = $this->M_barangmodal->getBarangDetail($idBarangLab);
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+        $this->load->view('partials/header', $data);
+        $this->load->view('partials/topbar', $data);
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('laboran/detailbarangmodal', $data);
+    }
+
+    public function editBarangLab($idBarangLab)
+    {
+        $this->form_validation->set_rules('namaBarang', 'Nama Barang', 'required');
+        $this->form_validation->set_rules('kondisi', 'Kondisi', 'required');
+        $this->form_validation->set_rules('statusBarang', 'Status', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Barang Modal';
+            $data['pagetitle'] = 'Daftar barang modal';
+            $data['subtitle'] = 'Edit barang modal';
+            $data['userdata'] = $this->session->userdata('login');
+            $data['detail_barang'] = $this->M_barangmodal->getBarangDetail($idBarangLab);
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+            $data['barang_bmn'] = $this->M_barangmodal->getBarangBmn();
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('laboran/editbarangmodal', $data);
+        } else {
+            $namaBarang = $this->input->post('namaBarang');
+            $kondisi = $this->input->post('kondisi');
+            $status = $this->input->post('statusBarang');
+            $keterangan = $this->input->post('keterangan');
+
+            $data = [
+                'id_barang_bmn' => $namaBarang,
+                'kondisi' => $kondisi,
+                'status' => $status,
+                'keterangan' => $keterangan,
+                'updated_at' => time(),
+            ];
+
+            if ($this->M_barangmodal->editBarangLab($idBarangLab, $data)) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data barang berhasil diubah!</div>');
+                redirect('laboran/editbaranglab/' . $idBarangLab);
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal mengubah data barang!</div>');
+                redirect('laboran/editbaranglab/' . $idBarangLab);
+            }
+        }
+    }
+
+    public function deleteBarangLab($idBarangLab)
+    {
+        if ($this->M_barangmodal->deleteBarangLab($idBarangLab)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data barang berhasil dihapus!</div>');
+            redirect($_SERVER['HTTP_REFERER']);
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Gagal menghapus data barang!</div>');
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+    // end of barang lab
 
     // Ruangan
     public function daftarRuangan()
