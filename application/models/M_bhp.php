@@ -16,10 +16,6 @@ class M_bhp extends CI_Model
         return $query->row_array();
     }
 
-    public function getLabDetail($idLab)
-    {
-    }
-
     // get barang from which lab
     public function daftarBarang($idLab)
     {

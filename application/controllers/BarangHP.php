@@ -12,6 +12,7 @@ class BarangHP extends CI_Controller
 
         $this->load->model('M_bhp');
         $this->load->model('M_pengguna');
+        $this->load->model('M_laboratorium');
     }
 
     public function index()
@@ -39,7 +40,10 @@ class BarangHP extends CI_Controller
         $data['userdata'] = $this->session->userdata('login');
         $data['barang_habis_pakai'] = $this->M_bhp->daftarBarang($idLab);
         $data['data_lab'] = $this->M_bhp->getThisLab($idPegawai);
+        $data['nama_lab'] = $this->M_laboratorium->namaLab($idLab);
+        $data['no'] = 1;
         $idPegawai = $this->session->login['id_pegawai'];
+        $data['thisLab'] = $idLab;
         $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
