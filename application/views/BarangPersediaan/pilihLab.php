@@ -23,15 +23,15 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    <h4 class="card-title">Pilih Ruangan</h4>
-                                    <p class="card-title-desc">Pilih ruangan untuk melihat daftar barang pada ruangan terkait.
+                                    <h4 class="card-title">Pilih Laboratorium</h4>
+                                    <p class="card-title-desc">Pilih laboratorium untuk melihat daftar barang pada laboratorium terkait.
                                     </p>
 
                                     <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead class="table-dark">
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Nama Ruangan</th>
+                                                <th>Nama Laboratorium</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -42,7 +42,7 @@
                                                     <td><?= $no++ ?></td>
                                                     <td><?= $l->nama_lab ?></td>
                                                     <td>
-                                                        <a href="<?= base_url('index.php/baranghp/daftarbarang/') . $l->id_lab ?>" class="btn btn-primary btn-sm edit" title="Edit">
+                                                        <a href="<?= base_url('index.php/barangpersediaan/daftarbarang/') . $l->id_lab ?>" class="btn btn-primary btn-sm edit" title="Pilih">
                                                             Pilih
                                                         </a>
                                                     </td>

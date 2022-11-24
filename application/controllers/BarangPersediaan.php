@@ -12,20 +12,23 @@ class BarangPersediaan extends CI_Controller
 
         $this->load->model('M_persediaan');
         $this->load->model('M_pengguna');
+        $this->load->model('M_laboratorium');
     }
 
     public function index()
     {
         $data['title'] = 'Barang Persediaan';
-        $data['pagetitle'] = 'Pilih ruangan';
+        $data['pagetitle'] = 'Pilih laboratorium';
         $data['subtitle'] = '';
+        $data['lab'] = $this->M_persediaan->getLab();
+        $data['no'] = 1;
         $data['userdata'] = $this->session->userdata('login');
         $idPegawai = $this->session->login['id_pegawai'];
         $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
-        $this->load->view('barangpersediaan/pilihruangan', $data);
+        $this->load->view('barangpersediaan/pilihlab', $data);
     }
 
     public function daftarBarang($idLab)
@@ -36,9 +39,12 @@ class BarangPersediaan extends CI_Controller
         $data['subtitle'] = 'Daftar persediaan';
         $data['userdata'] = $this->session->userdata('login');
         $data['barang_persediaan'] = $this->M_persediaan->daftarBarang($idLab);
+        $data['nama_lab'] = $this->M_laboratorium->namaLab($idLab);
         $data['data_lab'] = $this->M_persediaan->getThisLab($idPegawai);
         $idPegawai = $this->session->login['id_pegawai'];
         $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+        $data['no'] = 1;
+        $data['thisLab'] = $idLab;
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);

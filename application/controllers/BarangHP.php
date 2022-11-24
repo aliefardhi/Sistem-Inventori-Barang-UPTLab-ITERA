@@ -18,7 +18,7 @@ class BarangHP extends CI_Controller
     public function index()
     {
         $data['title'] = 'Barang Habis Pakai';
-        $data['pagetitle'] = 'Pilih ruangan';
+        $data['pagetitle'] = 'Pilih laboratorium';
         $data['subtitle'] = '';
         $data['userdata'] = $this->session->userdata('login');
         $data['lab'] = $this->M_bhp->getLab();
@@ -28,7 +28,7 @@ class BarangHP extends CI_Controller
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
-        $this->load->view('baranghp/pilihruangan', $data);
+        $this->load->view('baranghp/pilihlab', $data);
     }
 
     public function daftarBarang($idLab)
