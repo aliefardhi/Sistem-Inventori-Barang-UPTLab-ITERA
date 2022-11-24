@@ -491,7 +491,7 @@ class Laboran extends CI_Controller
     }
     // end of barang habis pakai
 
-    // Barang Lab
+    // Barang Lab / Barang Modal
     public function pilihRuangan()
     {
         if ($this->session->login['role_id'] == 'laboran') {

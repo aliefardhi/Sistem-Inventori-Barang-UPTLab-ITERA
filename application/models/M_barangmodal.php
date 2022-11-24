@@ -7,11 +7,13 @@ class M_barangmodal extends CI_Model
     public function getBarangLab($idRuang)
     {
         // get specific column only
-        $query = $this->db->query("SELECT tbl_baranglab.id_barang_bmn, tbl_baranglab.kondisi, tbl_baranglab.status, tbl_baranglab.keterangan, created_at, updated_at, nama_barang, harga_satuan, tahun_perolehan, deskripsi
+        $query = $this->db->query("SELECT tbl_baranglab.id_barang_bmn, tbl_baranglab.kondisi, tbl_baranglab.status, tbl_baranglab.keterangan, tbl_baranglab.created_at, tbl_baranglab.updated_at, nama_barang, harga_satuan, tahun_perolehan, deskripsi, nama_lab, nama_ruangan
         FROM `tbl_baranglab`
         LEFT JOIN v_simona_barang_bmn ON tbl_baranglab.id_barang_bmn = v_simona_barang_bmn.id_barang_bmn
         LEFT JOIN v_simona_barang ON v_simona_barang_bmn.kode_barang = v_simona_barang.kode_barang
-        WHERE id_ruang = '$idRuang'");
+        LEFT JOIN tbl_lab ON tbl_baranglab.id_lab = tbl_lab.id_lab
+        LEFT JOIN tbl_ruangan ON tbl_baranglab.id_ruang = tbl_ruangan.id_ruang
+        WHERE tbl_baranglab.id_ruang = '$idRuang'");
 
         return $query->result();
     }

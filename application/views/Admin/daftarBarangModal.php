@@ -34,7 +34,7 @@
                                         </div>
 
                                         <div class="col-6">
-                                            <a class="btn excel-button btn-sm edit float-end mx-1">
+                                            <a class="btn excel-button btn-sm edit float-end mx-1" href="<?= base_url('index.php/excel/exportbarangmodal/') . $thisRuang ?>">
                                                 <i class="mdi mdi-microsoft-excel me-1"></i>Download Data Barang
                                             </a>
                                         </div>
