@@ -38,6 +38,9 @@
                                                 <a class="btn btn-primary btn-sm edit float-end" href="<?= base_url() ?>index.php/laboran/tambahdatabp">
                                                     <i class="mdi mdi-plus me-1"></i>Tambah Data Barang
                                                 </a>
+                                                <a class="btn btn-info btn-sm edit float-end mx-1" data-bs-toggle="modal" data-bs-target="#uploadPersediaan-modal">
+                                                    <i class="mdi mdi-file-upload me-1"></i>Upload Data Barang
+                                                </a>
                                             <?php endif; ?>
                                             <a class="btn excel-button btn-sm edit float-end mx-1" href="<?= base_url('index.php/excel/exportpersediaan/') . $thisLab ?>">
                                                 <i class="mdi mdi-microsoft-excel me-1"></i>Download Data Barang
@@ -90,6 +93,33 @@
                                         </tbody>
                                     </table>
                                     <!-- End of table -->
+
+                                    <!-- Modal start -->
+                                    <div class="modal modal-lg fade" id="uploadPersediaan-modal" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Upload Data Barang</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Start form input -->
+                                                    <form class="row g-3" method="POST" action="<?= base_url('index.php/excel/importPersediaan') ?>" enctype="multipart/form-data">
+                                                        <input type="hidden" name="idLab" value="<?= $userdata['id_lab'] ?>">
+                                                        <div class="mb-3">
+                                                            <input class="form-control" type="file" id="upload_file" name="upload_file">
+                                                        </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                </div>
+                                                </form>
+                                                <!-- end form input -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end of modal -->
 
                                 </div>
                             </div>

@@ -21,7 +21,7 @@ class Laboran extends CI_Controller
     {
         if ($this->session->login['role_id'] == 'laboran') {
             $data['title'] = 'Dashboard';
-            $data['pagetitle'] = 'Dashboard';
+            $data['pagetitle'] = 'Laboran';
             $data['subtitle'] = 'Dashboard';
             $data['userdata'] = $this->session->userdata('login');
             $idPegawai = $this->session->login['id_pegawai'];

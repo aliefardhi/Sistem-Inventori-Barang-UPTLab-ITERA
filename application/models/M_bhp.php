@@ -34,6 +34,16 @@ class M_bhp extends CI_Model
         return $this->db->insert($this->_table, $data);
     }
 
+    public function addBatch($data)
+    {
+        $this->db->insert_batch($this->_table, $data);
+        if ($this->db->affected_rows() > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     public function editBhp($data, $idBhp)
     {
         $query = $this->db->set($data);

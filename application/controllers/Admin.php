@@ -22,7 +22,7 @@ class Admin extends CI_Controller
     {
         if ($this->session->login['role_id'] == 'admin') {
             $data['title'] = 'Dashboard';
-            $data['pagetitle'] = 'Dashboard';
+            $data['pagetitle'] = 'Admin';
             $data['subtitle'] = 'Dashboard';
             $data['userdata'] = $this->session->userdata('login');
             $idPegawai = $this->session->login['id_pegawai'];

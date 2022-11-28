@@ -27,14 +27,8 @@
                                     <div class="row">
                                         <div class="col-8">
                                             <h4 class="card-title">Masukan data barang</h4>
-                                            <p class="card-title-desc">Masukan data barang habis pakai melalui form dibawah ini atau dapat melakukan import data excel barang.
+                                            <p class="card-title-desc">Masukan data barang habis pakai secara manual melalui form dibawah ini.
                                             </p>
-                                        </div>
-
-                                        <div class="col-4">
-                                            <a class="btn excel-button btn-sm edit float-end mx-1" href="<?= base_url() ?>index.php/laboran/importdatahp">
-                                                <i class="mdi mdi-microsoft-excel me-1"></i>Import Data Barang
-                                            </a>
                                         </div>
                                     </div>
 
