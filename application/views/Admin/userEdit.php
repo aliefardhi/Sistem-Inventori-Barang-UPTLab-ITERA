@@ -22,8 +22,8 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    <h4 class="card-title">Edit Pegawai</h4>
-                                    <p class="card-title-desc">Edit data pegawai UPT Laboratorium ITERA.</p>
+                                    <h4 class="card-title">Edit Pengguna</h4>
+                                    <p class="card-title-desc">Edit data pengguna sistem inventori alat dan bahan UPT Laboratorium ITERA.</p>
 
                                     <form action="<?= base_url('index.php/admin/useredit/') . $userdetail->id_pegawai ?>" method="post">
 
@@ -44,7 +44,7 @@
                                             <label for="password" class="col-md-2 col-form-label">Password</label>
                                             <div class="col-md-10">
                                                 <input type="hidden" value="<?= $userdetail->password ?>" name="currentPassword">
-                                                <input class="form-control" type="text" value="<?= $userdetail->password ?>" id="password" name="password">
+                                                <input class="form-control" type="password" value="<?= $userdetail->password ?>" id="password" name="password">
                                             </div>
                                             <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>

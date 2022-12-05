@@ -58,6 +58,7 @@
                                                 <th>Jumlah</th>
                                                 <th>Sisa Barang</th>
                                                 <th>Satuan</th>
+                                                <th>Kondisi</th>
                                                 <th>Tanggal Terima</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -72,6 +73,17 @@
                                                     <td><?= $bhp->jumlah ?></td>
                                                     <td><?= $bhp->sisa_barang ?></td>
                                                     <td><?= $bhp->satuan ?></td>
+                                                    <td>
+                                                        <?php if ($bhp->kondisi == 'baik') : ?>
+                                                            <span class="badge rounded-pill text-bg-success">Baik</span>
+                                                        <?php endif; ?>
+                                                        <?php if ($bhp->kondisi == 'rusak') : ?>
+                                                            <span class="badge rounded-pill text-bg-warning">Rusak</span>
+                                                        <?php endif; ?>
+                                                        <?php if ($bhp->kondisi == 'hilang') : ?>
+                                                            <span class="badge rounded-pill text-bg-danger">Hilang</span>
+                                                        <?php endif; ?>
+                                                    </td>
                                                     <td><?= $bhp->tanggal_terima ?></td>
                                                     <td><a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url('index.php/baranghp/detailbaranghp/') . $bhp->id_bhp ?>">
                                                             <i class="mdi mdi-information-outline"></i>

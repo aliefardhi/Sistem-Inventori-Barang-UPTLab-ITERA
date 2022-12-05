@@ -51,6 +51,38 @@ class BarangHP extends CI_Controller
         $this->load->view('baranghp/daftarbarang', $data);
     }
 
+    public function labBhpRusak()
+    {
+        $data['title'] = 'Barang Habis Pakai';
+        $data['pagetitle'] = 'Admin';
+        $data['subtitle'] = 'Barang Habis Pakai Rusak';
+        $data['lab'] = $this->M_bhp->getLab();
+        $data['no'] = 1;
+        $data['userdata'] = $this->session->userdata('login');
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+        $this->load->view('partials/header', $data);
+        $this->load->view('partials/topbar', $data);
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('baranghp/pilihlabrusak', $data);
+    }
+
+    public function labBhpHilang()
+    {
+        $data['title'] = 'Barang Habis Pakai';
+        $data['pagetitle'] = 'Admin';
+        $data['subtitle'] = 'Barang Habis Pakai Hilang';
+        $data['lab'] = $this->M_bhp->getLab();
+        $data['no'] = 1;
+        $data['userdata'] = $this->session->userdata('login');
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+        $this->load->view('partials/header', $data);
+        $this->load->view('partials/topbar', $data);
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('baranghp/pilihlabhilang', $data);
+    }
+
     public function detailBarangHP($idBhp)
     {
         $data['title'] = 'Barang Habis Pakai';
@@ -66,7 +98,7 @@ class BarangHP extends CI_Controller
         $this->load->view('baranghp/detailbaranghp', $data);
     }
 
-    public function bhpHilang()
+    public function bhpHilang($idLab)
     {
         $data['title'] = 'Halaman Barang Habis Pakai Hilang';
         $data['pagetitle'] = 'Barang habis pakai';
@@ -74,13 +106,15 @@ class BarangHP extends CI_Controller
         $data['userdata'] = $this->session->userdata('login');
         $idPegawai = $this->session->login['id_pegawai'];
         $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+        $data['bhp_hilang'] = $this->M_bhp->getBarangHilang($idLab);
+        $data['no'] = 1;
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('baranghp/daftarhilangbhp', $data);
     }
 
-    public function bhpRusak()
+    public function bhpRusak($idLab)
     {
         $data['title'] = 'Halaman Barang Habis Pakai Rusak';
         $data['pagetitle'] = 'Barang habis pakai';
@@ -88,6 +122,8 @@ class BarangHP extends CI_Controller
         $data['userdata'] = $this->session->userdata('login');
         $idPegawai = $this->session->login['id_pegawai'];
         $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+        $data['bhp_rusak'] = $this->M_bhp->getBarangRusak($idLab);
+        $data['no'] = 1;
         $this->load->view('partials/header', $data);
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);

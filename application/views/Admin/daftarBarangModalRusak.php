@@ -28,53 +28,57 @@
                                             <?= $this->session->flashdata('message'); ?>
                                         <?php endif; ?>
                                         <div class="col-6">
-                                            <h4 class="card-title">Daftar Barang Rusak</h4>
-                                            <p class="card-title-desc">Daftar barang persediaan dengan kondisi rusak.
+                                            <h4 class="card-title">Daftar Barang</h4>
+                                            <p class="card-title-desc">Daftar barang rusak yang terdapat pada ruangan <b><?= $ruangan_detail['nama_ruangan'] ?></b>.
                                             </p>
                                         </div>
 
-                                        <!-- <div class="col-6">
-                                            <a class="btn btn-primary btn-sm edit float-end" href="<?= base_url() ?>index.php/laboran/tambahdatahp">
-                                                <i class="mdi mdi-plus me-1"></i>Tambah Data Barang
+                                        <div class="col-6">
+                                            <a class="btn excel-button btn-sm edit float-end mx-1" href="<?= base_url('index.php/excel/exportbarangmodal/') . $thisRuang ?>">
+                                                <i class="mdi mdi-microsoft-excel me-1"></i>Download Data Barang
                                             </a>
-                                            <a class="btn excel-button btn-sm edit float-end mx-1">
-                                                <i class="mdi mdi-microsoft-excel me-1"></i>Export Data Barang
-                                            </a>
-                                        </div> -->
+                                        </div>
                                     </div>
 
                                     <!-- Start table -->
-                                    <table id="datatable" class="table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead class="table-dark">
                                             <tr>
                                                 <th>No</th>
+                                                <th>ID Barang</th>
                                                 <th>Nama</th>
-                                                <th>Jenis</th>
-                                                <th>Jumlah</th>
-                                                <th>Sisa Barang</th>
-                                                <th>Satuan</th>
                                                 <th>Kondisi</th>
-                                                <th>Tanggal Terima</th>
+                                                <th>Status</th>
+                                                <th>Tahun Perolehan</th>
+                                                <th>Keterangan</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
-                                            <?php foreach ($bp_rusak as $b) : ?>
+                                            <?php $no = 1;
+                                            foreach ($barang_lab as $b) : ?>
                                                 <tr>
                                                     <td><?= $no++ ?></td>
+                                                    <td><?= $b->id_barang_bmn ?></td>
                                                     <td><?= $b->nama_barang ?></td>
-                                                    <td><?= $b->jenis_barang ?></td>
-                                                    <td><?= $b->jumlah ?></td>
-                                                    <td><?= $b->sisa_barang ?></td>
-                                                    <td><?= $b->satuan ?></td>
                                                     <td>
-                                                        <span class="badge rounded-pill text-bg-warning text-capitalize"><?= $b->kondisi ?></span>
+                                                        <?php if ($b->kondisi == 'Baik') : ?>
+                                                            <span class="badge rounded-pill text-bg-success">Baik</span>
+                                                        <?php endif; ?>
+                                                        <?php if ($b->kondisi == 'Rusak') : ?>
+                                                            <span class="badge rounded-pill text-bg-warning">Rusak</span>
+                                                        <?php endif; ?>
+                                                        <?php if ($b->kondisi == 'Hilang') : ?>
+                                                            <span class="badge rounded-pill text-bg-danger">Hilang</span>
+                                                        <?php endif; ?>
                                                     </td>
-                                                    <td><?= $b->tanggal_terima ?></td>
+                                                    <td><?= $b->status ?></td>
+                                                    <td><?= $b->tahun_perolehan ?></td>
+                                                    <td><?= $b->keterangan ?></td>
                                                     <td>
-                                                        <a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url('index.php/barangpersediaan/detailbarangpersediaan/') . $b->id_persediaan ?>">
-                                                            Detail
+                                                        <a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url('index.php/admin/detailbaranglab/') . $b->id_barang_bmn ?>">
+                                                            <i class="mdi mdi-information-outline"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -132,7 +136,9 @@
 
     <script type="text/javascript" src="<?= base_url() ?>assets/js/pages/dashboard.init.js"></script>
 
+    <!-- App js -->
     <script type="text/javascript" src="<?= base_url() ?>assets/js/app.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>assets/js/custom.js"></script>
 
 </body>
 

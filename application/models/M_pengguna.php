@@ -78,4 +78,10 @@ class M_pengguna extends CI_Model
         $query = $this->db->get_where($this->_table, ['username' => $username]);
         return $query->row();
     }
+
+    public function getLabName($idLab)
+    {
+        $query = $this->db->query("SELECT nama_lab FROM `tbl_lab` WHERE id_lab = '$idLab'")->row();
+        return $query->nama_lab;
+    }
 }

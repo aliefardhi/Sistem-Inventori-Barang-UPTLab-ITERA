@@ -49,7 +49,8 @@
                                     <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead class="table-dark">
                                             <tr>
-                                                <th>Id Barang</th>
+                                                <th>No</th>
+                                                <th>ID Barang</th>
                                                 <th>Nama</th>
                                                 <th>Kondisi</th>
                                                 <th>Status</th>
@@ -62,9 +63,20 @@
                                         <tbody>
                                             <?php foreach ($barang_lab as $b) : ?>
                                                 <tr>
+                                                    <td><?= $no++ ?></td>
                                                     <td><?= $b->id_barang_bmn ?></td>
                                                     <td><?= $b->nama_barang ?></td>
-                                                    <td><?= $b->kondisi ?></td>
+                                                    <td>
+                                                        <?php if ($b->kondisi == 'Baik') : ?>
+                                                            <span class="badge rounded-pill text-bg-success">Baik</span>
+                                                        <?php endif; ?>
+                                                        <?php if ($b->kondisi == 'Rusak') : ?>
+                                                            <span class="badge rounded-pill text-bg-warning">Rusak</span>
+                                                        <?php endif; ?>
+                                                        <?php if ($b->kondisi == 'Hilang') : ?>
+                                                            <span class="badge rounded-pill text-bg-danger">Hilang</span>
+                                                        <?php endif; ?>
+                                                    </td>
                                                     <td><?= $b->status ?></td>
                                                     <td><?= $b->tahun_perolehan ?></td>
                                                     <td><?= $b->keterangan ?></td>
@@ -99,12 +111,12 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <!-- Start form input -->
-                                                    <form class="row g-3" method="POST" action="<?= base_url('index.php/laboran/daftarbaranglab/') . $thisRuang ?>">
+                                                    <form class="" method="POST" action="<?= base_url('index.php/laboran/daftarbaranglab/') . $thisRuang ?>">
                                                         <input type="hidden" name="idLab" value="<?= $user_session->id_lab ?>">
                                                         <input type="hidden" name="idPegawai" value="<?= $user_session->id_pegawai ?>">
                                                         <input type="hidden" name="idRuang" value="<?= $thisRuang ?>">
 
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-12 mb-3">
                                                             <label for="namaBarang" class="form-label">Nama Barang</label>
                                                             <select id="namaBarang" class="form-select" name="namaBarang">
                                                                 <option selected>- Pilih -</option>
@@ -114,17 +126,17 @@
                                                             </select>
                                                             <?= form_error('namaBarang', '<small class="text-danger pl-3">', '</small>'); ?>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-12 mb-3">
                                                             <label for="kondisi" class="form-label">Kondisi</label>
                                                             <select id="kondisi" class="form-select" name="kondisi">
                                                                 <option selected>- Pilih -</option>
                                                                 <option value="Baik">Baik</option>
-                                                                <option value="Rusak Ringan">Rusak Ringan</option>
-                                                                <option value="Rusak Berat">Rusak Berat</option>
+                                                                <option value="Rusak">Rusak</option>
+                                                                <option value="Hilang">Hilang</option>
                                                             </select>
                                                             <?= form_error('kondisi', '<small class="text-danger pl-3">', '</small>'); ?>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-12 mb-3">
                                                             <label for="statusBarang" class="form-label">Status</label>
                                                             <select id="statusBarang" class="form-select" name="statusBarang">
                                                                 <option selected>- Pilih -</option>
@@ -133,7 +145,7 @@
                                                             </select>
                                                             <?= form_error('statusBarang', '<small class="text-danger pl-3">', '</small>'); ?>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12 mb-3">
                                                             <label for="keterangan" class="form-label">Keterangan</label>
                                                             <textarea class="form-control" id="keterangan" rows="3" name="keterangan"></textarea>
                                                         </div>

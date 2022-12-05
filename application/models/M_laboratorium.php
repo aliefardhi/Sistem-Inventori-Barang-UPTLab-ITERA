@@ -24,4 +24,10 @@ class M_laboratorium extends CI_Model
     {
         return $this->db->query("SELECT nama_lab FROM tbl_lab WHERE id_lab = '$idLab'")->row_array();
     }
+
+    public function countLab()
+    {
+        return $this->db->query("SELECT COUNT(id_lab) as id_lab FROM `tbl_lab`
+        WHERE NOT nama_lab = 'UPT Laboratorium Terpadu' ")->row();
+    }
 }

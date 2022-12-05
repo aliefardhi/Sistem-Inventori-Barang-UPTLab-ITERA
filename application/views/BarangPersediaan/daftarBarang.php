@@ -58,6 +58,7 @@
                                                 <th>Jumlah</th>
                                                 <th>Sisa Barang</th>
                                                 <th>Satuan</th>
+                                                <th>Kondisi</th>
                                                 <th>Tanggal Terima</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -72,6 +73,17 @@
                                                     <td><?= $bp->jumlah ?></td>
                                                     <td><?= $bp->sisa_barang ?></td>
                                                     <td><?= $bp->satuan ?></td>
+                                                    <td>
+                                                        <?php if ($bp->kondisi == 'baik') : ?>
+                                                            <span class="badge rounded-pill text-bg-success">Baik</span>
+                                                        <?php endif; ?>
+                                                        <?php if ($bp->kondisi == 'rusak') : ?>
+                                                            <span class="badge rounded-pill text-bg-warning">Rusak</span>
+                                                        <?php endif; ?>
+                                                        <?php if ($bp->kondisi == 'hilang') : ?>
+                                                            <span class="badge rounded-pill text-bg-danger">Hilang</span>
+                                                        <?php endif; ?>
+                                                    </td>
                                                     <td><?= $bp->tanggal_terima ?></td>
                                                     <td>
                                                         <a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url('index.php/barangpersediaan/detailbarangpersediaan/') . $bp->id_persediaan ?>">

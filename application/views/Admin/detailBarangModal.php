@@ -79,11 +79,11 @@
                                                         <?php if ($detail_barang['kondisi'] == 'Baik') : ?>
                                                             <span class="badge rounded-pill text-bg-success">Baik</span>
                                                         <?php endif; ?>
-                                                        <?php if ($detail_barang['kondisi'] == 'Rusak Ringan') : ?>
-                                                            <span class="badge rounded-pill text-bg-warning">Rusak Ringan</span>
+                                                        <?php if ($detail_barang['kondisi'] == 'Rusak') : ?>
+                                                            <span class="badge rounded-pill text-bg-warning">Rusak</span>
                                                         <?php endif; ?>
-                                                        <?php if ($detail_barang['kondisi'] == 'Rusak Berat') : ?>
-                                                            <span class="badge rounded-pill text-bg-danger">Rusak Berat</span>
+                                                        <?php if ($detail_barang['kondisi'] == 'Hilang') : ?>
+                                                            <span class="badge rounded-pill text-bg-danger">Hilang</span>
                                                         <?php endif; ?>
                                                     </div>
                                                 </li>

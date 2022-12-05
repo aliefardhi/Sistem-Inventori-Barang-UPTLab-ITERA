@@ -44,7 +44,8 @@
                                     <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead class="table-dark">
                                             <tr>
-                                                <th>Id Barang</th>
+                                                <th>No</th>
+                                                <th>ID Barang</th>
                                                 <th>Nama</th>
                                                 <th>Kondisi</th>
                                                 <th>Status</th>
@@ -55,11 +56,23 @@
                                         </thead>
 
                                         <tbody>
-                                            <?php foreach ($barang_lab as $b) : ?>
+                                            <?php $no = 1;
+                                            foreach ($barang_lab as $b) : ?>
                                                 <tr>
+                                                    <td><?= $no++ ?></td>
                                                     <td><?= $b->id_barang_bmn ?></td>
                                                     <td><?= $b->nama_barang ?></td>
-                                                    <td><?= $b->kondisi ?></td>
+                                                    <td>
+                                                        <?php if ($b->kondisi == 'Baik') : ?>
+                                                            <span class="badge rounded-pill text-bg-success">Baik</span>
+                                                        <?php endif; ?>
+                                                        <?php if ($b->kondisi == 'Rusak') : ?>
+                                                            <span class="badge rounded-pill text-bg-warning">Rusak</span>
+                                                        <?php endif; ?>
+                                                        <?php if ($b->kondisi == 'Hilang') : ?>
+                                                            <span class="badge rounded-pill text-bg-danger">Hilang</span>
+                                                        <?php endif; ?>
+                                                    </td>
                                                     <td><?= $b->status ?></td>
                                                     <td><?= $b->tahun_perolehan ?></td>
                                                     <td><?= $b->keterangan ?></td>

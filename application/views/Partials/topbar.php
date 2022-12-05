@@ -3,7 +3,7 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box m-0">
-                <a href="index.html" class="logo logo-light mt-2 me-3">
+                <a class="logo logo-light mt-2 me-3">
                     <!-- <span class="logo-sm">
                         <img src="<?= base_url() ?>assets/images/Group 22.png" alt="" height="22">
                     </span> -->

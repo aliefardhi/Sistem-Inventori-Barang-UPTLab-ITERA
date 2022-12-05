@@ -19,33 +19,3 @@ $(".tombol-delete").on("click", function (e) {
 	});
 });
 // end of Sweetalert2
-
-// daftarpegawai
-$(document).ready(function () {
-	$("#pilihPegawaiSimuk").change(function () {
-		var id = $(this).val();
-		$.ajax({
-			url: "<?= base_url('index.php/admin/getIdPegawai') ?>",
-			method: "POST",
-			data: {
-				id: id,
-			},
-			async: true,
-			dataType: "json",
-			success: function (data) {
-				var html = "";
-				var i;
-				for (i = 0; i < data.length; i++) {
-					html +=
-						"<option value=" +
-						data[i].id_pegawai +
-						">" +
-						data[i].id_pegawai +
-						"</option>";
-				}
-				$("#idPegawaiSimuk").html(html);
-			},
-		});
-		return false;
-	});
-});

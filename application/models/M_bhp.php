@@ -56,4 +56,66 @@ class M_bhp extends CI_Model
     {
         return $this->db->delete($this->_table, ['id_bhp' => $idBhp]);
     }
+
+    public function getBarangRusak($idLab)
+    {
+        return $this->db->query("SELECT * FROM `tbl_bhp` WHERE kondisi = 'rusak' AND id_lab = '$idLab'")->result();
+    }
+
+    public function getBarangHilang($idLab)
+    {
+        return $this->db->query("SELECT * FROM `tbl_bhp` WHERE kondisi = 'hilang' AND id_lab = '$idLab'")->result();
+    }
+
+    public function countBhp()
+    {
+        return $this->db->query("SELECT COUNT(id_bhp) as id_bhp FROM `tbl_bhp`")->row();
+    }
+
+    public function bhpBaik()
+    {
+        return $this->db->query("SELECT COUNT(id_bhp) as baik FROM `tbl_bhp`
+        WHERE kondisi = 'baik'")->row();
+    }
+
+    public function bhpRusak()
+    {
+        return $this->db->query("SELECT COUNT(id_bhp) as rusak FROM `tbl_bhp`
+        WHERE kondisi = 'rusak'")->row();
+    }
+
+    public function bhpHilang()
+    {
+        return $this->db->query("SELECT COUNT(id_bhp) as hilang FROM `tbl_bhp`
+        WHERE kondisi = 'hilang'")->row();
+    }
+
+    public function nilaiBhpLab($idLab)
+    {
+        return $this->db->query("SELECT SUM(harga_satuan) as harga_satuan FROM `tbl_bhp`
+        WHERE id_lab = '$idLab'")->row();
+    }
+
+    public function countBhpLab($idLab)
+    {
+        return $this->db->query("SELECT COUNT(id_bhp) as id_bhp FROM `tbl_bhp` WHERE id_lab = '$idLab'")->row();
+    }
+
+    public function bhpBaikLab($idLab)
+    {
+        return $this->db->query("SELECT COUNT(id_bhp) as baik FROM `tbl_bhp`
+        WHERE kondisi = 'baik' AND id_lab = '$idLab'")->row();
+    }
+
+    public function bhpRusakLab($idLab)
+    {
+        return $this->db->query("SELECT COUNT(id_bhp) as rusak FROM `tbl_bhp`
+        WHERE kondisi = 'rusak' AND id_lab = '$idLab'")->row();
+    }
+
+    public function bhpHilangLab($idLab)
+    {
+        return $this->db->query("SELECT COUNT(id_bhp) as hilang FROM `tbl_bhp`
+        WHERE kondisi = 'hilang' AND id_lab = '$idLab'")->row();
+    }
 }

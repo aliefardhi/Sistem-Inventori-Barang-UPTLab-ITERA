@@ -16,6 +16,8 @@ class Admin extends CI_Controller
         $this->load->model('M_pengguna');
         $this->load->model('M_ruangan');
         $this->load->model('M_barangmodal');
+        $this->load->model('M_persediaan');
+        $this->load->model('M_bhp');
     }
 
     public function index()
@@ -27,6 +29,22 @@ class Admin extends CI_Controller
             $data['userdata'] = $this->session->userdata('login');
             $idPegawai = $this->session->login['id_pegawai'];
             $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+            $data['jumlahPegawai'] = $this->M_pegawaiUpt->getCountPegawaiUpt();
+            $data['sumHarga'] = $this->M_barangmodal->getHargaSum();
+            $data['countBarangModal'] = $this->M_barangmodal->getCountBarang();
+            $data['countBarangRusak'] = $this->M_barangmodal->getCountBarangRusak();
+            $data['countBarangHilang'] = $this->M_barangmodal->getCountBarangHilang();
+            $data['countBarangBaik'] = $this->M_barangmodal->getCountBarangBaik();
+            $data['countRuang'] = $this->M_ruangan->countRuangan();
+            $data['countLab'] = $this->M_laboratorium->countLab();
+            $data['countPersediaan'] = $this->M_persediaan->countPersediaan();
+            $data['persediaanBaik'] = $this->M_persediaan->countPersediaanBaik();
+            $data['persediaanRusak'] = $this->M_persediaan->countPersediaanRusak();
+            $data['persediaanHilang'] = $this->M_persediaan->countPersediaanHilang();
+            $data['countBhp'] = $this->M_bhp->countBhp();
+            $data['bhpBaik'] = $this->M_bhp->bhpBaik();
+            $data['bhpRusak'] = $this->M_bhp->bhpRusak();
+            $data['bhpHilang'] = $this->M_bhp->bhpHilang();
             $this->load->view('partials/header', $data);
             $this->load->view('partials/topbar', $data);
             $this->load->view('partials/page-title', $data);
@@ -632,6 +650,46 @@ class Admin extends CI_Controller
             redirect('login/blocked');
         }
     }
+    public function pilihLabBarangRusak()
+    {
+        if ($this->session->login['role_id'] == 'admin') {
+            $data['title'] = 'Barang Modal Laboratorium (Rusak)';
+            $data['pagetitle'] = 'Admin';
+            $data['subtitle'] = 'Pilih Laboratorium';
+            $data['all_lab'] = $this->M_laboratorium->getAllLab();
+            $data['no'] = 1;
+            $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+            $data['pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/pilihlabbarangmodalrusak', $data);
+        } else {
+            redirect('login/blocked');
+        }
+    }
+    public function pilihLabBarangHilang()
+    {
+        if ($this->session->login['role_id'] == 'admin') {
+            $data['title'] = 'Barang Modal Laboratorium (Hilang)';
+            $data['pagetitle'] = 'Admin';
+            $data['subtitle'] = 'Pilih Laboratorium';
+            $data['all_lab'] = $this->M_laboratorium->getAllLab();
+            $data['no'] = 1;
+            $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+            $data['pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/pilihlabbarangmodalhilang', $data);
+        } else {
+            redirect('login/blocked');
+        }
+    }
 
     public function pilihRuangan($idLab)
     {
@@ -654,6 +712,48 @@ class Admin extends CI_Controller
             redirect('login/blocked');
         }
     }
+    public function pilihRuanganBarangRusak($idLab)
+    {
+        if ($this->session->login['role_id'] == 'admin') {
+            $data['title'] = 'Barang Modal Laboratorium (Rusak)';
+            $data['pagetitle'] = 'Admin';
+            $data['subtitle'] = 'Pilih Ruangan';
+            $data['all_ruangan'] = $this->M_ruangan->getLabRuangan($idLab);
+            $data['nama_lab'] = $this->M_laboratorium->namaLab($idLab);
+            $data['no'] = 1;
+            $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+            $data['pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/pilihruanganbarangmodalrusak', $data);
+        } else {
+            redirect('login/blocked');
+        }
+    }
+    public function pilihRuanganBarangHilang($idLab)
+    {
+        if ($this->session->login['role_id'] == 'admin') {
+            $data['title'] = 'Barang Modal Laboratorium (Hilang)';
+            $data['pagetitle'] = 'Admin';
+            $data['subtitle'] = 'Pilih Ruangan';
+            $data['all_ruangan'] = $this->M_ruangan->getLabRuangan($idLab);
+            $data['nama_lab'] = $this->M_laboratorium->namaLab($idLab);
+            $data['no'] = 1;
+            $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+            $data['pegawai_upt'] = $this->M_pegawaiUpt->getPegawaiUpt();
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/pilihruanganbarangmodalhilang', $data);
+        } else {
+            redirect('login/blocked');
+        }
+    }
 
     public function daftarBarangLab($idRuang)
     {
@@ -672,6 +772,42 @@ class Admin extends CI_Controller
         $this->load->view('partials/topbar', $data);
         $this->load->view('partials/page-title', $data);
         $this->load->view('admin/daftarbarangmodal', $data);
+    }
+    public function daftarBarangLabRusak($idRuang)
+    {
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['title'] = 'Barang Modal (Rusak)';
+        $data['pagetitle'] = 'Daftar barang modal';
+        $data['subtitle'] = 'Daftar barang modal (Rusak)';
+        $data['userdata'] = $this->session->userdata('login');
+        $data['barang_lab'] = $this->M_barangmodal->getBarangLabRusak($idRuang);
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+        $data['thisRuang'] = $idRuang;
+        $data['ruangan_detail'] = $this->M_ruangan->getDetailRuangan($idRuang);
+        $data['barang_bmn'] = $this->M_barangmodal->getBarangBmn();
+        $this->load->view('partials/header', $data);
+        $this->load->view('partials/topbar', $data);
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('admin/daftarbarangmodalrusak', $data);
+    }
+    public function daftarBarangLabHilang($idRuang)
+    {
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['title'] = 'Barang Modal (Hilang)';
+        $data['pagetitle'] = 'Daftar barang modal';
+        $data['subtitle'] = 'Daftar barang modal (Hilang)';
+        $data['userdata'] = $this->session->userdata('login');
+        $data['barang_lab'] = $this->M_barangmodal->getBarangLabHilang($idRuang);
+        $idPegawai = $this->session->login['id_pegawai'];
+        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+        $data['thisRuang'] = $idRuang;
+        $data['ruangan_detail'] = $this->M_ruangan->getDetailRuangan($idRuang);
+        $data['barang_bmn'] = $this->M_barangmodal->getBarangBmn();
+        $this->load->view('partials/header', $data);
+        $this->load->view('partials/topbar', $data);
+        $this->load->view('partials/page-title', $data);
+        $this->load->view('admin/daftarbarangmodalhilang', $data);
     }
 
     public function detailBarangLab($idBarangLab)

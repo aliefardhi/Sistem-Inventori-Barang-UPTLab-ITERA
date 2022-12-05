@@ -63,12 +63,6 @@
                                             <ul class="list-group">
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
-                                                        <div class="fw-bold">ID Barang</div>
-                                                        <?= $detail_bhp['id_bhp'] ?>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                    <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Jenis Barang</div>
                                                         <?= $detail_bhp['jenis_barang'] ?>
                                                     </div>
@@ -105,16 +99,6 @@
                                                         <?= $detail_bhp['tanggal_terima'] ?>
                                                     </div>
                                                 </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <ul class="list-group">
-                                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                    <div class="ms-2 me-auto">
-                                                        <div class="fw-bold">Vendor</div>
-                                                        <?= $detail_bhp['vendor'] ?>
-                                                    </div>
-                                                </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                                     <div class="ms-2 me-auto">
                                                         <div class="fw-bold">Kondisi</div>
@@ -127,6 +111,16 @@
                                                         <?php if ($detail_bhp['kondisi'] == 'hilang') : ?>
                                                             <span class="badge rounded-pill text-bg-danger">Hilang</span>
                                                         <?php endif; ?>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                    <div class="ms-2 me-auto">
+                                                        <div class="fw-bold">Vendor</div>
+                                                        <?= $detail_bhp['vendor'] ?>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between align-items-start">

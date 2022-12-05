@@ -24,9 +24,12 @@
                                 <div class="card-body">
 
                                     <div class="row">
+                                        <?php if ($this->session->flashdata('message')) : ?>
+                                            <?= $this->session->flashdata('message'); ?>
+                                        <?php endif; ?>
                                         <div class="col-6">
                                             <h4 class="card-title">Daftar Barang Hilang</h4>
-                                            <p class="card-title-desc">Daftar barang habis pakai yang dinyatakan hilang.
+                                            <p class="card-title-desc">Daftar barang habis pakai dengan kondisi hilang.
                                             </p>
                                         </div>
 
@@ -44,59 +47,38 @@
                                     <table id="datatable" class="table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead class="table-dark">
                                             <tr>
-                                                <th>ID Barang</th>
+                                                <th>No</th>
                                                 <th>Nama</th>
                                                 <th>Jenis</th>
-                                                <th>Laboratorium</th>
-                                                <th>Ruangan</th>
+                                                <th>Jumlah</th>
+                                                <th>Sisa Barang</th>
+                                                <th>Satuan</th>
                                                 <th>Kondisi</th>
+                                                <th>Tanggal Terima</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
-                                            <tr>
-                                                <td>101.987</td>
-                                                <td>Lenovo IdeaCentre 5</td>
-                                                <td>Elektronik</td>
-                                                <td>Laboratorium Multimedia</td>
-                                                <td>GK202</td>
-                                                <td>
-                                                    <span class="badge rounded-pill text-bg-danger">Hilang</span>
-                                                </td>
-                                                <td><a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url() ?>index.php/baranghp/detailbaranghp">
-                                                        Detail
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>101.987</td>
-                                                <td>Lenovo IdeaCentre 5</td>
-                                                <td>Elektronik</td>
-                                                <td>Laboratorium Multimedia</td>
-                                                <td>GK202</td>
-                                                <td>
-                                                    <span class="badge rounded-pill text-bg-danger">Hilang</span>
-                                                </td>
-                                                <td><a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url() ?>index.php/baranghp/detailbaranghp">
-                                                        Detail
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>101.987</td>
-                                                <td>Lenovo IdeaCentre 5</td>
-                                                <td>Elektronik</td>
-                                                <td>Laboratorium Multimedia</td>
-                                                <td>GK202</td>
-                                                <td>
-                                                    <span class="badge rounded-pill text-bg-danger">Hilang</span>
-                                                </td>
-                                                <td><a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url() ?>index.php/baranghp/detailbaranghp">
-                                                        Detail
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            <?php foreach ($bhp_hilang as $b) : ?>
+                                                <tr>
+                                                    <td><?= $no++ ?></td>
+                                                    <td><?= $b->nama_barang ?></td>
+                                                    <td><?= $b->jenis_barang ?></td>
+                                                    <td><?= $b->jumlah ?></td>
+                                                    <td><?= $b->sisa_barang ?></td>
+                                                    <td><?= $b->satuan ?></td>
+                                                    <td>
+                                                        <span class="badge rounded-pill text-bg-danger text-capitalize"><?= $b->kondisi ?></span>
+                                                    </td>
+                                                    <td><?= $b->tanggal_terima ?></td>
+                                                    <td>
+                                                        <a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url('index.php/baranghp/detailbaranghp/') . $b->id_bhp ?>">
+                                                            Detail
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                     <!-- End of table -->

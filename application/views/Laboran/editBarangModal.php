@@ -56,8 +56,8 @@
                                             <select id="kondisi" class="form-select" name="kondisi">
                                                 <option selected>- Pilih -</option>
                                                 <option value="Baik" <?= $detail_barang['kondisi'] == 'Baik' ? 'selected' : '' ?>>Baik</option>
-                                                <option value="Rusak Ringan" <?= $detail_barang['kondis'] == 'Rusak Ringan' ? 'selected' : '' ?>>Rusak Ringan</option>
-                                                <option value="Rusak Berat" <?= $detail_barang['kondisi'] == 'Rusak Berat' ? 'selected' : '' ?>>Rusak Berat</option>
+                                                <option value="Rusak" <?= $detail_barang['kondisi'] == 'Rusak' ? 'selected' : '' ?>>Rusak</option>
+                                                <option value="Hilang" <?= $detail_barang['kondisi'] == 'Hilang' ? 'selected' : '' ?>>Hilang</option>
                                             </select>
                                             <?= form_error('kondisi', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>

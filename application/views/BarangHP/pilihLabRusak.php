@@ -23,65 +23,33 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    <div class="row">
-                                        <?php if ($this->session->flashdata('message')) : ?>
-                                            <?= $this->session->flashdata('message'); ?>
-                                        <?php endif; ?>
-                                        <div class="col-6">
-                                            <h4 class="card-title">Daftar Barang Rusak</h4>
-                                            <p class="card-title-desc">Daftar barang persediaan dengan kondisi rusak.
-                                            </p>
-                                        </div>
+                                    <h4 class="card-title">Pilih Laboratorium</h4>
+                                    <p class="card-title-desc">Pilih laboratorium untuk melihat daftar barang pada laboratorium terkait.
+                                    </p>
 
-                                        <!-- <div class="col-6">
-                                            <a class="btn btn-primary btn-sm edit float-end" href="<?= base_url() ?>index.php/laboran/tambahdatahp">
-                                                <i class="mdi mdi-plus me-1"></i>Tambah Data Barang
-                                            </a>
-                                            <a class="btn excel-button btn-sm edit float-end mx-1">
-                                                <i class="mdi mdi-microsoft-excel me-1"></i>Export Data Barang
-                                            </a>
-                                        </div> -->
-                                    </div>
-
-                                    <!-- Start table -->
-                                    <table id="datatable" class="table table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead class="table-dark">
                                             <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Jenis</th>
-                                                <th>Jumlah</th>
-                                                <th>Sisa Barang</th>
-                                                <th>Satuan</th>
-                                                <th>Kondisi</th>
-                                                <th>Tanggal Terima</th>
+                                                <th>No.</th>
+                                                <th>Nama Laboratorium</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
-                                            <?php foreach ($bp_rusak as $b) : ?>
+                                            <?php foreach ($lab as $l) : ?>
                                                 <tr>
                                                     <td><?= $no++ ?></td>
-                                                    <td><?= $b->nama_barang ?></td>
-                                                    <td><?= $b->jenis_barang ?></td>
-                                                    <td><?= $b->jumlah ?></td>
-                                                    <td><?= $b->sisa_barang ?></td>
-                                                    <td><?= $b->satuan ?></td>
+                                                    <td><?= $l->nama_lab ?></td>
                                                     <td>
-                                                        <span class="badge rounded-pill text-bg-warning text-capitalize"><?= $b->kondisi ?></span>
-                                                    </td>
-                                                    <td><?= $b->tanggal_terima ?></td>
-                                                    <td>
-                                                        <a class="btn btn-primary btn-sm edit" title="Detail" href="<?= base_url('index.php/barangpersediaan/detailbarangpersediaan/') . $b->id_persediaan ?>">
-                                                            Detail
+                                                        <a href="<?= base_url('index.php/baranghp/bhprusak/') . $l->id_lab ?>" class="btn btn-primary btn-sm edit" title="Pilih">
+                                                            Pilih
                                                         </a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
-                                    <!-- End of table -->
 
                                 </div>
                             </div>
@@ -125,10 +93,6 @@
     <!-- Datatable init js -->
     <script src="<?= base_url() ?>assets/js/pages/datatables.init.js"></script>
     <!-- End of Datatables js -->
-
-    <!--Morris Chart-->
-    <script type="text/javascript" src="<?= base_url() ?>assets/libs/morris.js/morris.min.js"></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/libs/raphael/raphael.min.js"></script>
 
     <script type="text/javascript" src="<?= base_url() ?>assets/js/pages/dashboard.init.js"></script>
 

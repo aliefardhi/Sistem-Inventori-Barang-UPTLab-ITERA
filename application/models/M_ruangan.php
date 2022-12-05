@@ -63,4 +63,17 @@ class M_ruangan extends CI_Model
     {
         return $this->db->delete($this->_table, ['id_ruang' => $idRuang]);
     }
+
+    public function countRuangan()
+    {
+        return $this->db->query("SELECT COUNT(id_ruang) as id_ruang FROM tbl_ruangan")->row();
+    }
+
+    public function countRuanganLab($idLab)
+    {
+        return $this->db->query("SELECT COUNT(id_ruang) as id_ruang, nama_lab 
+        FROM `tbl_ruangan`
+        LEFT JOIN tbl_lab ON tbl_ruangan.id_lab = tbl_lab.id_lab
+        WHERE tbl_ruangan.id_lab = '$idLab'")->row();
+    }
 }

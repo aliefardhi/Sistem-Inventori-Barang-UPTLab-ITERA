@@ -16,6 +16,11 @@ class M_pegawaiUpt extends CI_Model
         return $query->result();
     }
 
+    public function getCountPegawaiUpt()
+    {
+        return $this->db->query("SELECT count(id_pegawai) as id_pegawai FROM tbl_pegawai_upt WHERE is_active = 'Aktif'")->row();
+    }
+
     public function getDetailPegawaiUpt($id)
     {
         $query = $this->db->query("SELECT * FROM tbl_pegawai_upt left join v_simuk_pegawai on tbl_pegawai_upt.id_pegawai = v_simuk_pegawai.id_pegawai left join tbl_lab on tbl_pegawai_upt.id_lab = tbl_lab.id_lab WHERE tbl_pegawai_upt.id_pegawai = '$id' ");
