@@ -292,7 +292,7 @@ class Admin extends CI_Controller
             $this->form_validation->set_rules('status_kepegawaian', 'Status kepegawaian', 'required');
             $this->form_validation->set_rules('isactive', 'Status aktif', 'required');
             $this->form_validation->set_rules('nama_lab', 'Nama unit', 'required');
-            $this->form_validation->set_rules('kontak', 'Kontak', 'required');
+            $this->form_validation->set_rules('kontak', 'Kontak', 'required|numeric');
 
             if ($this->form_validation->run() == false) {
                 $data['title'] = 'Halaman Daftar Pegawai UPT Lab. ITERA';
@@ -355,25 +355,50 @@ class Admin extends CI_Controller
 
     public function editPegawai($id)
     {
-        $data['title'] = 'Halaman Edit Pegawai';
-        $data['pagetitle'] = 'Admin';
-        $data['subtitle'] = 'Edit Pegawai';
-        $data['detail_pegawai_upt'] = $this->M_pegawaiUpt->getDetailPegawaiUpt($id);
-        $data['detail_pegawai_upt_obj'] = $this->M_pegawaiUpt->getDetailPegawaiUptObj($id);
-        $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
-        $data['userdata'] = $this->session->userdata('login');
-        $idPegawai = $this->session->login['id_pegawai'];
-        $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
-        $this->load->view('partials/header', $data);
-        $this->load->view('partials/topbar', $data);
-        $this->load->view('partials/page-title', $data);
-        $this->load->view('admin/editpegawai', $data);
+        $this->form_validation->set_rules('statusPegawi', 'Status Kepegawaian', 'required');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+        $this->form_validation->set_rules('nama_lab', 'Unit Kerja', 'required');
+        $this->form_validation->set_rules('kontak', 'No. Hp', 'required|numeric');
+        $this->form_validation->set_rules('isactive', 'Is Active', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Halaman Edit Pegawai';
+            $data['pagetitle'] = 'Admin';
+            $data['subtitle'] = 'Edit Pegawai';
+            $data['detail_pegawai_upt'] = $this->M_pegawaiUpt->getDetailPegawaiUpt($id);
+            $data['detail_pegawai_upt_obj'] = $this->M_pegawaiUpt->getDetailPegawaiUptObj($id);
+            $data['all_laboratorium'] = $this->M_laboratorium->getAllLab();
+            $data['userdata'] = $this->session->userdata('login');
+            $idPegawai = $this->session->login['id_pegawai'];
+            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+            $this->load->view('partials/header', $data);
+            $this->load->view('partials/topbar', $data);
+            $this->load->view('partials/page-title', $data);
+            $this->load->view('admin/editpegawai', $data);
+        } else {
+            $data = [
+                'status' => $this->input->post('statusPegawai'),
+                'jabatan' => $this->input->post('jabatan'),
+                'kontak' => $this->input->post('kontak'),
+                'id_lab' => $this->input->post('nama_lab'),
+                'is_active' => $this->input->post('isactive'),
+                'updated_at' => time(),
+            ];
+
+            if ($this->M_pegawaiUpt->editPegawai($data, $id)) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data pegawai berhasil diubah!</div>');
+                redirect('admin/daftarpegawai');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal mengubah data pegawai!</div>');
+                redirect('admin/daftarpegawai');
+            }
+        }
     }
 
     public function editPegawaiProcess($id)
     {
         $data = [
-            'status' => $this->input->post('status'),
+            'status' => $this->input->post('statusPegawai'),
             'jabatan' => $this->input->post('jabatan'),
             'kontak' => $this->input->post('kontak'),
             'id_lab' => $this->input->post('nama_lab'),
@@ -438,19 +463,35 @@ class Admin extends CI_Controller
     // Laboratorium
     public function daftarLaboratorium()
     {
+        $this->form_validation->set_rules('namaLab', 'Nama Laboratorium', 'required');
+
         if ($this->session->login['role_id'] == 'admin') {
-            $data['title'] = 'Halaman Daftar Laboratorium ITERA';
-            $data['pagetitle'] = 'Admin';
-            $data['subtitle'] = 'Daftar Laboratorium';
-            $data['all_lab'] = $this->M_laboratorium->getAllLab();
-            $data['no'] = 1;
-            $data['userdata'] = $this->session->userdata('login');
-            $idPegawai = $this->session->login['id_pegawai'];
-            $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
-            $this->load->view('partials/header', $data);
-            $this->load->view('partials/topbar', $data);
-            $this->load->view('partials/page-title', $data);
-            $this->load->view('admin/daftarlab', $data);
+            if ($this->form_validation->run() == false) {
+                $data['title'] = 'Halaman Daftar Laboratorium ITERA';
+                $data['pagetitle'] = 'Admin';
+                $data['subtitle'] = 'Daftar Laboratorium';
+                $data['all_lab'] = $this->M_laboratorium->getAllLab();
+                $data['no'] = 1;
+                $data['userdata'] = $this->session->userdata('login');
+                $idPegawai = $this->session->login['id_pegawai'];
+                $data['user_session'] = $this->M_pengguna->getPenggunaDetailBySession($idPegawai);
+                $this->load->view('partials/header', $data);
+                $this->load->view('partials/topbar', $data);
+                $this->load->view('partials/page-title', $data);
+                $this->load->view('admin/daftarlab', $data);
+            } else {
+                $data = [
+                    'nama_lab' => $this->input->post('namaLab'),
+                ];
+
+                if ($this->M_laboratorium->addLab($data)) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data laboratorium berhasil ditambahkan!</div>');
+                    redirect('admin/daftarlaboratorium');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal menambahkan data laboratorium!</div>');
+                    redirect('admin/daftarlaboratorium');
+                }
+            }
         } else {
             redirect('login/blocked');
         }
@@ -474,8 +515,10 @@ class Admin extends CI_Controller
     public function deleteLab($idLab)
     {
         if ($this->M_laboratorium->deleteLab($idLab)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data laboratorium berhasil dihapus!</div>');
             redirect('admin/daftarlaboratorium');
         } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Gagal menghapus data laboratorium!</div>');
             redirect('admin/daftarlaboratorium');
         }
     }

@@ -23,6 +23,9 @@
                                 <div class="card-body">
 
                                     <div class="row">
+                                        <?php if ($this->session->flashdata('message')) : ?>
+                                            <?= $this->session->flashdata('message'); ?>
+                                        <?php endif; ?>
                                         <div class="col-6">
                                             <h4 class="card-title mb-3">Daftar Laboratorium ITERA</h4>
                                         </div>
@@ -67,12 +70,11 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <!-- Start form input -->
-                                                    <form action="<?= base_url() ?>index.php/admin/addLab" method="POST" class="row g-3">
+                                                    <form action="<?= base_url() ?>index.php/admin/daftarlaboratorium" method="POST" class="row g-3">
                                                         <div class="col-md-12">
                                                             <label for="" class="form-label">Nama Laboratorium</label>
                                                             <input type="text" class="form-control" placeholder="Masukkan nama laboratorium..." id="namaLab" name="namaLab" value="">
-
-                                                            <!-- <input type="hidden" placeholder="" id="idLab" name="idLab" value=""> -->
+                                                            <?= form_error('namaLab', '<small class="text-danger pl-3">', '</small>'); ?>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

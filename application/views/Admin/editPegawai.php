@@ -25,7 +25,8 @@
                                     <h4 class="card-title">Edit Pegawai</h4>
                                     <p class="card-title-desc">Edit data pegawai UPT Laboratorium ITERA.</p>
 
-                                    <form action="<?= base_url('index.php/admin/editpegawaiprocess/') . $detail_pegawai_upt->id ?>" method="POST">
+                                    <form action="<?= base_url('index.php/admin/editpegawai/') . $detail_pegawai_upt->id_pegawai ?>" method="POST">
+                                        <input type="hidden" value="<?= $detail_pegawai_upt->id ?>">
 
                                         <div class="mb-3 row">
                                             <label for="nama_pegawai" class="col-md-2 col-form-label">Nama Pegawai</label>
@@ -34,15 +35,15 @@
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
-                                            <label for="status" class="col-md-2 col-form-label">Status Kepegawaian</label>
+                                            <label for="statusPegawai" class="col-md-2 col-form-label">Status Kepegawaian</label>
                                             <div class="col-md-10">
-                                                <select class="form-control form-select" name="status">
+                                                <select class="form-control form-select" name="statusPegawai">
                                                     <option value="pns" <?= $detail_pegawai_upt->status == 'pns' ? 'selected' : '' ?>>PNS</option>
                                                     <option value="p3k" <?= $detail_pegawai_upt->status == 'p3k' ? 'selected' : '' ?>>P3K</option>
                                                     <option value="ppnpm" <?= $detail_pegawai_upt->status == 'ppnpm' ? 'selected' : '' ?>>PPNPM</option>
                                                 </select>
                                             </div>
-                                            <?= form_error('status', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <?= form_error('statusPegawai', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="jabatan" class="col-md-2 col-form-label">Jabatan</label>
